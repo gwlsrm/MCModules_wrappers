@@ -127,3 +127,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# binaries
+*.exe
+*.dll
+
+# other files
+*.log
+*.spe
+analyzer.ain
+tccfcalc.in
+tccfcalc.out
+
+# directories
+results/

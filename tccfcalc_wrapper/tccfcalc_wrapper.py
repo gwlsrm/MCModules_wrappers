@@ -1,0 +1,46 @@
+import os.path
+from ctypes import *
+
+
+class TccFcalcDllWrapper:
+    def __init__(self, path_to_dll=None, lib_name='libtccfcalc.dll') -> None:
+        if path_to_dll is None:
+            path_to_dll = os.path.dirname(__file__)
+        self._path_to_dll = path_to_dll
+        self._lib = CDLL(os.path.join(path_to_dll, "libtccfcalc.dll"), RTLD_GLOBAL)
+    
+    def get_tccfcalc_prepare(self):
+        tccfcalc_prepare = getattr(self._lib, 'TCCFCALC_Prepare@24')
+        tccfcalc_prepare.argtypes = [c_int, c_int, c_int, c_char_p, c_char_p, c_int]
+        return tccfcalc_prepare
+
+    def get_tccfcalc_calculate(self):
+        tcc_calculate = getattr(self._lib, 'TCCFCALC_Calculate@4')
+        tcc_calculate.argtypes = [c_int]
+        return tcc_calculate
+
+    def get_tccfcalc_reset(self):
+        return getattr(self._lib, 'TCCFCALC_Reset@0')
+
+    def get_tccfcalc_calc_spectrum(self):
+        tcc_calc_spectrum = getattr(self._lib, 'TCCFCALC_CalcSpectrumFile@12')
+        tcc_calc_spectrum.argtypes = [c_char_p, c_double]
+        return tcc_calc_spectrum
+
+
+def main():
+    cur_path = os.path.dirname(__file__)
+    cur_lib_path = os.path.join(cur_path, 'Lib')
+    lib = TccFcalcDllWrapper()
+    tcc_prepare = lib.get_tccfcalc_prepare()
+    res = tcc_prepare(290, 27, 0, bytes(cur_path, 'utf-8'), bytes(cur_lib_path, 'utf-8'), 42)
+    print(f'prepare {res=}')
+
+    tcc_calculate = lib.get_tccfcalc_calculate()
+    for i in range(1000):
+        tcc_calculate(1000)
+    print('done')
+
+
+if __name__ == '__main__':
+    main()    

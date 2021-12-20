@@ -1,0 +1,165 @@
+//---------------------------------
+//DETECTOR PARAMETERS BLOCK:
+//---------------------------------
+//Detector types: COAXIAL, SCINTILLATOR, COAX_WELL
+
+
+DetectorType = SCINTILLATOR
+
+// Scintillator detector
+DS_CrystalDiameter = 4 cm
+DS_CrystalHeight = 4 cm
+DS_CrystalFrontReflectorThickness = 0.1 cm
+DS_CrystalSideReflectorThickness = 0.1 cm
+DS_CrystalFrontCladdingThickness = 0.1 cm
+DS_CrystalSideCladdingThickness = 0.1 cm
+DS_DetectorFrontPackagingThickness = 0.2 cm
+DS_DetectorSidePackagingThickness = 0.5 cm
+DS_DetectorFrontCapThickness = 0.1 cm
+DS_DetectorSideCapThickness = 0.1 cm
+DS_DetectorMountingThickness = 3 cm
+
+
+//---------------------------------
+//MATERIAL PARAMETERS BLOCK:
+//---------------------------------
+// Scintillation detector materials:
+//---------------------------
+
+
+// Crystal
+DS_nCrystalElements = 2
+DS_RoCrystal = 3.667
+DS_ZCrystal[0] = 11
+DS_FractionsCrystal[0] = 0.153373
+DS_ZCrystal[1] = 53
+DS_FractionsCrystal[1] = 0.846627
+DS_FractionTypeCrystal = MASS
+M_DS_Crystal.MName = NaI
+M_DS_Crystal.Nmaterials = 1
+M_DS_Crystal.Name[0] = NaI
+M_DS_Crystal.MatRelWeight[0] = 1
+
+
+// Crystal Cladding
+DS_nCrystalCladdingElements = 1
+DS_RoCrystalCladding = 2.7
+DS_ZCrystalCladding[0] = 13
+DS_FractionsCrystalCladding[0] = 1
+DS_FractionTypeCrystalCladding = MASS
+M_DS_Crystal_Cladding.MName = Aluminium
+M_DS_Crystal_Cladding.Nmaterials = 1
+M_DS_Crystal_Cladding.Name[0] = Aluminium
+M_DS_Crystal_Cladding.MatRelWeight[0] = 1
+
+
+// Reflector
+DS_nCrystalReflectorElements = 2
+DS_RoCrystalReflector = 3.58
+DS_ZCrystalReflector[0] = 8
+DS_FractionsCrystalReflector[0] = 0.396964
+DS_ZCrystalReflector[1] = 12
+DS_FractionsCrystalReflector[1] = 0.603036
+DS_FractionTypeReflector = MASS
+M_DS_Reflector.MName = MgO
+M_DS_Reflector.Nmaterials = 1
+M_DS_Reflector.Name[0] = MgO
+M_DS_Reflector.MatRelWeight[0] = 1
+
+
+// DetectorPackaging
+DS_nDetectorPackagingElements = 2
+DS_RoDetectorPackaging = 0.04
+DS_ZDetectorPackaging[0] = 1
+DS_FractionsDetectorPackaging[0] = 0.078
+DS_ZDetectorPackaging[1] = 6
+DS_FractionsDetectorPackaging[1] = 0.922
+DS_FractionTypeDetectorPackaging = MASS
+M_DS_DetectorPackaging.MName = Polystyrene
+M_DS_DetectorPackaging.Nmaterials = 1
+M_DS_DetectorPackaging.Name[0] = Polystyrene
+M_DS_DetectorPackaging.MatRelWeight[0] = 1
+
+
+// DetectorCap
+DS_nDetectorCapElements = 1
+DS_RoDetectorCap = 2.7
+DS_ZDetectorCap[0] = 13
+DS_FractionsDetectorCap[0] = 1
+DS_FractionTypeDetectorCap = MASS
+M_DS_DetectorCap.MName = Aluminium
+M_DS_DetectorCap.Nmaterials = 1
+M_DS_DetectorCap.Name[0] = Aluminium
+M_DS_DetectorCap.MatRelWeight[0] = 1
+
+//---------------------------------
+//SOURCE PARAMETERS BLOCK:
+//---------------------------------
+//Source types: POINT, CYLINDER, MARINELLI
+
+SourceType = MARINELLI
+
+//Marinelli beaker Source
+SM_BeakerToDetectorFrontDistance = 0 cm
+SM_BeakerDiameter = 15.4 cm
+SM_BeakerHeight = 11.2 cm
+SM_BeakerHoleDiameter = 9.6 cm
+SM_BeakerHoleHeight = 6.6 cm
+SM_BeakerSideThickness = 0.2 cm
+SM_BeakerEndWallThickness = 0.2 cm
+SM_BeakerHoleSideThickness = 0.2 cm
+SM_BeakerHoleEndWallThickness = 0.2 cm
+SM_SourceHeight = 8.6 cm
+
+
+//---------------------------------
+//MATERIAL PARAMETERS BLOCK:
+//---------------------------------
+//Marinelli beaker materials:
+//----------------------------
+
+
+// Walls
+SM_nWallElements = 3
+SM_RoWall = 1.38
+SM_ZWall[0] = 1
+SM_FractionsWall[0] = 0.04196
+SM_ZWall[1] = 6
+SM_FractionsWall[1] = 0.625016
+SM_ZWall[2] = 8
+SM_FractionsWall[2] = 0.333024
+SM_FractionTypeWall = MASS
+M_SM_Beaker.MName = Mylar
+M_SM_Beaker.Nmaterials = 1
+M_SM_Beaker.Name[0] = Mylar
+M_SM_Beaker.MatRelWeight[0] = 1
+
+
+// Source
+SM_nSourceElements = 2
+SM_RoSource = 1
+SM_ZSource[0] = 1
+SM_FractionsSource[0] = 0.111899330013933
+SM_ZSource[1] = 8
+SM_FractionsSource[1] = 0.888100669986067
+SM_FractionTypeSource = MASS
+M_SM_Source.MName = Water
+M_SM_Source.Nmaterials = 1
+M_SM_Source.Name[0] = Water
+M_SM_Source.MatRelWeight[0] = 1
+
+
+// Empty Space
+SM_nEmptySpaceElements = 3
+SM_RoEmptySpace = 0.001
+SM_ZEmptySpace[0] = 7
+SM_FractionsEmptySpace[0] = 0.755
+SM_ZEmptySpace[1] = 8
+SM_FractionsEmptySpace[1] = 0.2315
+SM_ZEmptySpace[2] = 18
+SM_FractionsEmptySpace[2] = 0.0129
+SM_FractionTypeEmptySpace = MASS
+M_SM_EmptySpace.MName = Air
+M_SM_EmptySpace.Nmaterials = 1
+M_SM_EmptySpace.Name[0] = Air
+M_SM_EmptySpace.MatRelWeight[0] = 1
