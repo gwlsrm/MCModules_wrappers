@@ -1,0 +1,107 @@
+{
+    "Detector": {
+        "Type": "COAXIAL",
+        "Geometry": {
+            "CrystalDiameter": 5.41,
+            "CrystalHeight": 3.99,
+            "CrystalHoleDiameter": 0.85,
+            "CrystalHoleHeight": 2.6,
+            "CrystalFrontDeadLayer": 0.07,
+            "CrystalSideDeadLayer": 0.07,
+            "CrystalBackDeadLayer": 0.07,
+            "CrystalHoleBottomDeadLayer": 0.0003,
+            "CrystalHoleSideDeadLayer": 0.0003,
+            "CrystalSideCladdingThickness": 0.08,
+            "CapToCrystalDistance": 0.3,
+            "DetectorCapDiameter": 7.0,
+            "DetectorCapFrontThickness": 0.1,
+            "DetectorCapSideThickness": 0.1,
+            "DetectorCapBackThickness": 0.1,
+            "DetectorMountingThickness": 3.0,
+            "CrystalCurvatureRadius": 0
+        },
+        "Material": {
+            "Crystal": {
+                "rho": 5.323,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 32,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "CrystalSideCladding": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "CrystalMounting": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "DetectorCap": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "Vacuum": {
+                "rho": 1e-10,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            }
+        }
+    },
+    "Source": {
+        "Type": "POINT",
+        "Geometry": {
+            "pdistance": 10.0,
+            "prho": 0.0
+        },
+        "Material": {}
+    },
+    "CalculationParameters": {
+        "low_energy_threshold": 0.05,
+        "pair_peaks_threshold": 1.5,
+        "xray_escape_threshold": 0.3,
+        "photon_LEcutoff": 0.001,
+        "electron_LEcutoff": 0.001,
+        "phys_spectrum_Emax": 1.5,
+        "phys_spectrum_dE": 0.01,
+        "useGLECS": false,
+        "useEPDL97": false,
+        "calc_electron_ttb": false,
+        "calc_electron_real": false,
+        "xrays": true,
+        "annihilation": true,
+        "angular": true,
+        "angle_optimize": true,
+        "calc_full_eff": false,
+        "calc_spectrum": false,
+        "calc_coincidence": true,
+        "calc_scattered": true,
+        "use_exp_transform": false,
+        "exp_transform_p_parameter": 0.9
+    }
+}

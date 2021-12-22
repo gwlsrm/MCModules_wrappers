@@ -2,12 +2,29 @@ import os.path
 from ctypes import *
 
 
+PREPARE_ERROR_CODES = [
+    "Memory allocation error.",
+    "Unable to load Photon Attenuation Library files.",
+    "No GLECS database.",
+    "Could not find ECCBINDX.BIN data file.",
+    "TCCFCALC.IN file not found.",
+    "Incorrect input geometry or material data",
+    "No ENSDF data found for the specified A, Z and M.",
+    "There is no valid record in ENSDF data library.",
+    "ENSDF: Normalization record is not complete.",
+    "Could not find ICC.BIN data file.",
+    "No X- or gamma-rays are emitted by the source.",
+    "No EPDL97 library",
+    "No Ttb library",
+    "No Elib library",
+]
+
+
 class TccFcalcDllWrapper:
     def __init__(self, path_to_dll=None, lib_name='libtccfcalc.dll') -> None:
         if path_to_dll is None:
             path_to_dll = os.path.dirname(__file__)
-        self._path_to_dll = path_to_dll
-        self._lib = CDLL(os.path.join(path_to_dll, "libtccfcalc.dll"), RTLD_GLOBAL)
+        self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
     
     def get_tccfcalc_prepare(self):
         tccfcalc_prepare = getattr(self._lib, 'TCCFCALC_Prepare@24')
@@ -34,7 +51,7 @@ def main():
     lib = TccFcalcDllWrapper()
     tcc_prepare = lib.get_tccfcalc_prepare()
     res = tcc_prepare(290, 27, 0, bytes(cur_path, 'utf-8'), bytes(cur_lib_path, 'utf-8'), 42)
-    print(f'prepare {res=}')
+    print(f'prepare {res=}: {PREPARE_ERROR_CODES[res]}')
 
     tcc_calculate = lib.get_tccfcalc_calculate()
     for i in range(1000):

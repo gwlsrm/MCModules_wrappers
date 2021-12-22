@@ -138,6 +138,8 @@ dmypy.json
 analyzer.ain
 tccfcalc.in
 tccfcalc.out
+response_input.json
+response_output.csv
 
 # directories
 results/
