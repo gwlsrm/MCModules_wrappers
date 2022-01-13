@@ -1,0 +1,226 @@
+{
+    "Detector": {
+        "Type": "SCINTILLATOR",
+        "Geometry": {
+            "CrystalDiameter": 4.0,
+            "CrystalHeight": 4.0,
+            "CrystalFrontReflectorThickness": 0.1,
+            "CrystalSideReflectorThickness": 0.1,
+            "CrystalFrontCladdingThickness": 0.1,
+            "CrystalSideCladdingThickness": 0.1,
+            "DetectorFrontPackagingThickness": 0.2,
+            "DetectorSidePackagingThickness": 0.5,
+            "DetectorFrontCapThickness": 0.1,
+            "DetectorSideCapThickness": 0.1,
+            "DetectorMountingThickness": 3.0
+        },
+        "Material": {
+            "Crystal": {
+                "rho": 3.667,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 11,
+                        "frac": 0.153373
+                    },
+                    {
+                        "z": 53,
+                        "frac": 0.846627
+                    }
+                ]
+            },
+            "CrystalCladding": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "CrystalReflector": {
+                "rho": 3.58,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 8,
+                        "frac": 0.396964
+                    },
+                    {
+                        "z": 12,
+                        "frac": 0.603036
+                    }
+                ]
+            },
+            "DetectorPackaging": {
+                "rho": 0.04,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 1,
+                        "frac": 0.078
+                    },
+                    {
+                        "z": 6,
+                        "frac": 0.922
+                    }
+                ]
+            },
+            "DetectorCap": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            }
+        }
+    },
+    "ContainerSource": {
+        "Name": "Point",
+        "Cells": [
+            {
+                "Name": "Point",
+                "Shape": "Point",
+                "ParentIdx": -1,
+                "ChildIndex": [],
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "RadioactiveSource": [
+                    {
+                        "E": 0.05,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.07880293000746189,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.1241980355552187,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.1957433820584432,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.3085030407155073,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.48621887049186563,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.7663094323935531,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 1.2077485712993399,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 1.903482522614279,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 3,
+                        "I": 1000.0
+                    }
+                ]
+            }
+        ],
+        "DetectorPosition": {
+            "detX": 0,
+            "detY": 40,
+            "detZ": 0,
+            "detPhi": 0,
+            "detTheta": 0
+        }
+    },
+    "CalculationParameters": {
+        "low_energy_threshold": 0.01,
+        "pair_peaks_threshold": 1.5,
+        "xray_escape_threshold": 0.3,
+        "photon_LEcutoff": 0.001,
+        "electron_LEcutoff": 0.001,
+        "phys_spectrum_Emax": 3,
+        "phys_spectrum_dE": 0.01,
+        "useGLECS": true,
+        "useEPDL97": false,
+        "calc_electron_ttb": false,
+        "calc_electron_real": false,
+        "xrays": true,
+        "annihilation": true,
+        "angular": true,
+        "angle_optimize": true,
+        "calc_full_eff": false,
+        "calc_spectrum": false,
+        "calc_coincidence": true,
+        "calc_scattered": true,
+        "use_exp_transform": false,
+        "exp_transform_p_parameter": 0.9
+    },
+    "Collimator": {
+        "Type": "TYPE2",
+        "Geometry": {
+            "CollimatorLength": 15.0,
+            "CollimatorThickness": 3.0,
+            "CollimatorFrontThickness": 2.0,
+            "CollimatorSectionWidth": 2.0,
+            "FilterThickness": 0.2
+        },
+        "Material": {
+            "Wall": {
+                "rho": 0.001205,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 6,
+                        "frac": 0.000124
+                    },
+                    {
+                        "z": 7,
+                        "frac": 0.755268
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.231781
+                    },
+                    {
+                        "z": 18,
+                        "frac": 0.012827
+                    }
+                ]
+            },
+            "Filter": {
+                "rho": 0.001205,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 6,
+                        "frac": 0.000124
+                    },
+                    {
+                        "z": 7,
+                        "frac": 0.755268
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.231781
+                    },
+                    {
+                        "z": 18,
+                        "frac": 0.012827
+                    }
+                ]
+            }
+        }
+    }
+}

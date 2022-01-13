@@ -3,6 +3,7 @@ from ctypes import *
 
 
 PREPARE_ERROR_CODES = [
+    "",
     "Memory allocation error.",
     "Unable to load Photon Attenuation Library files.",
     "No GLECS database.",
@@ -38,9 +39,9 @@ class ResponseDllWrapper:
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
     
     def get_response_prepare(self):
-        tccfcalc_prepare = getattr(self._lib, 'Response_Prepare_Json@8')
-        tccfcalc_prepare.argtypes = [c_char_p, c_int]
-        return tccfcalc_prepare
+        response_prepare = getattr(self._lib, 'Response_Prepare_Json@8')
+        response_prepare.argtypes = [c_char_p, c_int]
+        return response_prepare
 
     def get_response_calculate(self):
         response_calculate = getattr(self._lib, 'Response_Calculate@20')

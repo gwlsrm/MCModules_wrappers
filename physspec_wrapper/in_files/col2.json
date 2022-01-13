@@ -1,0 +1,58 @@
+{
+    "Collimator": {
+        "Type": "TYPE2",
+        "Geometry": {
+            "CollimatorLength": 15.0,
+            "CollimatorThickness": 3.0,
+            "CollimatorFrontThickness": 2.0,
+            "CollimatorSectionWidth": 2.0,
+            "FilterThickness": 0.2
+        },
+        "Material": {
+            "Wall": {
+                "rho": 1.205e-3,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 6,
+                        "frac": 0.000124
+                    },
+                    {
+                        "z": 7,
+                        "frac": 0.755268
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.231781
+                    },
+                    {
+                        "z": 18,
+                        "frac": 0.012827
+                    }
+                ]
+            },
+            "Filter": {
+                "rho": 1.205e-3,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 6,
+                        "frac": 0.000124
+                    },
+                    {
+                        "z": 7,
+                        "frac": 0.755268
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.231781
+                    },
+                    {
+                        "z": 18,
+                        "frac": 0.012827
+                    }
+                ]
+            }
+        }
+    }
+}

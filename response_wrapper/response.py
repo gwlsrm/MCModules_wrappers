@@ -45,7 +45,7 @@ def calc_response_with(grid, seed, histories):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='response -- util for detector response calcultion with Monte-Carlo method')
+    parser = argparse.ArgumentParser(description='response -- util for detector response calculation with Monte-Carlo method')
     
     parser.add_argument('positional', help='energy grid parameters: minimal energy, maximal energy, points', nargs='*')
     parser.add_argument('--grid_log', help='is energy grid logarithmic', action="store_true")

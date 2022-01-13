@@ -140,6 +140,8 @@ tccfcalc.in
 tccfcalc.out
 response_input.json
 response_output.csv
+physspec_input.json
+physspec_output.json
 
 # directories
 results/

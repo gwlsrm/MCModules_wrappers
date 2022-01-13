@@ -1,0 +1,89 @@
+{
+    "ContainerSource": {
+        "Name": "Barrel-200l",
+        "Cells": [
+            {
+                "Name": "Wall",
+                "Shape": "CylZ",
+                "ParentIdx": -1,
+                "ChildIndex": [1],
+                "Dimensions": {
+                    "Dim1": 87.0,
+                    "Dim2": 30.5
+                },
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Material": {
+                    "Name": "Non-corrosive steel",
+                    "rho": 7.93,
+                    "elements":[
+                        {"z": 24, "frac": 0.001},
+                        {"z": 26, "frac": 0.971},
+                        {"z": 28, "frac": 0.018},
+                        {"z": 22, "frac": 0.01}
+                    ]
+                }
+            },
+            {
+                "Name": "Air",
+                "Shape": "CylZ",
+                "ParentIdx": 0,
+                "ChildIndex": [2],
+                "Dimensions": {
+                    "Dim1": 86.6,
+                    "Dim2": 30.3
+                },
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Material": {
+                    "Name": "Air",
+                    "rho": 0.001,
+                    "elements": [
+                        {"z": 7, "frac": 0.755},
+                        {"z": 8, "frac": 0.232},
+                        {"z": 18, "frac": 0.013}
+                    ]
+                }
+            },
+            {
+                "Name": "Source",
+                "Shape": "CylZ",
+                "ParentIdx": 1,
+                "ChildIndex": [],
+                "Dimensions": {
+                    "Dim1": 86.0,
+                    "Dim2": 30.3
+                },
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "RadioactiveSource": [
+                    {"E": 0.05, "I": 1000.0}, {"E": 0.07880293000746189, "I": 1000.0}, {"E": 0.1241980355552187, "I": 1000.0}, {"E": 0.1957433820584432, "I": 1000.0}, {"E": 0.3085030407155073, "I": 1000.0}, {"E": 0.48621887049186563, "I": 1000.0}, {"E": 0.7663094323935531, "I": 1000.0}, {"E": 1.2077485712993399, "I": 1000.0}, {"E": 1.903482522614279, "I": 1000.0}, {"E": 3, "I": 1000.0}
+                ],
+                "Material": {
+                    "Name": "Water",
+                    "rho": 1,
+                    "elements": [
+                        {"z": 1, "frac": 0.111899330013933},
+                        {"z": 8, "frac": 0.888100669986067}
+                    ]
+                }
+            }
+        ],
+        "DetectorPosition": {
+            "detX": 0,
+            "detY": 40,
+            "detZ": 0,
+            "detPhi": 0,
+            "detTheta": 0           
+        }
+    }
+}
