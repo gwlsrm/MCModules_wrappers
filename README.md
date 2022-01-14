@@ -1,12 +1,13 @@
 # MCModules wrappers
 Python wrappers to [lsrm](http://lsrm.ru/en/) Monte-Carlo calculation libraries:
 
-- tccfcalc_wrapper
-- response_wrapper
+- tccfcalc.dll
+- response.dll
+- physspec.dll
 
 
 
-### tccfcalc_wrapper
+### tccfcalc wrapper
 
 wrapper for tccfcalc.dll (calculation library for EffCalcMC)
 
@@ -31,7 +32,42 @@ optional arguments:
 
 
 
-### response_wrapper
+### response wrapper
 
 wrapper for response.dll (calculation library for EffMaker)
+
+run:
+
+```sh
+python response.py <arguments>
+positional arguments:
+  positional            energy grid parameters: minimal energy, maximal energy, points
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --grid_log            is energy grid logarithmic
+  -N HISTORIES, --histories HISTORIES
+                        calculation histories, thsnds
+  -s SEED, --seed SEED  seed for random generator, default = 0 <- random seed
+  -v, --verbose         verbose mode
+```
+
+
+
+### physspec wrapper
+
+wrapper for physspec.dll (calculation library for EffMaker)
+
+run:
+
+```sh
+python physspec.py <arguments>
+optional arguments:
+  -h, --help            show this help message and exit
+  -N HISTORIES, --histories HISTORIES
+                        calculation histories, thsnds
+  -s SEED, --seed SEED  seed for random generator, default = 0 <- random seed
+  -v, --verbose         verbose mode
+  --pretty              pretty json output file
+```
 
