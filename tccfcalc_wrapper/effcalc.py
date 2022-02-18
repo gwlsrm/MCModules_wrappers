@@ -7,6 +7,41 @@ from tccfcalc_wrapper import TccFcalcDllWrapper
 from nuclide import Nuclide
 
 
+def calculate_eff(nuclide, N, anal_fname, seed):
+    # prepare
+    cur_path = os.path.dirname(__file__)
+    cur_lib_path = os.path.join(cur_path, 'Lib')
+    lib = TccFcalcDllWrapper()
+    tcc_prepare = lib.get_tccfcalc_prepare()
+    error_num = tcc_prepare(nuclide.a, nuclide.z, nuclide.m, bytes(cur_path, 'utf-8'), 
+                      bytes(cur_lib_path, 'utf-8'), seed)
+    if error_num:
+        logging.error(f'Prepare error #{error_num}')
+        sys.exit()
+    logging.info('Prepared successfully')
+
+    # calculate
+    tcc_calculate = lib.get_tccfcalc_calculate()
+    logging.info(f'Starting calculation with N = {N}')
+    percent = 0
+    for i in range(N):
+        tcc_calculate(1000)
+        new_percent = int(10 * i / N)
+        if percent != new_percent:
+            percent = new_percent
+            logging.debug(f'{percent*10}%')
+
+    # spectrum
+    if anal_fname:
+        tcc_calc_spectrum = lib.get_tccfcalc_calc_spectrum()
+        logging.info('Start calculating spectr with analyzer: ' + anal_fname)
+        error_num = tcc_calc_spectrum(bytes(anal_fname, 'utf-8'), 1e3)
+        if error_num:
+            logging.error('Spectrum calculation error #' + str(error_num))
+            sys.exit()
+        logging.info('Spectrum calculation done')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='effcalc -- util for efficiency calcultion with Monte-Carlo method')
     
@@ -41,39 +76,10 @@ if __name__ == '__main__':
             nuclide = Nuclide.get_default()
     logging.info(nuclide)
 
-    # prepare
-    cur_path = os.path.dirname(__file__)
-    cur_lib_path = os.path.join(cur_path, 'Lib')
-    lib = TccFcalcDllWrapper()
-    tcc_prepare = lib.get_tccfcalc_prepare()
-    error_num = tcc_prepare(nuclide.a, nuclide.z, nuclide.m, bytes(cur_path, 'utf-8'), 
-                      bytes(cur_lib_path, 'utf-8'), args.seed)
-    if error_num:
-        logging.error(f'Prepare error #{error_num}')
-        sys.exit()
-    logging.info('Prepared successfully')
-
-    # calculate
-    tcc_calculate = lib.get_tccfcalc_calculate()
+    # other
     N = args.histories
-    logging.info(f'Starting calculation with N = {N}')
-    percent = 0
-    for i in range(N):
-        tcc_calculate(1000)
-        new_percent = int(10 * i / N)
-        if percent != new_percent:
-            percent = new_percent
-            logging.info(f'{percent*10}%')
+    anal_fname = os.path.abspath(args.analyzer) if args.analyzer is not None else None
+    seed = args.seed
 
-    # spectrum
-    if args.analyzer:
-        tcc_calc_spectrum = lib.get_tccfcalc_calc_spectrum()
-        anal_fname = os.path.abspath(args.analyzer)
-        logging.info('Start calculating spectr with analyzer: ' + anal_fname)
-        error_num = tcc_calc_spectrum(bytes(args.analyzer, 'utf-8'), 1e3)
-        if error_num:
-            logging.error('Spectrum calculation error #' + str(error_num))
-            sys.exit()
-        logging.info('Spectrum calculation done')
-    
-    logging.info('done')
+    for i in range(2):
+        calculate_eff(nuclide, N, anal_fname, seed)

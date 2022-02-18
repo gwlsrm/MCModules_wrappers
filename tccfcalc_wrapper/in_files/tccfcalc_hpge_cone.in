@@ -1,0 +1,149 @@
+//---------------------------------
+//DETECTOR PARAMETERS BLOCK:
+//---------------------------------
+//Detector types: COAXIAL, SCINTILLATOR
+
+
+DetectorType = COAXIAL
+
+// Coaxial detector
+DC_CrystalDiameter = 5.51 cm
+DC_CrystalHeight = 3.3 cm
+DC_CrystalHoleDiameter = 1.02 cm
+DC_CrystalHoleHeight = 1.99 cm
+DC_CrystalFrontDeadLayer = 0.1 cm
+DC_CrystalSideDeadLayer = 0.07 cm
+DC_CrystalBackDeadLayer = 0.07 cm
+DC_CrystalHoleBottomDeadLayer = 0.0003 cm
+DC_CrystalHoleSideDeadLayer = 0.0003 cm
+DC_CrystalSideCladdingThickness = 0.08 cm
+DC_CapToCrystalDistance = 0.3 cm
+DC_DetectorCapDiameter = 7 cm
+DC_DetectorCapFrontThickness = 0.103 cm
+DC_DetectorCapSideThickness = 0.1 cm
+DC_DetectorCapBackThickness = 0.1 cm
+DC_DetectorMountingThickness = 3 cm
+
+
+//---------------------------------
+//MATERIAL PARAMETERS BLOCK:
+//---------------------------------
+//Coaxial detector materials:
+//---------------------------
+
+
+// Crystal
+DC_nCrystalElements = 1
+DC_RoCrystal = 5.323
+DC_ZCrystal[0] = 32
+DC_FractionsCrystal[0] = 1
+DC_FractionTypeCrystal = MASS
+M_DC_Crystal.MName = Germanium
+M_DC_Crystal.Nmaterials = 1
+M_DC_Crystal.Name[0] = Germanium
+M_DC_Crystal.MatRelWeight[0] = 1
+
+
+// Crystal Cladding
+DC_nCrystalSideCladdingElements = 1
+DC_RoCrystalSideCladding = 2.7
+DC_ZCrystalSideCladding[0] = 13
+DC_FractionsCrystalSideCladding[0] = 1
+DC_FractionTypeCrystalSideCladding = MASS
+M_DC_Crystal_Cladding.MName = Aluminum
+M_DC_Crystal_Cladding.Nmaterials = 1
+M_DC_Crystal_Cladding.Name[0] = Aluminum
+M_DC_Crystal_Cladding.MatRelWeight[0] = 1
+
+
+// Crystal Mounting
+DC_nCrystalMountingElements = 1
+DC_RoCrystalMounting = 2.7
+DC_ZCrystalMounting[0] = 13
+DC_FractionsCrystalMounting[0] = 1
+DC_FractionTypeCrystalMounting = MASS
+M_DC_Crystal_Mounting.MName = Aluminum
+M_DC_Crystal_Mounting.Nmaterials = 1
+M_DC_Crystal_Mounting.Name[0] = Aluminum
+M_DC_Crystal_Mounting.MatRelWeight[0] = 1
+
+
+// Detector Cap
+DC_nDetectorCapElements = 1
+DC_RoDetectorCap = 2.7
+DC_ZDetectorCap[0] = 13
+DC_FractionsDetectorCap[0] = 1
+DC_FractionTypeDetectorCap = MASS
+M_DC_Detector_Cap.MName = Aluminum
+M_DC_Detector_Cap.Nmaterials = 1
+M_DC_Detector_Cap.Name[0] = Aluminum
+M_DC_Detector_Cap.MatRelWeight[0] = 1
+
+
+// Vacuum
+DC_nVacuum = 1
+DC_RoVacuum = 1E-10
+DC_ZVacuum[0] = 13
+DC_FractionsVacuum[0] = 1
+DC_FractionTypeVacuum = MASS
+M_DC_Vacuum.MName = Aluminum
+M_DC_Vacuum.Nmaterials = 1
+M_DC_Vacuum.Name[0] = Aluminum
+M_DC_Vacuum.MatRelWeight[0] = 1
+
+
+//---------------------------------
+//SOURCE PARAMETERS BLOCK:
+//---------------------------------
+//Source types: POINT, CYLINDER, MARINELLI, CONE
+
+SourceType = CONE
+
+//Cylindrical Source
+SK_BeakerToDetectorFrontDistance = 0 cm
+SK_BeakerDiameterBottom = 6.7 cm
+SK_BeakerDiameterTop = 7.2 cm
+SK_BeakerHeight = 3.6 cm
+SK_BeakerSideWallThickness = 0.1 cm
+SK_BeakerEndWallThickness = 0.1 cm
+SK_SourceHeight = 3.4 cm
+
+
+//---------------------------------
+//MATERIAL PARAMETERS BLOCK:
+//---------------------------------
+// Cylindrical beaker materials:
+//----------------------------
+
+
+// Walls
+SK_nWallElements = 3
+SK_RoWall = 1.38
+SK_ZWall[0] = 1
+SK_FractionsWall[0] = 0.04196
+SK_ZWall[1] = 6
+SK_FractionsWall[1] = 0.625016
+SK_ZWall[2] = 8
+SK_FractionsWall[2] = 0.333024
+SK_FractionTypeWall = MASS
+
+
+// Source
+SK_nSourceElements = 2
+SK_RoSource = 1
+SK_ZSource[0] = 1
+SK_FractionsSource[0] = 0.111899330013933
+SK_ZSource[1] = 8
+SK_FractionsSource[1] = 0.888100669986067
+SK_FractionTypeSource = MASS
+
+// Empty Space
+SK_nEmptySpaceElements = 3
+SK_RoEmptySpace = 0.001
+SK_ZEmptySpace[0] = 7
+SK_FractionsEmptySpace[0] = 0.755
+SK_ZEmptySpace[1] = 8
+SK_FractionsEmptySpace[1] = 0.2315
+SK_ZEmptySpace[2] = 18
+SK_FractionsEmptySpace[2] = 0.0129
+SK_FractionTypeEmptySpace = MASS

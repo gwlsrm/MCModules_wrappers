@@ -1,0 +1,55 @@
+//---------------------------------
+//SOURCE PARAMETERS BLOCK:
+//---------------------------------
+//Source types: POINT, CYLINDER, MARINELLI, CONE
+
+SourceType = CONE
+
+//Cylindrical Source
+SK_BeakerToDetectorFrontDistance = 0 cm
+SK_BeakerDiameterBottom = 6.7 cm
+SK_BeakerDiameterTop = 7.2 cm
+SK_BeakerHeight = 3.6 cm
+SK_BeakerSideWallThickness = 0.1 cm
+SK_BeakerEndWallThickness = 0.1 cm
+SK_SourceHeight = 3.4 cm
+
+
+//---------------------------------
+//MATERIAL PARAMETERS BLOCK:
+//---------------------------------
+// Cylindrical beaker materials:
+//----------------------------
+
+
+// Walls
+SK_nWallElements = 3
+SK_RoWall = 1.38
+SK_ZWall[0] = 1
+SK_FractionsWall[0] = 0.04196
+SK_ZWall[1] = 6
+SK_FractionsWall[1] = 0.625016
+SK_ZWall[2] = 8
+SK_FractionsWall[2] = 0.333024
+SK_FractionTypeWall = MASS
+
+
+// Source
+SK_nSourceElements = 2
+SK_RoSource = 1
+SK_ZSource[0] = 1
+SK_FractionsSource[0] = 0.111899330013933
+SK_ZSource[1] = 8
+SK_FractionsSource[1] = 0.888100669986067
+SK_FractionTypeSource = MASS
+
+// Empty Space
+SK_nEmptySpaceElements = 3
+SK_RoEmptySpace = 0.001
+SK_ZEmptySpace[0] = 7
+SK_FractionsEmptySpace[0] = 0.755
+SK_ZEmptySpace[1] = 8
+SK_FractionsEmptySpace[1] = 0.2315
+SK_ZEmptySpace[2] = 18
+SK_FractionsEmptySpace[2] = 0.0129
+SK_FractionTypeEmptySpace = MASS

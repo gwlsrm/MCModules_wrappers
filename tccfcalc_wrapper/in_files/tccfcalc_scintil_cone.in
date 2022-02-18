@@ -1,0 +1,150 @@
+//---------------------------------
+//DETECTOR PARAMETERS BLOCK:
+//---------------------------------
+//Detector types: COAXIAL, SCINTILLATOR, COAX_WELL
+
+
+DetectorType = SCINTILLATOR
+
+// Scintillator detector
+DS_CrystalDiameter = 4 cm
+DS_CrystalHeight = 4 cm
+DS_CrystalFrontReflectorThickness = 0.1 cm
+DS_CrystalSideReflectorThickness = 0.1 cm
+DS_CrystalFrontCladdingThickness = 0.1 cm
+DS_CrystalSideCladdingThickness = 0.1 cm
+DS_DetectorFrontPackagingThickness = 0.2 cm
+DS_DetectorSidePackagingThickness = 0.5 cm
+DS_DetectorFrontCapThickness = 0.1 cm
+DS_DetectorSideCapThickness = 0.1 cm
+DS_DetectorMountingThickness = 3 cm
+
+
+//---------------------------------
+//MATERIAL PARAMETERS BLOCK:
+//---------------------------------
+// Scintillation detector materials:
+//---------------------------
+
+
+// Crystal
+DS_nCrystalElements = 2
+DS_RoCrystal = 3.667
+DS_ZCrystal[0] = 11
+DS_FractionsCrystal[0] = 0.153373
+DS_ZCrystal[1] = 53
+DS_FractionsCrystal[1] = 0.846627
+DS_FractionTypeCrystal = MASS
+M_DS_Crystal.MName = NaI
+M_DS_Crystal.Nmaterials = 1
+M_DS_Crystal.Name[0] = NaI
+M_DS_Crystal.MatRelWeight[0] = 1
+
+
+// Crystal Cladding
+DS_nCrystalCladdingElements = 1
+DS_RoCrystalCladding = 2.7
+DS_ZCrystalCladding[0] = 13
+DS_FractionsCrystalCladding[0] = 1
+DS_FractionTypeCrystalCladding = MASS
+M_DS_Crystal_Cladding.MName = Aluminium
+M_DS_Crystal_Cladding.Nmaterials = 1
+M_DS_Crystal_Cladding.Name[0] = Aluminium
+M_DS_Crystal_Cladding.MatRelWeight[0] = 1
+
+
+// Reflector
+DS_nCrystalReflectorElements = 2
+DS_RoCrystalReflector = 3.58
+DS_ZCrystalReflector[0] = 8
+DS_FractionsCrystalReflector[0] = 0.396964
+DS_ZCrystalReflector[1] = 12
+DS_FractionsCrystalReflector[1] = 0.603036
+DS_FractionTypeReflector = MASS
+M_DS_Reflector.MName = MgO
+M_DS_Reflector.Nmaterials = 1
+M_DS_Reflector.Name[0] = MgO
+M_DS_Reflector.MatRelWeight[0] = 1
+
+
+// DetectorPackaging
+DS_nDetectorPackagingElements = 2
+DS_RoDetectorPackaging = 0.04
+DS_ZDetectorPackaging[0] = 1
+DS_FractionsDetectorPackaging[0] = 0.078
+DS_ZDetectorPackaging[1] = 6
+DS_FractionsDetectorPackaging[1] = 0.922
+DS_FractionTypeDetectorPackaging = MASS
+M_DS_DetectorPackaging.MName = Polystyrene
+M_DS_DetectorPackaging.Nmaterials = 1
+M_DS_DetectorPackaging.Name[0] = Polystyrene
+M_DS_DetectorPackaging.MatRelWeight[0] = 1
+
+
+// DetectorCap
+DS_nDetectorCapElements = 1
+DS_RoDetectorCap = 2.7
+DS_ZDetectorCap[0] = 13
+DS_FractionsDetectorCap[0] = 1
+DS_FractionTypeDetectorCap = MASS
+M_DS_DetectorCap.MName = Aluminium
+M_DS_DetectorCap.Nmaterials = 1
+M_DS_DetectorCap.Name[0] = Aluminium
+M_DS_DetectorCap.MatRelWeight[0] = 1
+
+
+//---------------------------------
+//SOURCE PARAMETERS BLOCK:
+//---------------------------------
+//Source types: POINT, CYLINDER, MARINELLI, CONE
+
+SourceType = CONE
+
+//Cylindrical Source
+SK_BeakerToDetectorFrontDistance = 0 cm
+SK_BeakerDiameterBottom = 6.7 cm
+SK_BeakerDiameterTop = 7.2 cm
+SK_BeakerHeight = 3.6 cm
+SK_BeakerSideWallThickness = 0.1 cm
+SK_BeakerEndWallThickness = 0.1 cm
+SK_SourceHeight = 3.4 cm
+
+
+//---------------------------------
+//MATERIAL PARAMETERS BLOCK:
+//---------------------------------
+// Cylindrical beaker materials:
+//----------------------------
+
+
+// Walls
+SK_nWallElements = 3
+SK_RoWall = 1.38
+SK_ZWall[0] = 1
+SK_FractionsWall[0] = 0.04196
+SK_ZWall[1] = 6
+SK_FractionsWall[1] = 0.625016
+SK_ZWall[2] = 8
+SK_FractionsWall[2] = 0.333024
+SK_FractionTypeWall = MASS
+
+
+// Source
+SK_nSourceElements = 2
+SK_RoSource = 1
+SK_ZSource[0] = 1
+SK_FractionsSource[0] = 0.111899330013933
+SK_ZSource[1] = 8
+SK_FractionsSource[1] = 0.888100669986067
+SK_FractionTypeSource = MASS
+
+// Empty Space
+SK_nEmptySpaceElements = 3
+SK_RoEmptySpace = 0.001
+SK_ZEmptySpace[0] = 7
+SK_FractionsEmptySpace[0] = 0.755
+SK_ZEmptySpace[1] = 8
+SK_FractionsEmptySpace[1] = 0.2315
+SK_ZEmptySpace[2] = 18
+SK_FractionsEmptySpace[2] = 0.0129
+SK_FractionTypeEmptySpace = MASS

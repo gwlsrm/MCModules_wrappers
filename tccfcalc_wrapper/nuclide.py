@@ -62,6 +62,7 @@ class Nuclide:
             raise ValueError(f'Bad nuclide string: {nuclide_string}, waits "Co-60" like string')
         
         element, nuclide_string = nuclide_string.split('-')
+        element = element.capitalize()
 
         if element not in _NAME_TO_Z:
             ValueError(f'Bad element: {element}')

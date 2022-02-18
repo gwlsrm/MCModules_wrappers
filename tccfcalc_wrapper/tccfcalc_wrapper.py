@@ -51,7 +51,8 @@ def main():
     lib = TccFcalcDllWrapper()
     tcc_prepare = lib.get_tccfcalc_prepare()
     res = tcc_prepare(290, 27, 0, bytes(cur_path, 'utf-8'), bytes(cur_lib_path, 'utf-8'), 42)
-    print(f'prepare {res=}: {PREPARE_ERROR_CODES[res]}')
+    if res:
+        print(f'prepare {res=}: {PREPARE_ERROR_CODES[res]}')
 
     tcc_calculate = lib.get_tccfcalc_calculate()
     for i in range(1000):

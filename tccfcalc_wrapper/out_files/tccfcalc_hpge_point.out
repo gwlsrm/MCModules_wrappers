@@ -3,8 +3,8 @@ True coincidence factor calculation results.
 Decay branch(es):
  Co-290   B-  Co-290 (0 fs) - 100%
 
-Date: 19/03/2021
-Time: 19:28:48
+Date: 18/02/2022
+Time: 20:39:05
 
 Calculation settings:
 cp.xrays = false
@@ -14,9 +14,9 @@ cp.angle_optimize = true
 cp.calc_full_eff = false
 cp.calc_spectrum = false
 cp.calc_coincidence = false
-cp.CP_CalcScat = false
+cp.calc_scattered = false
 cp.calc_effc = false
-cp.calc_electron = false
+cp.calc_electron_ttb = false
 
 DetectorType = COAXIAL
 DC_CrystalDiameter = 5.51 cm
@@ -68,7 +68,6 @@ DC_FractionsVacuum[0] = 1
 DC_RoVacuum = 1e-10
 
 
-
 Number of simulated decays: 1000000
 
 Results:
@@ -86,3 +85,4 @@ Results:
 9	1.903483	1.0000e-01	0.0000	0.00000	0.00	1.18e-02	1.75	3254.00	0.00
 10	3.000000	1.0000e-01	0.0000	0.00000	0.00	8.03e-03	2.13	2213.00	0.00
 -----------------------------------------------------------------------------------
+

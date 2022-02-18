@@ -1,0 +1,5 @@
+AN_FWHM_122 = 0.77
+AN_FWHM_662 = 1.26
+AN_FWHM_1332 = 1.73
+AN_kev_per_ch = 0.3662
+AN_N_ch = 8192
