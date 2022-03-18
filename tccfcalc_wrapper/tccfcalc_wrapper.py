@@ -25,11 +25,16 @@ class TccFcalcDllWrapper:
         if path_to_dll is None:
             path_to_dll = os.path.dirname(__file__)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
-    
+
     def get_tccfcalc_prepare(self):
         tccfcalc_prepare = getattr(self._lib, 'TCCFCALC_Prepare@24')
         tccfcalc_prepare.argtypes = [c_int, c_int, c_int, c_char_p, c_char_p, c_int]
         return tccfcalc_prepare
+
+    def get_tccfcalc_prepare_json(self):
+        tccfcalc_prepare_json = getattr(self._lib, 'TCCFCALC_Prepare_Json@8')
+        tccfcalc_prepare_json.argtypes = [c_char_p, c_int]
+        return tccfcalc_prepare_json
 
     def get_tccfcalc_calculate(self):
         tcc_calculate = getattr(self._lib, 'TCCFCALC_Calculate@4')
@@ -61,4 +66,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()    
+    main()

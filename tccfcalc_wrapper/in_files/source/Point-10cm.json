@@ -1,0 +1,10 @@
+{
+    "Source": {
+        "Type": "POINT",
+        "Geometry": {
+            "pdistance": 10.0,
+            "prho": 0.0
+        },
+        "Material": {}
+    }
+}
