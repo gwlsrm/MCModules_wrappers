@@ -1,8 +1,10 @@
 import os.path
+import sys
 from ctypes import *
 
 
 PREPARE_ERROR_CODES = [
+    "",
     "Memory allocation error.",
     "Unable to load Photon Attenuation Library files.",
     "No GLECS database.",
@@ -31,6 +33,11 @@ class TccFcalcDllWrapper:
         tccfcalc_prepare.argtypes = [c_int, c_int, c_int, c_char_p, c_char_p, c_int]
         return tccfcalc_prepare
 
+    def get_tccfcalc_prepare_json(self):
+        tccfcalc_prepare_json = getattr(self._lib, 'TCCFCALC_Prepare_Json@8')
+        tccfcalc_prepare_json.argtypes = [c_char_p, c_int]
+        return tccfcalc_prepare_json
+
     def get_tccfcalc_calculate(self):
         tcc_calculate = getattr(self._lib, 'TCCFCALC_Calculate@4')
         tcc_calculate.argtypes = [c_int]
@@ -53,6 +60,7 @@ def main():
     res = tcc_prepare(290, 27, 0, bytes(cur_path, 'utf-8'), bytes(cur_lib_path, 'utf-8'), 42)
     if res:
         print(f'prepare {res=}: {PREPARE_ERROR_CODES[res]}')
+        sys.exit()
 
     tcc_calculate = lib.get_tccfcalc_calculate()
     for i in range(1000):

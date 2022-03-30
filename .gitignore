@@ -145,3 +145,4 @@ physspec_output.json
 
 # directories
 results/
+.idea/
