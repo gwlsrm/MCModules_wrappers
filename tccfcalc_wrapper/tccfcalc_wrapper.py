@@ -27,7 +27,7 @@ class TccFcalcDllWrapper:
         if path_to_dll is None:
             path_to_dll = os.path.dirname(__file__)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
-    
+
     def get_tccfcalc_prepare(self):
         tccfcalc_prepare = getattr(self._lib, 'TCCFCALC_Prepare@24')
         tccfcalc_prepare.argtypes = [c_int, c_int, c_int, c_char_p, c_char_p, c_int]
@@ -69,4 +69,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()    
+    main()

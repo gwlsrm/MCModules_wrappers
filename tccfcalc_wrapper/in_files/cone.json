@@ -1,0 +1,66 @@
+{
+    "Source": {
+        "Type": "CONE",
+        "Geometry": {
+            "BeakerToDetectorFrontDistance": 0.0,
+            "BeakerDiameterBottom": 6.7,
+            "BeakerDiameterTop": 7.2,
+            "BeakerHeight": 3.6,
+            "BeakerSideWallThickness": 0.1,
+            "BeakerEndWallThickness": 0.1,
+            "SourceHeight": 3.4
+        },
+        "Material": {
+            "Wall": {
+                "rho": 1.38,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 1,
+                        "frac": 0.04196
+                    },
+                    {
+                        "z": 6,
+                        "frac": 0.625016
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.333024
+                    }
+                ]
+            },
+            "Source": {
+                "rho": 1.0,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 1,
+                        "frac": 0.111899330013933
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.888100669986067
+                    }
+                ]
+            },
+            "EmptySpace": {
+                "rho": 0.001,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 7,
+                        "frac": 0.755
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.2315
+                    },
+                    {
+                        "z": 18,
+                        "frac": 0.0129
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,163 @@
+{
+    "Detector": {
+        "Type": "SCINTILLATOR",
+        "Geometry": {
+            "CrystalDiameter": 4.0,
+            "CrystalHeight": 4.0,
+            "CrystalFrontReflectorThickness": 0.1,
+            "CrystalSideReflectorThickness": 0.1,
+            "CrystalFrontCladdingThickness": 0.1,
+            "CrystalSideCladdingThickness": 0.1,
+            "DetectorFrontPackagingThickness": 0.2,
+            "DetectorSidePackagingThickness": 0.5,
+            "DetectorFrontCapThickness": 0.1,
+            "DetectorSideCapThickness": 0.1,
+            "DetectorMountingThickness": 3.0
+        },
+        "Material": {
+            "Crystal": {
+                "rho": 3.667,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 11,
+                        "frac": 0.153373
+                    },
+                    {
+                        "z": 53,
+                        "frac": 0.846627
+                    }
+                ]
+            },
+            "CrystalCladding": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "CrystalReflector": {
+                "rho": 3.58,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 8,
+                        "frac": 0.396964
+                    },
+                    {
+                        "z": 12,
+                        "frac": 0.603036
+                    }
+                ]
+            },
+            "DetectorPackaging": {
+                "rho": 0.04,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 1,
+                        "frac": 0.078
+                    },
+                    {
+                        "z": 6,
+                        "frac": 0.922
+                    }
+                ]
+            },
+            "DetectorCap": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            }
+        }
+    },
+    "Source": {
+        "Type": "MARINELLI",
+        "Geometry": {
+            "BeakerToDetectorFrontDistance": 0.0,
+            "BeakerDiameter": 15.4,
+            "BeakerHeight": 11.2,
+            "BeakerHoleDiameter": 9.6,
+            "BeakerHoleHeight": 6.6,
+            "BeakerSideThickness": 0.2,
+            "BeakerEndWallThickness": 0.2,
+            "BeakerHoleSideThickness": 0.2,
+            "BeakerHoleEndWallThickness": 0.2,
+            "SourceHeight": 8.6
+        },
+        "Material": {
+            "Wall": {
+                "rho": 1.38,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 1,
+                        "frac": 0.04196
+                    },
+                    {
+                        "z": 6,
+                        "frac": 0.625016
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.333024
+                    }
+                ]
+            },
+            "Source": {
+                "rho": 1.0,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 1,
+                        "frac": 0.111899330013933
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.888100669986067
+                    }
+                ]
+            },
+            "EmptySpace": {
+                "rho": 0.001,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 7,
+                        "frac": 0.755
+                    },
+                    {
+                        "z": 8,
+                        "frac": 0.2315
+                    },
+                    {
+                        "z": 18,
+                        "frac": 0.0129
+                    }
+                ]
+            }
+        }
+    },
+    "CalculationParameters": {
+        "xrays": false,
+        "annihilation": false,
+        "angular": false,
+        "angle_optimize": true,
+        "calc_full_eff": false,
+        "calc_spectrum": false,
+        "calc_coincidence": false,
+        "calc_scattered": false
+    },
+    "Nuclide": {
+        "z": 27,
+        "a": 290
+    }
+}
