@@ -42,50 +42,52 @@ class PhysspecDllWrapper:
         if path_to_dll is None:
             path_to_dll = os.path.dirname(__file__)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
-    
-    def get_physspec_prepare(self):
-        tccfcalc_prepare = getattr(self._lib, 'PhysSpecPrepareJson@8')
-        tccfcalc_prepare.argtypes = [c_char_p, c_int]
-        return tccfcalc_prepare
+        # prepare
+        self._physspec_prepare = getattr(self._lib, 'PhysSpecPrepareJson@8')
+        self._physspec_prepare.argtypes = [c_char_p, c_int]
+        # calculate
+        self._physspec_calculate = getattr(self._lib, 'PhysSpec_Calculate@8')
+        self._physspec_calculate.argtypes = [c_int, c_bool]
+        self._physspec_calculate.restype = POINTER(CalculationResults)
+        # reset
+        self._physspec_reset = getattr(self._lib, 'PhysSpec_Reset@0')
+        # save to json
+        self._physspec_save_json = getattr(self._lib, 'PhysSpec_Save_Json@4')
+        self._physspec_save_json.argtypes = [c_char_p]
 
-    def get_physspec_calculate(self):
-        physspec_calculate = getattr(self._lib, 'PhysSpec_Calculate@8')
-        physspec_calculate.argtypes = [c_int, c_bool]
-        physspec_calculate.restype = POINTER(CalculationResults)
-        return physspec_calculate
+    def physspec_prepare(self, input_filename: str, seed: int) -> int:
+        return self._physspec_prepare(bytes(input_filename, 'utf-8'), seed)
 
-    def get_physspec_reset(self):
-        return getattr(self._lib, 'PhysSpec_Reset@0')
+    def physspec_calculate(self, histories: int, calculate_results: bool) -> CalculationResults:
+        return self._physspec_calculate(histories, calculate_results)
 
-    def get_physspec_save_json(self):
-        physspec_save_json = getattr(self._lib, 'PhysSpec_Save_Json@4')
-        physspec_save_json.argtypes = [c_char_p]
-        return physspec_save_json
+    def physspec_reset(self) -> None:
+        self._physspec_reset()
+
+    def physspec_save_json(self, output_filename: str) -> None:
+        self._physspec_save_json(bytes(output_filename, 'utf-8'))
 
 
 def main():
     cur_path = os.path.dirname(__file__)
     lib = PhysspecDllWrapper(lib_name='libphysspec_p_gw.dll')
-    
+
     # prepare
-    physspec_prepare = lib.get_physspec_prepare()
     input_filename = os.path.join(cur_path, 'physspec_input.json')
-    res = physspec_prepare(bytes(input_filename, 'utf-8'), 42)
+    res = lib.physspec_prepare(input_filename, 42)
     print(f'prepare {res=}')
     if res:
         sys.exit()
 
     # calc
-    physspec_calculate = lib.get_physspec_calculate()
-    res = physspec_calculate(100000, True)
-    
+    res = lib.physspec_calculate(100000, True)
+
     # save
-    physspec_save_json = lib.get_physspec_save_json()
     output_filename = os.path.join(cur_path, 'physspec_output.json')
-    physspec_save_json(bytes(output_filename, 'utf-8'))
+    lib.physspec_save_json(output_filename)
 
     print('done')
 
 
 if __name__ == '__main__':
-    main()    
+    main()
