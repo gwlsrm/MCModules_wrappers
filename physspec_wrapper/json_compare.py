@@ -8,6 +8,10 @@ import sys
 import os.path
 
 
+def _calc_diff(v1, v2):
+    return (v2 - v1) / (v1 + v2)
+
+
 def _compare_dicts(data1, data2, prefix=''):
     res = True
     for k, v1 in data1.items():
@@ -26,7 +30,7 @@ def _compare_dicts(data1, data2, prefix=''):
                     res = False
         else:
             if not math.isclose(v1, v2):
-                logging.info(f'{full_key} is not equal: {v1} != {v2}')
+                logging.info(f'{full_key} is not equal: {v1} != {v2}, diff={_calc_diff(v1, v2)}')
                 res = False
     return res
 
@@ -47,13 +51,12 @@ def main():
         sys.exit()
 
     logging.basicConfig(
-        level=logging.WARNING,
+        level=logging.DEBUG,
         format='%(asctime)s : %(levelname)s : %(message)s',
         stream=sys.stderr,
     )
     filename1 = os.path.abspath(sys.argv[1])
     filename2 = os.path.abspath(sys.argv[2])
-    print(filename1, filename2)
     res = compare_json(filename1, filename2)
     print(res)
 
