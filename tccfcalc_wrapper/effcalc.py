@@ -3,29 +3,26 @@ import os.path
 import sys
 import logging
 
-from tccfcalc_wrapper import TccFcalcDllWrapper
+from tccfcalc_wrapper import TccFcalcDllWrapper, PREPARE_ERROR_CODES
 from nuclide import Nuclide
 
 
-def calculate_eff(nuclide, N, anal_fname, seed, is_json_input=False):
+def calculate_eff(nuclide, N, anal_fname, seed):
     # prepare
     cur_path = os.path.dirname(__file__)
     cur_lib_path = os.path.join(cur_path, 'Lib')
     lib = TccFcalcDllWrapper()
-    tcc_prepare = lib.get_tccfcalc_prepare()
-    error_num = tcc_prepare(nuclide.a, nuclide.z, nuclide.m, bytes(cur_path, 'utf-8'),
-                            bytes(cur_lib_path, 'utf-8'), seed)
+    error_num = lib.tccfcalc_prepare(nuclide.a, nuclide.z, nuclide.m, cur_path, cur_lib_path, seed)
     if error_num:
-        logging.error(f'Prepare error #{error_num}')
+        logging.error(f'Prepare error #{error_num}: {PREPARE_ERROR_CODES.get(error_num)}')
         sys.exit()
     logging.info('Prepared successfully')
 
     # calculate
-    tcc_calculate = lib.get_tccfcalc_calculate()
     logging.info(f'Starting calculation with N = {N}')
     percent = 0
     for i in range(N):
-        tcc_calculate(1000)
+        lib.tccfcalc_calculate(1000)
         new_percent = int(10 * i / N)
         if percent != new_percent:
             percent = new_percent
@@ -33,9 +30,8 @@ def calculate_eff(nuclide, N, anal_fname, seed, is_json_input=False):
 
     # spectrum
     if anal_fname:
-        tcc_calc_spectrum = lib.get_tccfcalc_calc_spectrum()
         logging.info('Start calculating spectr with analyzer: ' + anal_fname)
-        error_num = tcc_calc_spectrum(bytes(anal_fname, 'utf-8'), 1e3)
+        error_num = lib.tccfcalc_calc_spectrum(anal_fname, 1e3)
         if error_num:
             logging.error('Spectrum calculation error #' + str(error_num))
             sys.exit()
@@ -47,19 +43,17 @@ def calculate_eff_json(N, anal_fname, seed):
     cur_path = os.path.dirname(__file__)
     input_filename = os.path.join(cur_path, 'tccfcalc_input.json')
     lib = TccFcalcDllWrapper()
-    tcc_prepare_json = lib.get_tccfcalc_prepare_json()
-    error_num = tcc_prepare_json(bytes(input_filename, 'utf-8'), seed)
+    error_num = lib.tccfcalc_prepare_json(input_filename, seed)
     if error_num:
-        logging.error(f'Prepare error #{error_num}')
+        logging.error(f'Prepare error #{error_num}: {PREPARE_ERROR_CODES.get(error_num)}')
         sys.exit()
     logging.info('Prepared successfully')
 
     # calculate
-    tcc_calculate = lib.get_tccfcalc_calculate()
     logging.info(f'Starting calculation with N = {N}')
     percent = 0
     for i in range(N):
-        tcc_calculate(1000)
+        lib.tccfcalc_calculate(1000)
         new_percent = int(10 * i / N)
         if percent != new_percent:
             percent = new_percent
@@ -67,9 +61,8 @@ def calculate_eff_json(N, anal_fname, seed):
 
     # spectrum
     if anal_fname:
-        tcc_calc_spectrum = lib.get_tccfcalc_calc_spectrum()
         logging.info('Start calculating spectrum with analyzer: ' + anal_fname)
-        error_num = tcc_calc_spectrum(bytes(anal_fname, 'utf-8'), 1e3)
+        error_num = lib.tccfcalc_calc_spectrum(anal_fname, 1e3)
         if error_num:
             logging.error('Spectrum calculation error #' + str(error_num))
             sys.exit()

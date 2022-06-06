@@ -1,6 +1,6 @@
 import os.path
 import sys
-from ctypes import *
+from ctypes import CDLL, RTLD_GLOBAL, c_int, c_double, c_char_p
 
 
 PREPARE_ERROR_CODES = [
@@ -19,6 +19,8 @@ PREPARE_ERROR_CODES = [
     "No EPDL97 library",
     "No Ttb library",
     "No Elib library",
+    "Bad input json file",
+    "Error while parsing input json file"
 ]
 
 
@@ -27,44 +29,48 @@ class TccFcalcDllWrapper:
         if path_to_dll is None:
             path_to_dll = os.path.dirname(__file__)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
+        # prepare
+        self._tccfcalc_prepare = getattr(self._lib, 'TCCFCALC_Prepare@24')
+        self._tccfcalc_prepare.argtypes = [c_int, c_int, c_int, c_char_p, c_char_p, c_int]
+        # prepare json
+        self._tccfcalc_prepare_json = getattr(self._lib, 'TCCFCALC_Prepare_Json@8')
+        self._tccfcalc_prepare_json.argtypes = [c_char_p, c_int]
+        # calculate
+        self._tccfcalc_calculate = getattr(self._lib, 'TCCFCALC_Calculate@4')
+        self._tccfcalc_calculate.argtypes = [c_int]
+        # reset
+        self._tccfcalc_reset = getattr(self._lib, 'TCCFCALC_Reset@0')
+        # calc spectrum
+        self._tccfcalc_calc_spectrum = getattr(self._lib, 'TCCFCALC_CalcSpectrumFile@12')
+        self._tccfcalc_calc_spectrum.argtypes = [c_char_p, c_double]
 
-    def get_tccfcalc_prepare(self):
-        tccfcalc_prepare = getattr(self._lib, 'TCCFCALC_Prepare@24')
-        tccfcalc_prepare.argtypes = [c_int, c_int, c_int, c_char_p, c_char_p, c_int]
-        return tccfcalc_prepare
+    def tccfcalc_prepare(self, a: int, z: int, m, cur_path: str, library_path: str, seed: int = 0) -> int:
+        return self._tccfcalc_prepare(a, z, m, bytes(cur_path, 'utf-8'), bytes(library_path, 'utf-8'), seed)
 
-    def get_tccfcalc_prepare_json(self):
-        tccfcalc_prepare_json = getattr(self._lib, 'TCCFCALC_Prepare_Json@8')
-        tccfcalc_prepare_json.argtypes = [c_char_p, c_int]
-        return tccfcalc_prepare_json
+    def tccfcalc_prepare_json(self, input_filename: str, seed: int) -> int:
+        return self._tccfcalc_prepare_json(bytes(input_filename, 'utf-8'), seed)
 
-    def get_tccfcalc_calculate(self):
-        tcc_calculate = getattr(self._lib, 'TCCFCALC_Calculate@4')
-        tcc_calculate.argtypes = [c_int]
-        return tcc_calculate
+    def tccfcalc_calculate(self, histories: int) -> None:
+        return self._tccfcalc_calculate(histories)
 
-    def get_tccfcalc_reset(self):
-        return getattr(self._lib, 'TCCFCALC_Reset@0')
+    def tccfcalc_reset(self) -> None:
+        self._tccfcalc_reset()
 
-    def get_tccfcalc_calc_spectrum(self):
-        tcc_calc_spectrum = getattr(self._lib, 'TCCFCALC_CalcSpectrumFile@12')
-        tcc_calc_spectrum.argtypes = [c_char_p, c_double]
-        return tcc_calc_spectrum
+    def tccfcalc_calc_spectrum(self, analyzer_filename: str, activity: float) -> int:
+        return self._tccfcalc_calc_spectrum(bytes(analyzer_filename, 'utf-8'), activity)
 
 
 def main():
     cur_path = os.path.dirname(__file__)
     cur_lib_path = os.path.join(cur_path, 'Lib')
     lib = TccFcalcDllWrapper()
-    tcc_prepare = lib.get_tccfcalc_prepare()
-    res = tcc_prepare(290, 27, 0, bytes(cur_path, 'utf-8'), bytes(cur_lib_path, 'utf-8'), 42)
+    res = lib.tccfcalc_prepare(290, 27, 0, cur_path, cur_lib_path, 42)
     if res:
-        print(f'prepare {res=}: {PREPARE_ERROR_CODES[res]}')
+        print(f'prepare {res=}: {PREPARE_ERROR_CODES.get(res)}')
         sys.exit()
 
-    tcc_calculate = lib.get_tccfcalc_calculate()
-    for i in range(1000):
-        tcc_calculate(1000)
+    for _ in range(1000):
+        lib.tccfcalc_calculate(1000)
     print('done')
 
 

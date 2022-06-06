@@ -88,7 +88,7 @@ if __name__ == '__main__':
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
             calculate_eff(Nuclide.get_default(), N, None, SEED)
-            os.system(f'out_cmp.exe tccfcalc.out {outfname}') # 1e-3')
+            os.system(f'out_cmp.exe tccfcalc.out {outfname}')  # 1e-3')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
 
         geom = 'point'
@@ -98,7 +98,7 @@ if __name__ == '__main__':
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
             calculate_eff(Nuclide.parse_from(nuclide), N, anal_path, SEED)
-            os.system(f'out_cmp.exe tccfcalc.out {outfname}') # 1e-3')
+            os.system(f'out_cmp.exe tccfcalc.out {outfname}')  # 1e-3')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
             shutil.copy('test_spectr.spe', form_res_spectrum_name(det, geom, nuclide))
             shutil.copy('test_spectr_coi.spe', form_res_coincspectrum_name(det, geom, nuclide))

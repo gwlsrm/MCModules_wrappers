@@ -11,7 +11,7 @@ Python wrappers to [lsrm](http://lsrm.ru/en/) Monte-Carlo calculation libraries:
 
 wrapper for tccfcalc.dll (calculation library for EffCalcMC)
 
-run:
+Example: effcalc.py run:
 
 ```sh
 python effcalc.py <arguments>
@@ -36,7 +36,7 @@ optional arguments:
 
 wrapper for response.dll (calculation library for EffMaker)
 
-run:
+Example: response.py run:
 
 ```sh
 python response.py <arguments>
@@ -58,7 +58,7 @@ optional arguments:
 
 wrapper for physspec.dll (calculation library for EffMaker)
 
-run:
+Example: physspec.py run:
 
 ```sh
 python physspec.py <arguments>
