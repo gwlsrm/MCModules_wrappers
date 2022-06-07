@@ -14,10 +14,10 @@ class EnergyGrid:
         self.point_count = point_count
         self.is_log = is_log
         self.points = self._calc_grid()
-    
+
     def _calc_grid(self):
         if self.is_log:
-            de = ((math.log(self.max_energy) - math.log(self.min_energy)) / (self.point_count - 1) 
+            de = ((math.log(self.max_energy) - math.log(self.min_energy)) / (self.point_count - 1)
                   if self.point_count > 1 else 0)
             lme = math.log(self.min_energy)
             return [math.exp(lme + i*de) for i in range(self.point_count)]
@@ -28,5 +28,3 @@ class EnergyGrid:
     @property
     def grid(self):
         return self.points
-
-    

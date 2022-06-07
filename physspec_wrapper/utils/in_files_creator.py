@@ -11,6 +11,7 @@ def _read_from_json(obj):
     with open(obj + '.json') as f:
         return json.load(f)
 
+
 if __name__ == "__main__":
     for det, col, geom in product(det_list, collimator_list, geom_list):
         in_name = f"physspec_input_{det}_{col}_{geom}.json"
@@ -21,10 +22,10 @@ if __name__ == "__main__":
             col_obj = None
         geom_obj = _read_from_json(geom)
         calc_params_obj = _read_from_json(CALC_PARAMS)
-        
+
         res = det_obj | geom_obj | calc_params_obj
         if col_obj:
             res |= col_obj
-        
+
         with open(in_name, 'w') as f:
             json.dump(res, f, indent=4)

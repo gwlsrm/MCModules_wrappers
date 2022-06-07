@@ -39,11 +39,12 @@ def _pretty_output_json(filename):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='physspec -- util for physical spectr calculation with Monte-Carlo method')
+    parser = argparse.ArgumentParser(
+        description='physspec -- util for physical spectr calculation with Monte-Carlo method')
 
     parser.add_argument('-N', '--histories', help='calculation histories, thsnds', type=int, default=1)
     parser.add_argument('-s', '--seed', help='seed for random generator, default = 0 <- random seed',
-        type=int, default=0)
+                        type=int, default=0)
     parser.add_argument('-v', '--verbose', help='verbose mode', action="store_true", default=False)
     parser.add_argument('--pretty', help='pretty json output file', action="store_true")
 

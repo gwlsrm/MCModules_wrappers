@@ -1,6 +1,7 @@
 import os.path
 import sys
-from ctypes import *
+from ctypes import CDLL, RTLD_GLOBAL, POINTER, Structure, \
+    c_int, c_bool, c_double, c_char_p
 
 
 PREPARE_ERROR_CODES = [

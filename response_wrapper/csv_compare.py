@@ -14,4 +14,3 @@ def compare_csv(filename1: str, filename2: str):
                 logging.error(f'{filename1} != {filename2} in row:\n{r1} != {r2}')
                 return False
     return True
-

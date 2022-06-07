@@ -14,7 +14,8 @@ def calculate_eff(nuclide, N, anal_fname, seed):
     lib = TccFcalcDllWrapper()
     error_num = lib.tccfcalc_prepare(nuclide.a, nuclide.z, nuclide.m, cur_path, cur_lib_path, seed)
     if error_num:
-        logging.error(f'Prepare error #{error_num}: {PREPARE_ERROR_CODES.get(error_num)}')
+        error_msg = PREPARE_ERROR_CODES[error_num] if error_num < len(PREPARE_ERROR_CODES) else ''
+        logging.error(f'Prepare error #{error_num}: {error_msg}')
         sys.exit()
     logging.info('Prepared successfully')
 

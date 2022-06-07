@@ -1,5 +1,7 @@
 import os.path
-from ctypes import *
+import sys
+from ctypes import CDLL, RTLD_GLOBAL, POINTER, Structure, \
+    c_int, c_bool, c_double, c_char_p
 
 
 PREPARE_ERROR_CODES = [
@@ -18,6 +20,8 @@ PREPARE_ERROR_CODES = [
     "No EPDL97 library",
     "No Ttb library",
     "No Elib library",
+    "Bad input json file",
+    "Error while parsing input json file"
 ]
 
 
@@ -37,48 +41,52 @@ class ResponseDllWrapper:
         if path_to_dll is None:
             path_to_dll = os.path.dirname(__file__)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
-    
-    def get_response_prepare(self):
-        response_prepare = getattr(self._lib, 'Response_Prepare_Json@8')
-        response_prepare.argtypes = [c_char_p, c_int]
-        return response_prepare
+        # prepare
+        self._response_prepare = getattr(self._lib, 'Response_Prepare_Json@8')
+        self._response_prepare.argtypes = [c_char_p, c_int]
+        # calculate
+        self._response_calculate = getattr(self._lib, 'Response_Calculate@20')
+        self._response_calculate.argtypes = [c_int, c_double, c_double]
+        self._response_calculate.restype = POINTER(CalculationResults)
+        # reset
+        self._response_reset = getattr(self._lib, 'Response_Reset@0')
+        # save response
+        self._response_save_rfc_csv = getattr(self._lib, 'Response_Save_RFC_CSV@8')
+        self._response_save_rfc_csv.argtypes = [c_char_p, c_bool]
 
-    def get_response_calculate(self):
-        response_calculate = getattr(self._lib, 'Response_Calculate@20')
-        response_calculate.argtypes = [c_int, c_double, c_double]
-        response_calculate.restype = POINTER(CalculationResults)
-        return response_calculate
+    def response_prepare(self, input_filename: str, seed: int) -> int:
+        return self._response_prepare(bytes(input_filename, 'utf-8'), seed)
 
-    def get_response_reset(self):
-        return getattr(self._lib, 'Response_Reset@0')
+    def response_calculate(self, histories: int, energy_MeV: float, de: float):
+        return self._response_calculate(histories, energy_MeV, de)
 
-    def get_response_save_rfc_csv(self):
-        response_save_rfc_csv = getattr(self._lib, 'Response_Save_RFC_CSV@8')
-        response_save_rfc_csv.argtypes = [c_char_p, c_bool]
-        return response_save_rfc_csv
+    def response_reset(self) -> None:
+        self._response_reset()
+
+    def response_save_rfc_csv(self, output_filename: str, write_header: bool) -> None:
+        self._response_save_rfc_csv(bytes(output_filename, 'utf-8'), write_header)
 
 
 def main():
     cur_path = os.path.dirname(__file__)
     lib = ResponseDllWrapper(lib_name='libresponse_p_gw.dll')
-    
+
     # prepare
-    response_prepare = lib.get_response_prepare()
     input_filename = os.path.join(cur_path, 'response_input.json')
-    res = response_prepare(bytes(input_filename, 'utf-8'), 42)
+    res = lib.response_prepare(input_filename, 42)
     print(f'prepare {res=}')
+    if res:
+        sys.exit()
 
     # calc and save
-    response_calculate = lib.get_response_calculate()
-    response_save_rfc_csv = lib.get_response_save_rfc_csv()
     output_filename = os.path.join(cur_path, 'response_output.csv')
     is_first = True
     for e in [0.5, 1.0]:
-        res = response_calculate(1000, e, 0.001)
-        response_save_rfc_csv(bytes(output_filename, 'utf-8'), not is_first)
+        res = lib.response_calculate(1000, e, 0.001)
+        lib.response_save_rfc_csv(output_filename, not is_first)
         is_first = False
     print('done')
 
 
 if __name__ == '__main__':
-    main()    
+    main()
