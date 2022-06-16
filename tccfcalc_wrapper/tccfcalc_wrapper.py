@@ -1,5 +1,6 @@
 import os.path
 import sys
+import typing as tp
 from ctypes import CDLL, RTLD_GLOBAL, c_int, c_double, c_char_p
 
 
@@ -24,25 +25,48 @@ PREPARE_ERROR_CODES = [
 ]
 
 
+def _get_attribute(lib, attributes: tp.List[str]):
+    """
+        tries to get exported attribute from attributes list
+        returns first successful 
+    """
+    for attribute in attributes:
+        try:
+            res = getattr(lib, attribute)
+            return res
+        except AttributeError:
+            continue
+    raise AttributeError('Cannot find good symbol from ' + str(attributes))
+
+
 class TccFcalcDllWrapper:
-    def __init__(self, path_to_dll=None, lib_name='libtccfcalc.dll') -> None:
+    def __init__(self, path_to_dll: tp.Optional[str] = None, lib_name: tp.Optional[str] = None) -> None:
         if path_to_dll is None:
-            path_to_dll = os.path.dirname(__file__)
+            path_to_dll = os.getcwd()
+        if lib_name is None:
+            lib_name = self._auto_select_lib_name(path_to_dll)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
         # prepare
-        self._tccfcalc_prepare = getattr(self._lib, 'TCCFCALC_Prepare@24')
+        self._tccfcalc_prepare = _get_attribute(self._lib, ['TCCFCALC_Prepare@24', 'TCCFCALC_Prepare'])
         self._tccfcalc_prepare.argtypes = [c_int, c_int, c_int, c_char_p, c_char_p, c_int]
         # prepare json
-        self._tccfcalc_prepare_json = getattr(self._lib, 'TCCFCALC_Prepare_Json@8')
+        self._tccfcalc_prepare_json = _get_attribute(self._lib, ['TCCFCALC_Prepare_Json@8', 'TCCFCALC_Prepare_Json'])
         self._tccfcalc_prepare_json.argtypes = [c_char_p, c_int]
         # calculate
-        self._tccfcalc_calculate = getattr(self._lib, 'TCCFCALC_Calculate@4')
+        self._tccfcalc_calculate = _get_attribute(self._lib, ['TCCFCALC_Calculate@4', 'TCCFCALC_Calculate'])
         self._tccfcalc_calculate.argtypes = [c_int]
         # reset
-        self._tccfcalc_reset = getattr(self._lib, 'TCCFCALC_Reset@0')
+        self._tccfcalc_reset = _get_attribute(self._lib, ['TCCFCALC_Reset@0', 'TCCFCALC_Reset'])
         # calc spectrum
-        self._tccfcalc_calc_spectrum = getattr(self._lib, 'TCCFCALC_CalcSpectrumFile@12')
+        self._tccfcalc_calc_spectrum = _get_attribute(self._lib, ['TCCFCALC_CalcSpectrumFile@12', 'TCCFCALC_CalcSpectrumFile'])
         self._tccfcalc_calc_spectrum.argtypes = [c_char_p, c_double]
+
+    @staticmethod
+    def _auto_select_lib_name(path_to_dll: str):
+        for lib_name in ['tccfcalc.dll', 'libtccfcalc.dll', 'libtccfcalc.so']:
+            if os.path.exists(os.path.join(path_to_dll, lib_name)):
+                return lib_name
+        raise AttributeError(f'cannot find tccfcalc library in {path_to_dll}')
 
     def tccfcalc_prepare(self, a: int, z: int, m, cur_path: str, library_path: str, seed: int = 0) -> int:
         return self._tccfcalc_prepare(a, z, m, bytes(cur_path, 'utf-8'), bytes(library_path, 'utf-8'), seed)
@@ -61,12 +85,13 @@ class TccFcalcDllWrapper:
 
 
 def main():
-    cur_path = os.path.dirname(__file__)
+    cur_path = os.getcwd()
     cur_lib_path = os.path.join(cur_path, 'Lib')
     lib = TccFcalcDllWrapper()
-    res = lib.tccfcalc_prepare(290, 27, 0, cur_path, cur_lib_path, 42)
-    if res:
-        print(f'prepare {res=}: {PREPARE_ERROR_CODES.get(res)}')
+    error_num = lib.tccfcalc_prepare(290, 27, 0, cur_path, cur_lib_path, 42)
+    if error_num:
+        error_msg = PREPARE_ERROR_CODES[error_num] if error_num < len(PREPARE_ERROR_CODES) else ''
+        print(f'Prepare error #{error_num}: {error_msg}')
         sys.exit()
 
     for _ in range(1000):

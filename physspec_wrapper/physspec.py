@@ -9,8 +9,8 @@ from physspec_wrapper import PhysspecDllWrapper, PREPARE_ERROR_CODES
 
 def calc_physspec(seed, histories):
     # load lib and prepare
-    cur_path = os.path.dirname(__file__)
-    lib = PhysspecDllWrapper(lib_name='libphysspec_p_gw.dll')
+    cur_path = os.getcwd()
+    lib = PhysspecDllWrapper()
     input_filename = os.path.join(cur_path, 'physspec_input.json')
     error_num = lib.physspec_prepare(input_filename, seed)
     if error_num:

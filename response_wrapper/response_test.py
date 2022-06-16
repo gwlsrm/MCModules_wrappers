@@ -58,7 +58,7 @@ if __name__ == "__main__":
             calc_response_with(grid, SEED, N)
             res = compare_csv('response_output.csv', etalon_fname)
             if not res:
-                logging.error(f'calculation for {input_fname} failed')
+                logging.error(f'calculation results for {input_fname} are different')
             else:
                 logging.info(f'calculation results for {input_fname} is OK')
             shutil.copy('response_output.csv', form_result_name(det, geom))

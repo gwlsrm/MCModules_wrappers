@@ -9,7 +9,7 @@ from nuclide import Nuclide
 
 def calculate_eff(nuclide, N, anal_fname, seed):
     # prepare
-    cur_path = os.path.dirname(__file__)
+    cur_path = os.getcwd()
     cur_lib_path = os.path.join(cur_path, 'Lib')
     lib = TccFcalcDllWrapper()
     error_num = lib.tccfcalc_prepare(nuclide.a, nuclide.z, nuclide.m, cur_path, cur_lib_path, seed)
@@ -41,7 +41,7 @@ def calculate_eff(nuclide, N, anal_fname, seed):
 
 def calculate_eff_json(N, anal_fname, seed):
     # prepare
-    cur_path = os.path.dirname(__file__)
+    cur_path = os.getcwd()
     input_filename = os.path.join(cur_path, 'tccfcalc_input.json')
     lib = TccFcalcDllWrapper()
     error_num = lib.tccfcalc_prepare_json(input_filename, seed)

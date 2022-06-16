@@ -1,5 +1,6 @@
 import os.path
 import sys
+import typing as tp
 from ctypes import CDLL, RTLD_GLOBAL, POINTER, Structure, \
     c_int, c_bool, c_double, c_char_p
 
@@ -20,6 +21,8 @@ PREPARE_ERROR_CODES = [
     "No EPDL97 library",
     "No Ttb library",
     "No Elib library",
+    "Bad input json file",
+    "Error while parsing input json file",
 ]
 
 
@@ -38,23 +41,46 @@ class CalculationResults(Structure):
     ]
 
 
+def _get_attribute(lib, attributes: tp.List[str]):
+    """
+        tries to get exported attribute from attributes list
+        returns first successful 
+    """
+    for attribute in attributes:
+        try:
+            res = getattr(lib, attribute)
+            return res
+        except AttributeError:
+            continue
+    raise AttributeError('Cannot find good symbol from ' + str(attributes))
+
+
 class PhysspecDllWrapper:
-    def __init__(self, path_to_dll=None, lib_name='libphysspec_p_gw.dll') -> None:
+    def __init__(self, path_to_dll: tp.Optional[str] = None, lib_name: tp.Optional[str] = None) -> None:
         if path_to_dll is None:
-            path_to_dll = os.path.dirname(__file__)
+            path_to_dll = os.getcwd()
+        if lib_name is None:
+            lib_name = self._auto_select_lib_name(path_to_dll)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
         # prepare
-        self._physspec_prepare = getattr(self._lib, 'PhysSpecPrepareJson@8')
+        self._physspec_prepare = _get_attribute(self._lib, ['PhysSpecPrepareJson@8', 'PhysSpecPrepareJson'])
         self._physspec_prepare.argtypes = [c_char_p, c_int]
         # calculate
-        self._physspec_calculate = getattr(self._lib, 'PhysSpec_Calculate@8')
+        self._physspec_calculate = _get_attribute(self._lib, ['PhysSpec_Calculate@8', 'PhysSpec_Calculate'])
         self._physspec_calculate.argtypes = [c_int, c_bool]
         self._physspec_calculate.restype = POINTER(CalculationResults)
         # reset
-        self._physspec_reset = getattr(self._lib, 'PhysSpec_Reset@0')
+        self._physspec_reset = _get_attribute(self._lib, ['PhysSpec_Reset@0', 'PhysSpec_Reset'])
         # save to json
-        self._physspec_save_json = getattr(self._lib, 'PhysSpec_Save_Json@4')
+        self._physspec_save_json = _get_attribute(self._lib, ['PhysSpec_Save_Json@4', 'PhysSpec_Save_Json'])
         self._physspec_save_json.argtypes = [c_char_p]
+
+    @staticmethod
+    def _auto_select_lib_name(path_to_dll: str):
+        for lib_name in ['physspec_p_gw.dll', 'libphysspec_p_gw.dll', 'libphysspec_p_gw.so']:
+            if os.path.exists(os.path.join(path_to_dll, lib_name)):
+                return lib_name
+        raise AttributeError(f'cannot find physspec library in "{path_to_dll}"')
 
     def physspec_prepare(self, input_filename: str, seed: int) -> int:
         return self._physspec_prepare(bytes(input_filename, 'utf-8'), seed)
@@ -70,14 +96,15 @@ class PhysspecDllWrapper:
 
 
 def main():
-    cur_path = os.path.dirname(__file__)
-    lib = PhysspecDllWrapper(lib_name='libphysspec_p_gw.dll')
+    cur_path = os.getcwd()
+    lib = PhysspecDllWrapper()
 
     # prepare
     input_filename = os.path.join(cur_path, 'physspec_input.json')
-    res = lib.physspec_prepare(input_filename, 42)
-    print(f'prepare {res=}')
-    if res:
+    error_num = lib.physspec_prepare(input_filename, 42)
+    if error_num:
+        error_msg = PREPARE_ERROR_CODES[error_num] if error_num < len(PREPARE_ERROR_CODES) else ''
+        print(f'Prepare error #{error_num}: {error_msg}')
         sys.exit()
 
     # calc

@@ -18,8 +18,8 @@ def calc_response_with_params(emin, emax, grid_points, grid_log, seed, histories
 
 def calc_response_with(grid, seed, histories):
     # load lib and prepare
-    cur_path = os.path.dirname(__file__)
-    lib = ResponseDllWrapper(lib_name='libresponse_p_gw.dll')
+    cur_path = os.getcwd()
+    lib = ResponseDllWrapper()
     input_filename = os.path.join(cur_path, 'response_input.json')
     error_num = lib.response_prepare(input_filename, seed)
     if error_num:
