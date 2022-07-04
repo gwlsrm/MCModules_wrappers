@@ -3,7 +3,7 @@ from itertools import product
 
 det_list = ["hpge", "scintil"]
 collimator_list = ["nocol", "col1", "col2"]
-geom_list = ["point", "barrel", "nzk"]
+geom_list = ["point", "barrel", "nzk", "nzk_chamfered"]
 CALC_PARAMS = "calc_params"
 
 

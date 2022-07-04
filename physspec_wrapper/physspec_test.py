@@ -13,7 +13,7 @@ from json_compare import compare_json
 
 det_list = ["hpge", "scintil"]
 collimator_list = ["nocol", "col1", "col2"]
-geom_list = ["point", "barrel", "nzk"]
+geom_list = ["point", "barrel", "nzk", "nzk_chamfered"]
 SEED = 42
 N = 100
 
@@ -33,7 +33,7 @@ def form_result_name(det, col, geom):
 if __name__ == "__main__":
     # logger
     logging.basicConfig(
-        level=logging.WARNING,
+        level=logging.INFO,
         format='%(asctime)s : %(levelname)s : %(message)s',
         stream=sys.stderr,
     )
