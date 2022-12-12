@@ -136,6 +136,7 @@ dmypy.json
 # other files
 *.log
 *.spe
+*.bin
 analyzer.ain
 tccfcalc.in
 tccfcalc.out
@@ -143,6 +144,7 @@ response_input.json
 response_output.csv
 physspec_input.json
 physspec_output.json
+appspec_input.json
 
 # directories
 results/
