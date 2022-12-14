@@ -110,7 +110,10 @@ def main():
     anal_fname = os.path.abspath(args.analyzer) if args.analyzer is not None else None
     seed = args.seed
 
-    calculate_eff(nuclide, N, anal_fname, seed)
+    if args.json:
+        calculate_eff_json(N, anal_fname, seed)
+    else:
+        calculate_eff(nuclide, N, anal_fname, seed)
 
 
 if __name__ == '__main__':
