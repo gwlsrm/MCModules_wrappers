@@ -6,6 +6,7 @@ import os
 import shutil
 import sys
 from itertools import product
+from tqdm import tqdm
 
 from physspec import calc_physspec
 from json_compare import compare_json
@@ -33,7 +34,7 @@ def form_result_name(det, col, geom):
 if __name__ == "__main__":
     # logger
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.WARN,
         format='%(asctime)s : %(levelname)s : %(message)s',
         stream=sys.stderr,
     )
@@ -43,7 +44,7 @@ if __name__ == "__main__":
         os.mkdir('results')
 
     # calculation cycle
-    for det, col, geom in product(det_list, collimator_list, geom_list):
+    for det, col, geom in tqdm(product(det_list, collimator_list, geom_list)):
         input_fname = form_infile_name(det, col, geom)
         etalon_fname = form_etalon_name(det, col, geom)
         logging.info("calc with: " + input_fname)

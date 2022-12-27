@@ -5,6 +5,8 @@ import logging
 import os
 import shutil
 import sys
+from itertools import product
+from tqdm import tqdm
 
 from csv_compare import compare_csv
 from energy_grid import EnergyGrid
@@ -49,16 +51,15 @@ if __name__ == "__main__":
     grid = EnergyGrid(E_MIN, E_MAX, POINTS, IS_LOG)
 
     # calculation cycle
-    for det in det_list:
-        for geom in geom_list:
-            input_fname = form_infile_name(det, geom)
-            etalon_fname = form_etalon_name(det, geom)
-            logging.info("calc with: " + input_fname)
-            shutil.copy(input_fname, "response_input.json")
-            calc_response_with(grid, SEED, N)
-            res = compare_csv('response_output.csv', etalon_fname)
-            if not res:
-                logging.error(f'calculation results for {input_fname} are different')
-            else:
-                logging.info(f'calculation results for {input_fname} is OK')
-            shutil.copy('response_output.csv', form_result_name(det, geom))
+    for det, geom in tqdm(product(det_list, geom_list)):
+        input_fname = form_infile_name(det, geom)
+        etalon_fname = form_etalon_name(det, geom)
+        logging.info("calc with: " + input_fname)
+        shutil.copy(input_fname, "response_input.json")
+        calc_response_with(grid, SEED, N)
+        res = compare_csv('response_output.csv', etalon_fname)
+        if not res:
+            logging.error(f'calculation results for {input_fname} are different')
+        else:
+            logging.info(f'calculation results for {input_fname} is OK')
+        shutil.copy('response_output.csv', form_result_name(det, geom))
