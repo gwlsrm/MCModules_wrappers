@@ -62,6 +62,7 @@ calc_params = {
 
 SEED = 42
 N = 1000
+ACTIVITY = 10000
 
 
 if __name__ == '__main__':
@@ -87,7 +88,7 @@ if __name__ == '__main__':
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
-            calculate_eff(Nuclide.get_default(), N, None, SEED)
+            calculate_eff(Nuclide.get_default(), N, None, SEED, ACTIVITY)
             os.system(f'out_cmp.exe tccfcalc.out {outfname}')  # 1e-3')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
 
@@ -97,7 +98,7 @@ if __name__ == '__main__':
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
-            calculate_eff(Nuclide.parse_from(nuclide), N, anal_path, SEED)
+            calculate_eff(Nuclide.parse_from(nuclide), N, anal_path, SEED, ACTIVITY)
             os.system(f'out_cmp.exe tccfcalc.out {outfname}')  # 1e-3')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
             shutil.copy('test_spectr.spe', form_res_spectrum_name(det, geom, nuclide))
@@ -111,6 +112,6 @@ if __name__ == '__main__':
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc_input.json')
-            calculate_eff_json(N, None, SEED)
+            calculate_eff_json(N, None, SEED, ACTIVITY)
             os.system(f'out_cmp.exe tccfcalc.out {outfname} 1e-3')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
