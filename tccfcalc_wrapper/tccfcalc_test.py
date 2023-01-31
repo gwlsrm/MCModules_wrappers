@@ -1,7 +1,6 @@
 """
     test tccfcalc.dll calculation
 """
-
 import logging
 import os
 import shutil
@@ -9,6 +8,7 @@ import sys
 
 from effcalc import calculate_eff, calculate_eff_json
 from nuclide import Nuclide
+from outfile_reader import compare_out_files
 
 
 det_list = ['hpge', 'scintil']
@@ -89,7 +89,11 @@ if __name__ == '__main__':
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
             calculate_eff(Nuclide.get_default(), N, None, SEED, ACTIVITY)
-            os.system(f'out_cmp.exe tccfcalc.out {outfname}')  # 1e-3')
+            res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
+            if not res:
+                logging.error(f'tccfcal.out != {outfname}')
+            else:
+                logging.info(f'tccfcal.out == {outfname}')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
 
         geom = 'point'
@@ -99,7 +103,11 @@ if __name__ == '__main__':
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
             calculate_eff(Nuclide.parse_from(nuclide), N, anal_path, SEED, ACTIVITY)
-            os.system(f'out_cmp.exe tccfcalc.out {outfname}')  # 1e-3')
+            res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
+            if not res:
+                logging.error(f'tccfcal.out != {outfname}')
+            else:
+                logging.info(f'tccfcal.out == {outfname}')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
             shutil.copy('test_spectr.spe', form_res_spectrum_name(det, geom, nuclide))
             shutil.copy('test_spectr_coi.spe', form_res_coincspectrum_name(det, geom, nuclide))
@@ -113,5 +121,9 @@ if __name__ == '__main__':
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc_input.json')
             calculate_eff_json(N, None, SEED, ACTIVITY)
-            os.system(f'out_cmp.exe tccfcalc.out {outfname} 1e-3')
+            res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
+            if not res:
+                logging.error(f'tccfcal.out != {outfname}')
+            else:
+                logging.info(f'tccfcal.out == {outfname}')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
