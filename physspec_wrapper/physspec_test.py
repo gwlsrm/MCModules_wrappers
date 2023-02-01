@@ -9,7 +9,7 @@ from itertools import product
 from tqdm import tqdm
 
 from physspec import calc_physspec
-from json_compare import compare_json
+from compare_physspec_output import compare_physspec_output_with_errors
 
 
 det_list = ["hpge", "scintil"]
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         logging.info("calc with: " + input_fname)
         shutil.copy(input_fname, "physspec_input.json")
         calc_physspec(SEED, N)
-        res = compare_json('physspec_output.json', etalon_fname)
+        res = compare_physspec_output_with_errors('physspec_output.json', etalon_fname, with_error=True)
         if not res:
             logging.error(f'calculation for {input_fname} failed')
         else:
