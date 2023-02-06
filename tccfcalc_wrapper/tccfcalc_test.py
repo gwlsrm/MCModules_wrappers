@@ -5,6 +5,8 @@ import logging
 import os
 import shutil
 import sys
+from itertools import product
+from tqdm import tqdm
 
 from effcalc import calculate_eff, calculate_eff_json
 from nuclide import Nuclide
@@ -80,50 +82,49 @@ if __name__ == '__main__':
         shutil.copy('in_files/analyzer_ppd_8k_3MeV.ain', 'analyzer.ain')
     anal_path = os.path.abspath('analyzer.ain')
 
-    # calculation cycle
-    for det in det_list:
-        nuclide = ''
-        for geom in geom_list:
-            tccfcalc_name = form_infile_name(det, geom, nuclide)
-            outfname = form_outfile_name(det, geom, nuclide)
-            logging.info('calc with: ' + tccfcalc_name)
-            shutil.copy(tccfcalc_name, 'tccfcalc.in')
-            calculate_eff(Nuclide.get_default(), N, None, SEED, ACTIVITY)
-            res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
-            if not res:
-                logging.error(f'tccfcal.out != {outfname}')
-            else:
-                logging.info(f'tccfcal.out == {outfname}')
-            shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
+    # efficiency
+    nuclide = ''
+    for det, geom in tqdm(product(det_list, geom_list)):
+        tccfcalc_name = form_infile_name(det, geom, nuclide)
+        outfname = form_outfile_name(det, geom, nuclide)
+        logging.info('calc with: ' + tccfcalc_name)
+        shutil.copy(tccfcalc_name, 'tccfcalc.in')
+        calculate_eff(Nuclide.get_default(), N, None, SEED, ACTIVITY)
+        res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
+        if not res:
+            logging.error(f'tccfcal.out != {outfname}')
+        else:
+            logging.info(f'tccfcal.out == {outfname}')
+        shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
 
-        geom = 'point'
-        for nuclide in nuclide_list:
-            tccfcalc_name = form_infile_name(det, geom, nuclide)
-            outfname = form_outfile_name(det, geom, nuclide)
-            logging.info('calc with: ' + tccfcalc_name)
-            shutil.copy(tccfcalc_name, 'tccfcalc.in')
-            calculate_eff(Nuclide.parse_from(nuclide), N, anal_path, SEED, ACTIVITY)
-            res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
-            if not res:
-                logging.error(f'tccfcal.out != {outfname}')
-            else:
-                logging.info(f'tccfcal.out == {outfname}')
-            shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
-            shutil.copy('test_spectr.spe', form_res_spectrum_name(det, geom, nuclide))
-            shutil.copy('test_spectr_coi.spe', form_res_coincspectrum_name(det, geom, nuclide))
+    # coincidence
+    geom = 'point'
+    for det, nuclide in tqdm(product(det_list, nuclide_list)):
+        tccfcalc_name = form_infile_name(det, geom, nuclide)
+        outfname = form_outfile_name(det, geom, nuclide)
+        logging.info('calc with: ' + tccfcalc_name)
+        shutil.copy(tccfcalc_name, 'tccfcalc.in')
+        calculate_eff(Nuclide.parse_from(nuclide), N, anal_path, SEED, ACTIVITY)
+        res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
+        if not res:
+            logging.error(f'tccfcal.out != {outfname}')
+        else:
+            logging.info(f'tccfcal.out == {outfname}')
+        shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
+        shutil.copy('test_spectr.spe', form_res_spectrum_name(det, geom, nuclide))
+        shutil.copy('test_spectr_coi.spe', form_res_coincspectrum_name(det, geom, nuclide))
 
     # json calculation cycle
-    for det in det_list:
-        nuclide = ''
-        for geom in geom_list:
-            tccfcalc_name = form_infile_json_name(det, geom, nuclide)
-            outfname = form_outfile_name(det, geom, nuclide)
-            logging.info('calc with: ' + tccfcalc_name)
-            shutil.copy(tccfcalc_name, 'tccfcalc_input.json')
-            calculate_eff_json(N, None, SEED, ACTIVITY)
-            res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
-            if not res:
-                logging.error(f'tccfcal.out != {outfname}')
-            else:
-                logging.info(f'tccfcal.out == {outfname}')
-            shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
+    nuclide = ''
+    for det, geom in tqdm(product(det_list, geom_list)):
+        tccfcalc_name = form_infile_json_name(det, geom, nuclide)
+        outfname = form_outfile_name(det, geom, nuclide)
+        logging.info('calc with: ' + tccfcalc_name)
+        shutil.copy(tccfcalc_name, 'tccfcalc_input.json')
+        calculate_eff_json(N, None, SEED, ACTIVITY)
+        res = compare_out_files('tccfcalc.out', outfname, rel_eps=1e-3)
+        if not res:
+            logging.error(f'tccfcal.out != {outfname}')
+        else:
+            logging.info(f'tccfcal.out == {outfname}')
+        shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
