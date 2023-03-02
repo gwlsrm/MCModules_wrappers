@@ -19,31 +19,31 @@ nuclide_list = ['co-60', 'eu-152']
 
 
 def form_infile_name(det, geom, nuclide):
-    if len(nuclide) == 0:
-        return f'in_files{os.sep}tccfcalc_{det}_{geom}.in'
+    if nuclide:
+        return f'in_files{os.sep}tccfcalc_{det}_{geom}_nuclide.in'
     else:
-        return f'in_files{os.sep}tccfcalc_{det}_{geom}_{nuclide}.in'
+        return f'in_files{os.sep}tccfcalc_{det}_{geom}.in'
 
 
 def form_infile_json_name(det, geom, nuclide):
-    if len(nuclide) == 0:
-        return f'in_files{os.sep}tccfcalc_input_{det}_{geom}.json'
-    else:
+    if nuclide:
         return f'in_files{os.sep}tccfcalc_input_{det}_{geom}_{nuclide}.json'
+    else:
+        return f'in_files{os.sep}tccfcalc_input_{det}_{geom}.json'
 
 
 def form_outfile_name(det, geom, nuclide):
-    if len(nuclide) == 0:
-        return f'out_files{os.sep}tccfcalc_{det}_{geom}.out'
-    else:
+    if nuclide:
         return f'out_files{os.sep}tccfcalc_{det}_{geom}_{nuclide}.out'
+    else:
+        return f'out_files{os.sep}tccfcalc_{det}_{geom}.out'
 
 
 def form_resfile_name(det, geom, nuclide):
-    if len(nuclide) == 0:
-        return f'results{os.sep}tccfcalc_{det}_{geom}.out'
-    else:
+    if nuclide:
         return f'results{os.sep}tccfcalc_{det}_{geom}_{nuclide}.out'
+    else:
+        return f'results{os.sep}tccfcalc_{det}_{geom}.out'
 
 
 def form_res_spectrum_name(det, geom, nuclide):
@@ -52,14 +52,6 @@ def form_res_spectrum_name(det, geom, nuclide):
 
 def form_res_coincspectrum_name(det, geom, nuclide):
     return f'results{os.sep}spectrum_coinc_{det}_{geom}_{nuclide}.spe'
-
-
-calc_params = {
-    'seed': '-s 42',
-    'co-60': '-n Co-60',
-    'eu-152': '-n Eu-152',
-    'N10000': '-N 10000',
-    }
 
 
 SEED = 42
