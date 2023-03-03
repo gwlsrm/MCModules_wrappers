@@ -118,12 +118,16 @@ def compare_out_files_efficiencies_with_eps(lhs: OutFileReader, rhs: OutFileRead
 
 
 def compare_out_files(filename1: str, filename2: str, rel_eps = None) -> bool:
-    file_reader1 = OutFileReader(filename1)
-    file_reader2 = OutFileReader(filename2)
-    if rel_eps is None:
-        return compare_out_files_efficiencies(file_reader1, file_reader2)
-    else:
-        return compare_out_files_efficiencies_with_eps(file_reader1, file_reader2, rel_eps)
+    try:
+        file_reader1 = OutFileReader(filename1)
+        file_reader2 = OutFileReader(filename2)
+        if rel_eps is None:
+            return compare_out_files_efficiencies(file_reader1, file_reader2)
+        else:
+            return compare_out_files_efficiencies_with_eps(file_reader1, file_reader2, rel_eps)
+    except FileNotFoundError as e:
+        logging.error("File for compare is not found: %s", e)
+        return False
 
 
 def main():
