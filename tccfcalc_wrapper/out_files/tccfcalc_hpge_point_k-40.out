@@ -1,0 +1,89 @@
+True coincidence factor calculation results.
+
+Decay branch(es):
+  K-40   EC  Ar-40 (1.24715e+09 y) - 10.86%
+
+Date: 09/03/2023
+Time: 19:54:08
+
+Calculation settings:
+cp.xrays = true
+cp.annihilation = true
+cp.angular = true
+cp.angle_optimize = false
+cp.calc_full_eff = false
+cp.calc_spectrum = true
+cp.calc_coincidence = true
+cp.calc_scattered = true
+cp.calc_effc = false
+cp.calc_electron_ttb = false
+
+DetectorType = COAXIAL
+DC_CrystalDiameter = 5.51 cm
+DC_CrystalHeight = 3.3 cm
+DC_CrystalHoleDiameter = 1.02 cm
+DC_CrystalHoleHeight = 1.99 cm
+DC_CrystalFrontDeadLayer = 0.1 cm
+DC_CrystalSideDeadLayer = 0.07 cm
+DC_CrystalBackDeadLayer = 0.07 cm
+DC_CrystalHoleBottomDeadLayer = 0.0003 cm
+DC_CrystalHoleSideDeadLayer = 0.0003 cm
+DC_CrystalSideCladdingThickness = 0.08 cm
+DC_CapToCrystalDistance = 0.3 cm
+DC_DetectorCapDiameter = 7 cm
+DC_DetectorCapFrontThickness = 0.103 cm
+DC_DetectorCapSideThickness = 0.1 cm
+DC_DetectorCapBackThickness = 0.1 cm
+DC_DetectorMountingThickness = 3 cm
+DC_CrystalCurvatureRadius = 0 cm
+
+SourceType = POINT
+pdistance = 1 cm
+prho = 0 cm
+
+DC_nCrystalElements = 1
+DC_ZCrystal[0] = 32
+DC_FractionTypeCrystal = MASS
+DC_FractionsCrystal[0] = 1
+DC_RoCrystal = 5.323
+DC_nCrystalSideCladdingElements = 1
+DC_ZCrystalSideCladding[0] = 13
+DC_FractionTypeCrystalSideCladding = MASS
+DC_FractionsCrystalSideCladding[0] = 1
+DC_RoCrystalSideCladding = 2.7
+DC_nCrystalMountingElements = 1
+DC_ZCrystalMounting[0] = 13
+DC_FractionTypeCrystalMounting = MASS
+DC_FractionsCrystalMounting[0] = 1
+DC_RoCrystalMounting = 2.7
+DC_nDetectorCapElements = 1
+DC_ZDetectorCap[0] = 13
+DC_FractionTypeDetectorCap = MASS
+DC_FractionsDetectorCap[0] = 1
+DC_RoDetectorCap = 2.7
+DC_nVacuum = 1
+DC_ZVacuum[0] = 13
+DC_FractionTypeVacuum = MASS
+DC_FractionsVacuum[0] = 1
+DC_RoVacuum = 1e-10
+
+
+Number of simulated decays: 1000000
+
+Results:
+-----------------------------------------------------------------------------------
+##	E, MeV	I	dI(%)	CF	dCF(%)	Eff	dEff(%)	Areas	AreasCoi
+-----------------------------------------------------------------------------------
+1	0.002880	3.8539e-10	3.0000	0.00000	0.00	0.00e+00	0.00	0.00	0.00
+2	0.002955	3.6009e-03	3.0000	0.00000	0.00	0.00e+00	0.00	0.00	0.00
+3	0.002957	7.2017e-03	3.0000	0.00000	0.00	0.00e+00	0.00	0.00	0.00
+4	0.003190	2.9293e-04	3.0000	0.00000	0.00	0.00e+00	0.00	0.00	0.00
+5	0.003190	5.7614e-04	3.0000	0.00000	0.00	0.00e+00	0.00	0.00	0.00
+6	0.511000	2.0004e-05	3.0000	1.50000	26.35	1.95e-01	16.67	36.00	24.00
+7	1.460822	1.0662e-01	1.2195	1.00940	1.17	1.50e-02	0.82	14709.00	14572.00
+-----------------------------------------------------------------------------------
+
+Coincidence sum peaks:
+-----------------------------------------------------------------------------------
+E, MeV	AreasCoi
+-----------------------------------------------------------------------------------

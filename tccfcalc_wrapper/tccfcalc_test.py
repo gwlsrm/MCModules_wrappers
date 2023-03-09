@@ -15,7 +15,7 @@ from outfile_reader import compare_out_files
 
 det_list = ['hpge', 'scintil']
 geom_list = ['point', 'cylinder', 'marinelli', 'cone']
-nuclide_list = ['co-60', 'eu-152']
+nuclide_list = ['co-60', 'eu-152', 'k-40']
 
 
 def form_infile_name(det, geom, nuclide):
