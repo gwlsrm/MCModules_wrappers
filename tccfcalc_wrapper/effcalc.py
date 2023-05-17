@@ -46,7 +46,8 @@ def calculate_eff_json(N, anal_fname, seed, activity):
     lib = TccFcalcDllWrapper()
     error_num = lib.tccfcalc_prepare_json(input_filename, seed)
     if error_num:
-        logging.error(f'Prepare error #{error_num}: {PREPARE_ERROR_CODES.get(error_num)}')
+        error_msg = PREPARE_ERROR_CODES[error_num] if error_num < len(PREPARE_ERROR_CODES) else ''
+        logging.error(f'Prepare error #{error_num}: {error_msg}')
         sys.exit()
     logging.info('Prepared successfully')
 
