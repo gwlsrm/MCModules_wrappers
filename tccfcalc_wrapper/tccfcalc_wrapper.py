@@ -21,14 +21,17 @@ PREPARE_ERROR_CODES = [
     "No Ttb library",
     "No Elib library",
     "Bad input json file",
-    "Error while parsing input json file"
+    "Error while parsing input json file",
+    "Error while parsing detector from input json file",
+    "Error while parsing source, nuclide or ContainerSource from input json file",
+    "Error while parsing calc_params from input json file",
 ]
 
 
 def _get_attribute(lib, attributes: tp.List[str]):
     """
         tries to get exported attribute from attributes list
-        returns first successful 
+        returns first successful
     """
     for attribute in attributes:
         try:
