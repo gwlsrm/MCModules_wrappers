@@ -1,0 +1,93 @@
+True coincidence factor calculation results.
+
+Decay branch(es):
+ 
+
+Date: 08/06/2023
+Time: 19:29:02
+
+Calculation settings:
+cp.xrays = false
+cp.annihilation = false
+cp.angular = false
+cp.angle_optimize = true
+cp.calc_full_eff = false
+cp.calc_spectrum = false
+cp.calc_coincidence = false
+cp.calc_scattered = false
+cp.calc_effc = false
+cp.calc_electron_ttb = false
+
+DetectorType = COAXIAL
+DC_CrystalDiameter = 5.51 cm
+DC_CrystalHeight = 3.3 cm
+DC_CrystalHoleDiameter = 1.02 cm
+DC_CrystalHoleHeight = 1.99 cm
+DC_CrystalFrontDeadLayer = 0.1 cm
+DC_CrystalSideDeadLayer = 0.07 cm
+DC_CrystalBackDeadLayer = 0.07 cm
+DC_CrystalHoleBottomDeadLayer = 0.0003 cm
+DC_CrystalHoleSideDeadLayer = 0.0003 cm
+DC_CrystalSideCladdingThickness = 0.08 cm
+DC_CapToCrystalDistance = 0.3 cm
+DC_DetectorCapDiameter = 7 cm
+DC_DetectorCapFrontThickness = 0.103 cm
+DC_DetectorCapSideThickness = 0.1 cm
+DC_DetectorCapBackThickness = 0.1 cm
+DC_DetectorMountingThickness = 3 cm
+DC_CrystalCurvatureRadius = 0 cm
+
+DC_nCrystalElements = 1
+DC_ZCrystal[0] = 32
+DC_FractionTypeCrystal = MASS
+DC_FractionsCrystal[0] = 1
+DC_RoCrystal = 5.323
+DC_nCrystalSideCladdingElements = 1
+DC_ZCrystalSideCladding[0] = 13
+DC_FractionTypeCrystalSideCladding = MASS
+DC_FractionsCrystalSideCladding[0] = 1
+DC_RoCrystalSideCladding = 2.7
+DC_nCrystalMountingElements = 1
+DC_ZCrystalMounting[0] = 13
+DC_FractionTypeCrystalMounting = MASS
+DC_FractionsCrystalMounting[0] = 1
+DC_RoCrystalMounting = 2.7
+DC_nDetectorCapElements = 1
+DC_ZDetectorCap[0] = 13
+DC_FractionTypeDetectorCap = MASS
+DC_FractionsDetectorCap[0] = 1
+DC_RoDetectorCap = 2.7
+DC_nVacuum = 1
+DC_ZVacuum[0] = 13
+DC_FractionTypeVacuum = MASS
+DC_FractionsVacuum[0] = 1
+DC_RoVacuum = 1e-10
+
+ContainerSource: {
+	cells: [Celldata: {
+	form: Point,
+	parent_idx: -1,
+	child_idxes: [],
+	dimension: CellDimension: 0, 0, 0, 0,
+	position: CellPosition: 0, 0, 0,
+	source: cell_source: [0.05, 0.078803, 0.124198, 0.195743, 0.308503, 0.486219, 0.766309, 1.20775, 1.90348, 3]; [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+	material: Material: {rho=0}, elements: {}}]	to_det_distance: 1
+}
+Number of simulated decays: 1000000
+
+Results:
+-----------------------------------------------------------------------------------
+##	E, MeV	I	dI(%)	CF	dCF(%)	Eff	dEff(%)	Areas	AreasCoi
+-----------------------------------------------------------------------------------
+1	0.050000	1.0000e-01	0.0000	0.00000	0.00	2.296e-02	2.09	2296.00	0.00
+2	0.078803	1.0000e-01	0.0000	0.00000	0.00	1.151e-01	0.93	11513.00	0.00
+3	0.124198	1.0000e-01	0.0000	0.00000	0.00	1.529e-01	0.81	15287.50	0.00
+4	0.195743	1.0000e-01	0.0000	0.00000	0.00	1.178e-01	0.92	11778.00	0.00
+5	0.308503	1.0000e-01	0.0000	0.00000	0.00	7.073e-02	1.19	7073.00	0.00
+6	0.486219	1.0000e-01	0.0000	0.00000	0.00	4.314e-02	1.52	4314.00	0.00
+7	0.766309	1.0000e-01	0.0000	0.00000	0.00	2.716e-02	1.92	2716.00	0.00
+8	1.207749	1.0000e-01	0.0000	0.00000	0.00	1.725e-02	2.41	1725.00	0.00
+9	1.903483	1.0000e-01	0.0000	0.00000	0.00	1.189e-02	2.90	1189.00	0.00
+10	3.000000	1.0000e-01	0.0000	0.00000	0.00	8.430e-03	3.44	843.00	0.00
+-----------------------------------------------------------------------------------
+

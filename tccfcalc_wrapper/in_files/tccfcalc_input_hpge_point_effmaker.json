@@ -1,0 +1,149 @@
+{
+    "Detector": {
+        "Type": "COAXIAL",
+        "Geometry": {
+            "CrystalDiameter": 5.51,
+            "CrystalHeight": 3.3,
+            "CrystalHoleDiameter": 1.02,
+            "CrystalHoleHeight": 1.99,
+            "CrystalFrontDeadLayer": 0.1,
+            "CrystalSideDeadLayer": 0.07,
+            "CrystalBackDeadLayer": 0.07,
+            "CrystalHoleBottomDeadLayer": 0.0003,
+            "CrystalHoleSideDeadLayer": 0.0003,
+            "CrystalSideCladdingThickness": 0.08,
+            "CapToCrystalDistance": 0.3,
+            "DetectorCapDiameter": 7.0,
+            "DetectorCapFrontThickness": 0.103,
+            "DetectorCapSideThickness": 0.1,
+            "DetectorCapBackThickness": 0.1,
+            "DetectorMountingThickness": 3.0,
+            "CrystalCurvatureRadius": 0
+        },
+        "Material": {
+            "Crystal": {
+                "rho": 5.323,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 32,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "CrystalSideCladding": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "CrystalMounting": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "DetectorCap": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "Vacuum": {
+                "rho": 1e-10,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            }
+        }
+    },
+    "ContainerSource": {
+        "Name": "Point",
+        "Cells": [
+            {
+                "Name": "Point",
+                "Shape": "Point",
+                "ParentIdx": -1,
+                "ChildIndex": [],
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "RadioactiveSource": [
+                    {
+                        "E": 0.05,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.078803,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.124198,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.195743,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.308503,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.486219,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.766309,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 1.207749,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 1.903483,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 3.000000,
+                        "I": 1000.0
+                    }
+                ]
+            }
+        ],
+        "ToDetDistance": 1.0
+    },
+    "CalculationParameters": {
+        "xrays": false,
+        "annihilation": false,
+        "angular": false,
+        "angle_optimize": true,
+        "calc_full_eff": false,
+        "calc_spectrum": false,
+        "calc_coincidence": false,
+        "calc_scattered": false
+    },
+    "Nuclide": {
+        "z": 27,
+        "a": 290
+    }
+}
