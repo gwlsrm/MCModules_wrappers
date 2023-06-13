@@ -3,8 +3,8 @@ True coincidence factor calculation results.
 Decay branch(es):
  Co-290   B-  Co-290 (0 fs) - 100%
 
-Date: 18/03/2022
-Time: 21:41:31
+Date: 13/06/2023
+Time: 20:56:34
 
 Calculation settings:
 cp.xrays = false
@@ -30,18 +30,6 @@ DS_DetectorSidePackagingThickness = 0.5 cm
 DS_DetectorFrontCapThickness = 0.1 cm
 DS_DetectorSideCapThickness = 0.1 cm
 DS_DetectorMountingThickness = 3 cm
-
-SourceType = MARINELLI
-SM_BeakerToDetectorFrontDistance = 0 cm
-SM_BeakerDiameter = 15.4 cm
-SM_BeakerHeight = 11.2 cm
-SM_BeakerHoleDiameter = 9.6 cm
-SM_BeakerHoleHeight = 6.6 cm
-SM_BeakerSideThickness = 0.2 cm
-SM_BeakerEndWallThickness = 0.2 cm
-SM_BeakerHoleSideThickness = 0.2 cm
-SM_BeakerHoleEndWallThickness = 0.2 cm
-SM_SourceHeight = 8.6 cm
 
 DS_nCrystalElements = 2
 DS_ZCrystal[0] = 11
@@ -75,6 +63,18 @@ DS_FractionTypeDetectorPackaging = MASS
 DS_FractionsDetectorPackaging[0] = 1
 DS_RoDetectorPackaging = 2.7
 
+SourceType = MARINELLI
+SM_BeakerToDetectorFrontDistance = 0 cm
+SM_BeakerDiameter = 15.4 cm
+SM_BeakerHeight = 11.2 cm
+SM_BeakerHoleDiameter = 9.6 cm
+SM_BeakerHoleHeight = 6.6 cm
+SM_BeakerSideThickness = 0.2 cm
+SM_BeakerEndWallThickness = 0.2 cm
+SM_BeakerHoleSideThickness = 0.2 cm
+SM_BeakerHoleEndWallThickness = 0.2 cm
+SM_SourceHeight = 8.6 cm
+
 SM_nWallElements = 3
 SM_ZWall[0] = 1
 SM_ZWall[1] = 6
@@ -107,15 +107,15 @@ Results:
 -----------------------------------------------------------------------------------
 ##	E, MeV	I	dI(%)	CF	dCF(%)	Eff	dEff(%)	Areas	AreasCoi
 -----------------------------------------------------------------------------------
-1	0.050000	1.0000e-01	0.0000	0.00000	0.00	1.51e-02	2.57	1515.00	0.00
-2	0.078803	1.0000e-01	0.0000	0.00000	0.00	1.97e-02	2.25	1971.00	0.00
-3	0.124198	1.0000e-01	0.0000	0.00000	0.00	2.30e-02	2.09	2300.00	0.00
-4	0.195743	1.0000e-01	0.0000	0.00000	0.00	2.01e-02	2.23	2013.00	0.00
-5	0.308503	1.0000e-01	0.0000	0.00000	0.00	1.46e-02	2.62	1458.00	0.00
-6	0.486219	1.0000e-01	0.0000	0.00000	0.00	8.75e-03	3.38	875.00	0.00
-7	0.766309	1.0000e-01	0.0000	0.00000	0.00	5.12e-03	4.42	512.00	0.00
-8	1.207749	1.0000e-01	0.0000	0.00000	0.00	3.28e-03	5.52	328.00	0.00
-9	1.903483	1.0000e-01	0.0000	0.00000	0.00	2.14e-03	6.84	214.00	0.00
-10	3.000000	1.0000e-01	0.0000	0.00000	0.00	1.28e-03	8.84	128.00	0.00
+1	0.050000	1.0000e-01	0.0000	0.00000	0.00	1.515e-02	2.57	1515.00	0.00
+2	0.078803	1.0000e-01	0.0000	0.00000	0.00	1.971e-02	2.25	1971.00	0.00
+3	0.124198	1.0000e-01	0.0000	0.00000	0.00	2.300e-02	2.09	2300.00	0.00
+4	0.195743	1.0000e-01	0.0000	0.00000	0.00	2.013e-02	2.23	2013.00	0.00
+5	0.308503	1.0000e-01	0.0000	0.00000	0.00	1.458e-02	2.62	1458.00	0.00
+6	0.486219	1.0000e-01	0.0000	0.00000	0.00	8.750e-03	3.38	875.00	0.00
+7	0.766309	1.0000e-01	0.0000	0.00000	0.00	5.120e-03	4.42	512.00	0.00
+8	1.207749	1.0000e-01	0.0000	0.00000	0.00	3.280e-03	5.52	328.00	0.00
+9	1.903483	1.0000e-01	0.0000	0.00000	0.00	2.140e-03	6.84	214.00	0.00
+10	3.000000	1.0000e-01	0.0000	0.00000	0.00	1.280e-03	8.84	128.00	0.00
 -----------------------------------------------------------------------------------
 

@@ -3,8 +3,8 @@ True coincidence factor calculation results.
 Decay branch(es):
  Co-290   B-  Co-290 (0 fs) - 100%
 
-Date: 01/12/2022
-Time: 22:55:07
+Date: 13/06/2023
+Time: 20:56:27
 
 Calculation settings:
 cp.xrays = false
@@ -37,15 +37,6 @@ DC_DetectorCapBackThickness = 0.1 cm
 DC_DetectorMountingThickness = 3 cm
 DC_CrystalCurvatureRadius = 0 cm
 
-SourceType = CONE
-SK_BeakerToDetectorFrontDistance = 0 cm
-SK_BeakerDiameterBottom = 6.7 cm
-SK_BeakerDiameterTop = 7.2 cm
-SK_BeakerHeight = 3.6 cm
-SK_BeakerSideWallThickness = 0.1 cm
-SK_BeakerEndWallThickness = 0.1 cm
-SK_SourceHeight = 3.4 cm
-
 DC_nCrystalElements = 1
 DC_ZCrystal[0] = 32
 DC_FractionTypeCrystal = MASS
@@ -71,6 +62,15 @@ DC_ZVacuum[0] = 13
 DC_FractionTypeVacuum = MASS
 DC_FractionsVacuum[0] = 1
 DC_RoVacuum = 1e-10
+
+SourceType = CONE
+SK_BeakerToDetectorFrontDistance = 0 cm
+SK_BeakerDiameterBottom = 6.7 cm
+SK_BeakerDiameterTop = 7.2 cm
+SK_BeakerHeight = 3.6 cm
+SK_BeakerSideWallThickness = 0.1 cm
+SK_BeakerEndWallThickness = 0.1 cm
+SK_SourceHeight = 3.4 cm
 
 SK_nWallElements = 3
 SK_ZWall[0] = 1
@@ -104,15 +104,15 @@ Results:
 -----------------------------------------------------------------------------------
 ##	E, MeV	I	dI(%)	CF	dCF(%)	Eff	dEff(%)	Areas	AreasCoi
 -----------------------------------------------------------------------------------
-1	0.050000	1.0000e-01	0.0000	0.00000	0.00	8.38e-03	3.45	838.00	0.00
-2	0.078803	1.0000e-01	0.0000	0.00000	0.00	4.24e-02	1.54	4236.00	0.00
-3	0.124198	1.0000e-01	0.0000	0.00000	0.00	5.85e-02	1.31	5846.00	0.00
-4	0.195743	1.0000e-01	0.0000	0.00000	0.00	4.92e-02	1.43	4917.00	0.00
-5	0.308503	1.0000e-01	0.0000	0.00000	0.00	3.07e-02	1.80	3075.00	0.00
-6	0.486219	1.0000e-01	0.0000	0.00000	0.00	2.09e-02	2.19	2092.00	0.00
-7	0.766309	1.0000e-01	0.0000	0.00000	0.00	1.37e-02	2.70	1367.00	0.00
-8	1.207749	1.0000e-01	0.0000	0.00000	0.00	9.00e-03	3.33	900.50	0.00
-9	1.903483	1.0000e-01	0.0000	0.00000	0.00	6.21e-03	4.01	621.00	0.00
-10	3.000000	1.0000e-01	0.0000	0.00000	0.00	4.46e-03	4.74	446.00	0.00
+1	0.050000	1.0000e-01	0.0000	0.00000	0.00	8.380e-03	3.45	838.00	0.00
+2	0.078803	1.0000e-01	0.0000	0.00000	0.00	4.236e-02	1.54	4236.00	0.00
+3	0.124198	1.0000e-01	0.0000	0.00000	0.00	5.846e-02	1.31	5846.00	0.00
+4	0.195743	1.0000e-01	0.0000	0.00000	0.00	4.917e-02	1.43	4917.00	0.00
+5	0.308503	1.0000e-01	0.0000	0.00000	0.00	3.075e-02	1.80	3075.00	0.00
+6	0.486219	1.0000e-01	0.0000	0.00000	0.00	2.092e-02	2.19	2092.00	0.00
+7	0.766309	1.0000e-01	0.0000	0.00000	0.00	1.367e-02	2.70	1367.00	0.00
+8	1.207749	1.0000e-01	0.0000	0.00000	0.00	9.005e-03	3.33	900.50	0.00
+9	1.903483	1.0000e-01	0.0000	0.00000	0.00	6.210e-03	4.01	621.00	0.00
+10	3.000000	1.0000e-01	0.0000	0.00000	0.00	4.460e-03	4.74	446.00	0.00
 -----------------------------------------------------------------------------------
 
