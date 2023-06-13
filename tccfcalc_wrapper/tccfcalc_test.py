@@ -20,7 +20,7 @@ ACTIVITY = 10000
 
 det_list = ['hpge', 'scintil']
 geom_list = ['point', 'cylinder', 'marinelli', 'cone']
-effmaker_geom_list = ['point']
+effmaker_geom_list = ['point', 'cylinder']
 nuclide_list = ['co-60', 'eu-152', 'k-40']
 
 
