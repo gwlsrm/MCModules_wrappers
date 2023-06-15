@@ -1,0 +1,241 @@
+{
+    "Detector": {
+        "Type": "COAXIAL",
+        "Geometry": {
+            "CrystalDiameter": 5.51,
+            "CrystalHeight": 3.3,
+            "CrystalHoleDiameter": 1.02,
+            "CrystalHoleHeight": 1.99,
+            "CrystalFrontDeadLayer": 0.1,
+            "CrystalSideDeadLayer": 0.07,
+            "CrystalBackDeadLayer": 0.07,
+            "CrystalHoleBottomDeadLayer": 0.0003,
+            "CrystalHoleSideDeadLayer": 0.0003,
+            "CrystalSideCladdingThickness": 0.08,
+            "CapToCrystalDistance": 0.3,
+            "DetectorCapDiameter": 7.0,
+            "DetectorCapFrontThickness": 0.103,
+            "DetectorCapSideThickness": 0.1,
+            "DetectorCapBackThickness": 0.1,
+            "DetectorMountingThickness": 3.0,
+            "CrystalCurvatureRadius": 0
+        },
+        "Material": {
+            "Crystal": {
+                "rho": 5.323,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 32,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "CrystalSideCladding": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "CrystalMounting": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "DetectorCap": {
+                "rho": 2.7,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            },
+            "Vacuum": {
+                "rho": 1e-10,
+                "fraction_type": "MASS",
+                "elements": [
+                    {
+                        "z": 13,
+                        "frac": 1.0
+                    }
+                ]
+            }
+        }
+    },
+    "ContainerSource": {
+        "Name": "CONE",
+        "Cells": [
+            {
+                "Name": "Wall",
+                "Shape": "ConeZ",
+                "ParentIdx": -1,
+                "ChildIndex": [
+                    1
+                ],
+                "Dimensions": {
+                    "Dim1": 3.6,
+                    "Dim2": 3.6,
+					"Dim3": 3.35
+                },
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Material": {
+                    "Name": "Plastic",
+                    "rho": 1.38,
+                        "elements": [
+                        {
+                            "z": 1,
+                            "frac": 0.04196
+                        },
+                        {
+                            "z": 6,
+                            "frac": 0.625016
+                        },
+                        {
+                            "z": 8,
+                            "frac": 0.333024
+                        }
+                    ]
+                }
+            },
+            {
+                "Name": "Air",
+                "Shape": "ConeZ",
+                "ParentIdx": 0,
+                "ChildIndex": [
+                    2
+                ],
+                "Dimensions": {
+                    "Dim1": 3.4,
+                    "Dim2": 3.5,
+					"Dim3": 3.25
+                },
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Material": {
+                    "Name": "Air",
+                    "rho": 0.001,
+                    "elements": [
+                        {
+                            "z": 7,
+                            "frac": 0.755
+                        },
+                        {
+                            "z": 8,
+                            "frac": 0.232
+                        },
+                        {
+                            "z": 18,
+                            "frac": 0.013
+                        }
+                    ]
+                }
+            },
+            {
+                "Name": "Source",
+                "Shape": "ConeZ",
+                "ParentIdx": 1,
+                "ChildIndex": [],
+                "Dimensions": {
+                    "Dim1": 3.4,
+                    "Dim2": 3.5,
+					"Dim3": 3.25
+                },
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "RadioactiveSource": [
+                    {
+                        "E": 0.05,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.078803,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.124198,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.195743,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.308503,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.486219,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 0.766309,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 1.207749,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 1.903483,
+                        "I": 1000.0
+                    },
+                    {
+                        "E": 3.000000,
+                        "I": 1000.0
+                    }
+                ],
+                "Material": {
+                    "Name": "Water",
+                    "rho": 1,
+                    "elements": [
+                        {
+                            "z": 1,
+                            "frac": 0.111899330013933
+                        },
+                        {
+                            "z": 8,
+                            "frac": 0.888100669986067
+                        }
+                    ]
+                }
+            }
+        ],
+        "ToDetDistance": 0.0
+    },
+    "CalculationParameters": {
+        "xrays": false,
+        "annihilation": false,
+        "angular": false,
+        "angle_optimize": false,
+        "calc_full_eff": false,
+        "calc_spectrum": false,
+        "calc_coincidence": false,
+        "calc_scattered": false,
+        "low_energy_threshold": 0.01,
+        "pair_peaks_threshold": 1.5,
+        "xray_escape_threshold": 0.3,
+        "photon_LEcutoff": 0.001,
+        "electron_LEcutoff": 0.001
+    }
+}

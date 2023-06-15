@@ -20,7 +20,8 @@ ACTIVITY = 10000
 
 det_list = ['hpge', 'scintil']
 geom_list = ['point', 'cylinder', 'marinelli', 'cone']
-effmaker_geom_list = ['point', 'cylinder', 'cylindersmall']
+effmaker_geom_list = ['point', 'cylinder', 'cylindersmall', 'cone']
+effmaker_additional_geom_list = ['sphere']  # TODO: compare them with EffMaker
 nuclide_list = ['co-60', 'eu-152', 'k-40']
 
 
@@ -70,6 +71,8 @@ def main():
                         action="store_true", default=False)
     parser.add_argument('--not-calc-effmaker', help='do not run effmaker source efficiency calculation task',
                         action="store_true", default=False)
+    parser.add_argument('--calc-addition-effmaker', help='run additional effmaker source efficiency calculation task',
+                        action="store_true", default=False)
     parser.add_argument('--cmp-with-errors', help='using uncertainties to compare results',
                         action="store_true", default=False)
     args = parser.parse_args()
@@ -78,6 +81,7 @@ def main():
     calc_coinc_task = not args.not_calc_coinc
     calc_json_task = not args.not_calc_json
     calc_effmaker_task = not args.not_calc_effmaker
+    calc_addition_effmaker = args.calc_addition_effmaker
     # logger
     logging.basicConfig(
         level=logging.WARNING,
@@ -146,6 +150,22 @@ def main():
     if calc_effmaker_task:
         nuclide = 'effmaker'
         for det, geom in tqdm(product(det_list, effmaker_geom_list)):
+            tccfcalc_name = form_infile_json_name(det, geom, nuclide)
+            outfname = form_outfile_name(det, geom, nuclide)
+            logging.info('calc with: ' + tccfcalc_name)
+            shutil.copy(tccfcalc_name, 'tccfcalc_input.json')
+            calculate_eff_json(N, None, SEED, ACTIVITY)
+            res = compare_out_files('tccfcalc.out', outfname, rel_eps=rel_eps)
+            if not res:
+                logging.error(f'tccfcal.out != {outfname}')
+            else:
+                logging.info(f'tccfcal.out == {outfname}')
+            shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
+
+    # effmaker additional efficiency calculation task
+    if calc_addition_effmaker:
+        nuclide = 'effmaker'
+        for det, geom in tqdm(product(det_list, effmaker_additional_geom_list)):
             tccfcalc_name = form_infile_json_name(det, geom, nuclide)
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
