@@ -21,7 +21,7 @@ ACTIVITY = 10000
 det_list = ['hpge', 'scintil']
 geom_list = ['point', 'cylinder', 'marinelli', 'cone']
 effmaker_geom_list = ['point', 'cylinder', 'cylindersmall', 'cone']
-effmaker_additional_geom_list = ['sphere']  # TODO: compare them with EffMaker
+effmaker_additional_geom_list = ['sphere', 'cuboid']
 nuclide_list = ['co-60', 'eu-152', 'k-40']
 
 
