@@ -3,8 +3,8 @@ True coincidence factor calculation results.
 Decay branch(es):
  
 
-Date: 15/06/2023
-Time: 19:13:56
+Date: 04/09/2023
+Time: 20:19:27
 
 Calculation settings:
 cp.xrays = false
@@ -16,7 +16,7 @@ cp.calc_spectrum = false
 cp.calc_coincidence = false
 cp.calc_scattered = false
 cp.calc_effc = false
-cp.calc_electron_ttb = false
+cp.calc_electron_ttb = true
 
 DetectorType = COAXIAL
 DC_CrystalDiameter = 5.51 cm
@@ -64,28 +64,8 @@ DC_FractionsVacuum[0] = 1
 DC_RoVacuum = 1e-10
 
 ContainerSource: {
-	cells: [Celldata: {
-	form: ConeZ,
-	parent_idx: -1,
-	child_idxes: [1],
-	dimension: CellDimension: 3.6, 3.6, 3.35, 0,
-	position: CellPosition: 0, 0, 0,
-	source: cell_source: []; [],
-	material: Material: {rho=1.38}, elements: {1, 0.04196; 6, 0.625016; 8, 0.333024; }}, Celldata: {
-	form: ConeZ,
-	parent_idx: 0,
-	child_idxes: [2],
-	dimension: CellDimension: 3.4, 3.5, 3.25, 0,
-	position: CellPosition: 0, 0, 0,
-	source: cell_source: []; [],
-	material: Material: {rho=0.001}, elements: {7, 0.755; 8, 0.232; 18, 0.013; }}, Celldata: {
-	form: ConeZ,
-	parent_idx: 1,
-	child_idxes: [],
-	dimension: CellDimension: 3.4, 3.5, 3.25, 0,
-	position: CellPosition: 0, 0, 0,
-	source: cell_source: [0.05, 0.078803, 0.124198, 0.195743, 0.308503, 0.486219, 0.766309, 1.20775, 1.90348, 3]; [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
-	material: Material: {rho=1}, elements: {1, 0.111899; 8, 0.888101; }}]	to_det_distance: 0
+	cells: [Celldata: {form: ConeZ, parent_idx: -1, child_idxes: [1], dimension: CellDimension: 3.6, 3.6, 3.35, 0, position: CellPosition: 0, 0, 0, source: cell_source: []; [], material: Material: {rho=1.38}, elements: {1, 0.04196; 6, 0.625016; 8, 0.333024; }}, Celldata: {form: ConeZ, parent_idx: 0, child_idxes: [2], dimension: CellDimension: 3.4, 3.5, 3.25, 0, position: CellPosition: 0, 0, 0, source: cell_source: []; [], material: Material: {rho=0.001}, elements: {7, 0.755; 8, 0.232; 18, 0.013; }}, Celldata: {form: ConeZ, parent_idx: 1, child_idxes: [], dimension: CellDimension: 3.4, 3.5, 3.25, 0, position: CellPosition: 0, 0, 0, source: cell_source: [0.05, 0.078803, 0.124198, 0.195743, 0.308503, 0.486219, 0.766309, 1.20775, 1.90348, 3]; [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000], material: Material: {rho=1}, elements: {1, 0.111899; 8, 0.888101; }}],
+	to_det_distance: 0
 }
 Number of simulated decays: 1000000
 
@@ -93,15 +73,15 @@ Results:
 -----------------------------------------------------------------------------------
 ##	E, MeV	I	dI(%)	CF	dCF(%)	Eff	dEff(%)	Areas	AreasCoi
 -----------------------------------------------------------------------------------
-1	0.050000	1.0000e-01	0.0000	0.00000	0.00	8.610e-03	3.41	861.00	0.00
-2	0.078803	1.0000e-01	0.0000	0.00000	0.00	4.190e-02	1.54	4190.00	0.00
-3	0.124198	1.0000e-01	0.0000	0.00000	0.00	5.976e-02	1.29	5976.00	0.00
-4	0.195743	1.0000e-01	0.0000	0.00000	0.00	4.896e-02	1.43	4896.00	0.00
-5	0.308503	1.0000e-01	0.0000	0.00000	0.00	3.151e-02	1.78	3151.00	0.00
-6	0.486219	1.0000e-01	0.0000	0.00000	0.00	2.053e-02	2.21	2053.00	0.00
-7	0.766309	1.0000e-01	0.0000	0.00000	0.00	1.314e-02	2.76	1314.00	0.00
-8	1.207749	1.0000e-01	0.0000	0.00000	0.00	8.920e-03	3.35	892.00	0.00
-9	1.903483	1.0000e-01	0.0000	0.00000	0.00	6.180e-03	4.02	618.00	0.00
-10	3.000000	1.0000e-01	0.0000	0.00000	0.00	4.610e-03	4.66	461.00	0.00
+1	0.050000	1.0000e-01	0.0000	0.00000	0.00	8.850e-03	3.36	885.00	0.00
+2	0.078803	1.0000e-01	0.0000	0.00000	0.00	4.178e-02	1.55	4178.00	0.00
+3	0.124198	1.0000e-01	0.0000	0.00000	0.00	5.939e-02	1.30	5939.00	0.00
+4	0.195743	1.0000e-01	0.0000	0.00000	0.00	4.917e-02	1.43	4917.00	0.00
+5	0.308503	1.0000e-01	0.0000	0.00000	0.00	3.228e-02	1.76	3228.00	0.00
+6	0.486219	1.0000e-01	0.0000	0.00000	0.00	2.013e-02	2.23	2013.00	0.00
+7	0.766309	1.0000e-01	0.0000	0.00000	0.00	1.293e-02	2.78	1293.00	0.00
+8	1.207749	1.0000e-01	0.0000	0.00000	0.00	8.360e-03	3.46	836.00	0.00
+9	1.903483	1.0000e-01	0.0000	0.00000	0.00	5.900e-03	4.12	590.00	0.00
+10	3.000000	1.0000e-01	0.0000	0.00000	0.00	3.110e-03	5.67	311.00	0.00
 -----------------------------------------------------------------------------------
 

@@ -3,8 +3,8 @@ True coincidence factor calculation results.
 Decay branch(es):
  
 
-Date: 15/06/2023
-Time: 19:14:12
+Date: 04/09/2023
+Time: 20:19:52
 
 Calculation settings:
 cp.xrays = false
@@ -16,7 +16,7 @@ cp.calc_spectrum = false
 cp.calc_coincidence = false
 cp.calc_scattered = false
 cp.calc_effc = false
-cp.calc_electron_ttb = false
+cp.calc_electron_ttb = true
 
 DetectorType = SCINTILLATOR
 DS_CrystalDiameter = 4 cm
@@ -64,28 +64,8 @@ DS_FractionsDetectorPackaging[0] = 1
 DS_RoDetectorPackaging = 2.7
 
 ContainerSource: {
-	cells: [Celldata: {
-	form: ConeZ,
-	parent_idx: -1,
-	child_idxes: [1],
-	dimension: CellDimension: 3.6, 3.6, 3.35, 0,
-	position: CellPosition: 0, 0, 0,
-	source: cell_source: []; [],
-	material: Material: {rho=1.38}, elements: {1, 0.04196; 6, 0.625016; 8, 0.333024; }}, Celldata: {
-	form: ConeZ,
-	parent_idx: 0,
-	child_idxes: [2],
-	dimension: CellDimension: 3.4, 3.5, 3.25, 0,
-	position: CellPosition: 0, 0, 0,
-	source: cell_source: []; [],
-	material: Material: {rho=0.001}, elements: {7, 0.755; 8, 0.232; 18, 0.013; }}, Celldata: {
-	form: ConeZ,
-	parent_idx: 1,
-	child_idxes: [],
-	dimension: CellDimension: 3.4, 3.5, 3.25, 0,
-	position: CellPosition: 0, 0, 0,
-	source: cell_source: [0.05, 0.078803, 0.124198, 0.195743, 0.308503, 0.486219, 0.766309, 1.20775, 1.90348, 3]; [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
-	material: Material: {rho=1}, elements: {1, 0.111899; 8, 0.888101; }}]	to_det_distance: 0
+	cells: [Celldata: {form: ConeZ, parent_idx: -1, child_idxes: [1], dimension: CellDimension: 3.6, 3.6, 3.35, 0, position: CellPosition: 0, 0, 0, source: cell_source: []; [], material: Material: {rho=1.38}, elements: {1, 0.04196; 6, 0.625016; 8, 0.333024; }}, Celldata: {form: ConeZ, parent_idx: 0, child_idxes: [2], dimension: CellDimension: 3.4, 3.5, 3.25, 0, position: CellPosition: 0, 0, 0, source: cell_source: []; [], material: Material: {rho=0.001}, elements: {7, 0.755; 8, 0.232; 18, 0.013; }}, Celldata: {form: ConeZ, parent_idx: 1, child_idxes: [], dimension: CellDimension: 3.4, 3.5, 3.25, 0, position: CellPosition: 0, 0, 0, source: cell_source: [0.05, 0.078803, 0.124198, 0.195743, 0.308503, 0.486219, 0.766309, 1.20775, 1.90348, 3]; [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000], material: Material: {rho=1}, elements: {1, 0.111899; 8, 0.888101; }}],
+	to_det_distance: 0
 }
 Number of simulated decays: 1000000
 
@@ -93,15 +73,15 @@ Results:
 -----------------------------------------------------------------------------------
 ##	E, MeV	I	dI(%)	CF	dCF(%)	Eff	dEff(%)	Areas	AreasCoi
 -----------------------------------------------------------------------------------
-1	0.050000	1.0000e-01	0.0000	0.00000	0.00	3.214e-02	1.76	3214.00	0.00
-2	0.078803	1.0000e-01	0.0000	0.00000	0.00	4.216e-02	1.54	4216.00	0.00
-3	0.124198	1.0000e-01	0.0000	0.00000	0.00	4.604e-02	1.47	4604.50	0.00
-4	0.195743	1.0000e-01	0.0000	0.00000	0.00	4.190e-02	1.54	4190.00	0.00
-5	0.308503	1.0000e-01	0.0000	0.00000	0.00	2.916e-02	1.85	2916.00	0.00
-6	0.486219	1.0000e-01	0.0000	0.00000	0.00	1.703e-02	2.42	1703.00	0.00
-7	0.766309	1.0000e-01	0.0000	0.00000	0.00	1.019e-02	3.13	1019.00	0.00
-8	1.207749	1.0000e-01	0.0000	0.00000	0.00	6.040e-03	4.07	604.00	0.00
-9	1.903483	1.0000e-01	0.0000	0.00000	0.00	3.910e-03	5.06	391.00	0.00
-10	3.000000	1.0000e-01	0.0000	0.00000	0.00	2.530e-03	6.29	253.00	0.00
+1	0.050000	1.0000e-01	0.0000	0.00000	0.00	3.205e-02	1.77	3205.00	0.00
+2	0.078803	1.0000e-01	0.0000	0.00000	0.00	4.136e-02	1.55	4136.00	0.00
+3	0.124198	1.0000e-01	0.0000	0.00000	0.00	4.679e-02	1.46	4679.00	0.00
+4	0.195743	1.0000e-01	0.0000	0.00000	0.00	4.165e-02	1.55	4165.00	0.00
+5	0.308503	1.0000e-01	0.0000	0.00000	0.00	2.863e-02	1.87	2863.00	0.00
+6	0.486219	1.0000e-01	0.0000	0.00000	0.00	1.686e-02	2.44	1686.00	0.00
+7	0.766309	1.0000e-01	0.0000	0.00000	0.00	1.039e-02	3.10	1039.00	0.00
+8	1.207749	1.0000e-01	0.0000	0.00000	0.00	5.570e-03	4.24	557.00	0.00
+9	1.903483	1.0000e-01	0.0000	0.00000	0.00	3.510e-03	5.34	351.00	0.00
+10	3.000000	1.0000e-01	0.0000	0.00000	0.00	1.970e-03	7.12	197.00	0.00
 -----------------------------------------------------------------------------------
 
