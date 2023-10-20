@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import logging
 import math
+import sys
 import typing as tp
 
 
@@ -131,7 +132,11 @@ def compare_out_files(filename1: str, filename2: str, rel_eps = None) -> bool:
 
 
 def main():
-    print(compare_out_files("tccfcalc.out", "out_files/tccfcalc_hpge_point.out"))
+    if len(sys.argv) < 3:
+        print("outfile_reader compares 2 out-files")
+        print("outfile_reader <file_lhs.out> <file_rhs>")
+        sys.exit()
+    print(compare_out_files(sys.argv[1], sys.argv[2]))
 
 
 if __name__ == "__main__":
