@@ -31,22 +31,22 @@ class RespapproxDllWrapper:
             lib_name = self._auto_select_lib_name(path_to_dll)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
         # init_single
-        self._init_single_json = _get_attribute(self._lib, ['init_single_json'])
+        self._init_single_json = _get_attribute(self._lib, ['init_single_json', 'init_single_json@4'])
         self._init_single_json.argtypes = [c_char_p]
         self._init_single_json.restype = c_int
         # init
-        self._init_json = _get_attribute(self._lib, ['init_json'])
+        self._init_json = _get_attribute(self._lib, ['init_json', 'init_json@4'])
         self._init_json.argtypes = [c_char_p]
         self._init_json.restype = c_int
         # calculate
-        self._calculate = _get_attribute(self._lib, ['calculate'])
+        self._calculate = _get_attribute(self._lib, ['calculate', 'calculate@4'])
         self._calculate.argtypes = [c_int]
         # calculate all
-        self._calculate_all = _get_attribute(self._lib, ['calculate_all'])
+        self._calculate_all = _get_attribute(self._lib, ['calculate_all', 'calculate_all@0'])
         # stop
-        self._stop = _get_attribute(self._lib, ['stop'])
+        self._stop = _get_attribute(self._lib, ['stop', 'stop@0'])
         # close
-        self._close = _get_attribute(self._lib, ['close'])
+        self._close = _get_attribute(self._lib, ['close', 'close@0'])
 
     @staticmethod
     def _auto_select_lib_name(path_to_dll: str):
