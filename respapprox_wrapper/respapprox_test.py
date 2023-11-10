@@ -5,6 +5,7 @@ import logging
 import os
 import shutil
 import sys
+from itertools import product
 
 from respapprox import calc_response_matrix
 from compare_matrices import compare_matrices
@@ -25,16 +26,17 @@ def form_etalon_name(has_peaks: bool) -> str:
 
 
 def form_result_name(has_peaks: bool, is_mutithread: bool) -> str:
+    mt_str = "_mt" if is_mutithread else ""
     if has_peaks:
-        return f"results{os.sep}kd1a2.mtx"
+        return f"results{os.sep}kd1a2{mt_str}.mtx"
     else:
-        return f"results{os.sep}wpd1a4.mtx"
+        return f"results{os.sep}wpd1a4{mt_str}.mtx"
 
 
 def main():
     # logger
     logging.basicConfig(
-        level=logging.WARNING,
+        level=logging.INFO,
         format='%(asctime)s : %(levelname)s : %(message)s',
         stream=sys.stderr,
     )
@@ -43,11 +45,10 @@ def main():
     if not os.path.exists('results'):
         os.mkdir('results')
 
-    is_multithread = False
-    for has_peaks in (True, False):
+    for is_multithread, has_peaks in product([False, True], [True, False]):
         input_fname = form_infile_name(has_peaks)
         etalon_fname = form_etalon_name(has_peaks)
-        logging.info("calc with: " + input_fname)
+        logging.info(f"calc with: {input_fname} has_peaks={has_peaks}, is_multithread={is_multithread}")
         shutil.copy(input_fname, "respapprox_input.json")
         res = calc_response_matrix(is_multithread)
         if not res:

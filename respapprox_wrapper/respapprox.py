@@ -34,10 +34,9 @@ def calc_response_matrix_multithread(lib: RespapproxDllWrapper, input_filename: 
     logging.info("Initialized, channels number={}".format(channels_number))
     # calc
     lib.calculate_all()
-    while True:
+    cur_channel = 0
+    while cur_channel < channels_number:
         cur_channel = lib.get_channel()
-        if cur_channel+1 >= channels_number:
-            break
         time.sleep(1)
     logging.info("calculation is done")
     lib.close()

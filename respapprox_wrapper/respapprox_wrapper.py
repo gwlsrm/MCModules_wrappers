@@ -43,6 +43,8 @@ class RespapproxDllWrapper:
         self._calculate.argtypes = [c_int]
         # calculate all
         self._calculate_all = _get_attribute(self._lib, ['calculate_all', 'calculate_all@0'])
+        # get channel
+        self._get_channel = _get_attribute(self._lib, ['get_channel', 'get_channel@0'])
         # stop
         self._stop = _get_attribute(self._lib, ['stop', 'stop@0'])
         # close
@@ -66,6 +68,9 @@ class RespapproxDllWrapper:
 
     def calculate_all(self) -> None:
         return self._calculate_all()
+
+    def get_channel(self) -> int:
+        return self._get_channel()
 
     def stop(self):
         self._stop()
