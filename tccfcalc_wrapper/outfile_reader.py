@@ -134,9 +134,10 @@ def compare_out_files(filename1: str, filename2: str, rel_eps = None) -> bool:
 def main():
     if len(sys.argv) < 3:
         print("outfile_reader compares 2 out-files")
-        print("outfile_reader <file_lhs.out> <file_rhs>")
+        print("outfile_reader <file_lhs.out> <file_rhs> [<rel_eps>]")
         sys.exit()
-    print(compare_out_files(sys.argv[1], sys.argv[2]))
+    rel_eps = float(sys.argv[3]) if len(sys.argv) > 3 else None
+    print(compare_out_files(sys.argv[1], sys.argv[2], rel_eps))
 
 
 if __name__ == "__main__":
