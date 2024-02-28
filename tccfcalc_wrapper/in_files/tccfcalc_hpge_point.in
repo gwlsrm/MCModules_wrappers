@@ -100,3 +100,6 @@ SourceType = POINT
 
 //Point source
 pdistance = 1 cm
+
+// calculation parameters
+threads_number = 1

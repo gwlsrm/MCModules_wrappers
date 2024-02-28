@@ -196,6 +196,7 @@
         "pair_peaks_threshold": 1.5,
         "xray_escape_threshold": 0.3,
         "photon_LEcutoff": 0.001,
-        "electron_LEcutoff": 0.001
+        "electron_LEcutoff": 0.001,
+        "threads_number": 1
     }
 }

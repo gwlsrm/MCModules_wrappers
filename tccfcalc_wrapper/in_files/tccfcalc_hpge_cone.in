@@ -147,3 +147,6 @@ SK_FractionsEmptySpace[1] = 0.2315
 SK_ZEmptySpace[2] = 18
 SK_FractionsEmptySpace[2] = 0.0129
 SK_FractionTypeEmptySpace = MASS
+
+// calculation parameters
+threads_number = 1

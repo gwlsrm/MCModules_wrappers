@@ -148,7 +148,8 @@
         "calc_full_eff": false,
         "calc_spectrum": false,
         "calc_coincidence": false,
-        "calc_scattered": false
+        "calc_scattered": false,
+        "threads_number": 1
     },
     "Nuclide": {
         "z": 27,

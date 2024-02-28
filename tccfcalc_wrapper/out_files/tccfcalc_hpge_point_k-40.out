@@ -3,8 +3,8 @@ True coincidence factor calculation results.
 Decay branch(es):
   K-40   EC  Ar-40 (1.24715e+09 y) - 10.86%
 
-Date: 04/09/2023
-Time: 20:17:52
+Date: 28/02/2024
+Time: 18:54:35
 
 Calculation settings:
 cp.xrays = true
@@ -17,6 +17,7 @@ cp.calc_coincidence = true
 cp.calc_scattered = true
 cp.calc_effc = false
 cp.calc_electron_ttb = true
+cp.threads_number = -1
 
 DetectorType = COAXIAL
 DC_CrystalDiameter = 5.51 cm
@@ -35,7 +36,7 @@ DC_DetectorCapFrontThickness = 0.103 cm
 DC_DetectorCapSideThickness = 0.1 cm
 DC_DetectorCapBackThickness = 0.1 cm
 DC_DetectorMountingThickness = 3 cm
-DC_CrystalCurvatureRadius = 0 cm
+DC_BevelLength = 0 cm
 
 DC_nCrystalElements = 1
 DC_ZCrystal[0] = 32
@@ -57,6 +58,11 @@ DC_ZDetectorCap[0] = 13
 DC_FractionTypeDetectorCap = MASS
 DC_FractionsDetectorCap[0] = 1
 DC_RoDetectorCap = 2.7
+DC_nDetectorCapFrontElements = 1
+DC_ZDetectorCapFront[0] = 13
+DC_FractionTypeDetectorCapFront = MASS
+DC_FractionsDetectorCapFront[0] = 1
+DC_RoDetectorCapFront = 2.7
 DC_nVacuum = 1
 DC_ZVacuum[0] = 13
 DC_FractionTypeVacuum = MASS
@@ -79,8 +85,8 @@ Results:
 3	0.002957	7.2017e-03	3.0000	0.00000	0.00	0.000e+00	0.00	0.00	0.00
 4	0.003190	2.9293e-04	3.0000	0.00000	0.00	0.000e+00	0.00	0.00	0.00
 5	0.003190	5.7614e-04	3.0000	0.00000	0.00	0.000e+00	0.00	0.00	0.00
-6	0.511000	2.0004e-05	3.0000	1.50000	24.40	2.280e-01	15.43	42.00	28.00
-7	1.460822	1.0662e-01	1.2195	0.99009	1.22	1.353e-02	0.87	13287.00	13420.00
+6	0.511000	2.0004e-05	3.0000	1.55556	24.67	2.280e-01	15.43	42.00	27.00
+7	1.460822	1.0662e-01	1.2195	0.99278	1.22	1.358e-02	0.87	13333.00	13430.00
 -----------------------------------------------------------------------------------
 
 Coincidence sum peaks:

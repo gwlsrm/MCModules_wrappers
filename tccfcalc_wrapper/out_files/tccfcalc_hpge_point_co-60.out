@@ -3,8 +3,8 @@ True coincidence factor calculation results.
 Decay branch(es):
  Co-60   B-  Ni-60 (5.27113 y) - 100%
 
-Date: 04/09/2023
-Time: 20:17:32
+Date: 28/02/2024
+Time: 18:54:11
 
 Calculation settings:
 cp.xrays = true
@@ -17,6 +17,7 @@ cp.calc_coincidence = true
 cp.calc_scattered = true
 cp.calc_effc = false
 cp.calc_electron_ttb = true
+cp.threads_number = -1
 
 DetectorType = COAXIAL
 DC_CrystalDiameter = 5.51 cm
@@ -35,7 +36,7 @@ DC_DetectorCapFrontThickness = 0.103 cm
 DC_DetectorCapSideThickness = 0.1 cm
 DC_DetectorCapBackThickness = 0.1 cm
 DC_DetectorMountingThickness = 3 cm
-DC_CrystalCurvatureRadius = 0 cm
+DC_BevelLength = 0 cm
 
 DC_nCrystalElements = 1
 DC_ZCrystal[0] = 32
@@ -57,6 +58,11 @@ DC_ZDetectorCap[0] = 13
 DC_FractionTypeDetectorCap = MASS
 DC_FractionsDetectorCap[0] = 1
 DC_RoDetectorCap = 2.7
+DC_nDetectorCapFrontElements = 1
+DC_ZDetectorCapFront[0] = 13
+DC_FractionTypeDetectorCapFront = MASS
+DC_FractionsDetectorCapFront[0] = 1
+DC_RoDetectorCapFront = 2.7
 DC_nVacuum = 1
 DC_ZVacuum[0] = 13
 DC_FractionTypeVacuum = MASS
@@ -79,12 +85,12 @@ Results:
 3	0.007478	6.5699e-05	3.0000	0.00000	0.00	0.000e+00	0.00	0.00	0.00
 4	0.008265	1.1926e-05	2.2292	0.00000	0.00	0.000e+00	0.00	0.00	0.00
 5	0.008329	7.2296e-09	3.0000	0.00000	0.00	0.000e+00	0.00	0.00	0.00
-6	0.347140	7.5000e-05	5.3333	1.66667	73.03	6.667e-02	44.72	5.00	3.00
+6	0.347140	7.5000e-05	5.3333	1.50000	64.55	8.000e-02	40.82	6.00	4.00
 7	0.826100	7.6000e-05	10.5263	0.50000	141.42	1.974e-02	129.10	1.50	3.00
-8	1.173228	9.9850e-01	0.0300	1.11320	1.11	1.717e-02	0.76	17146.00	15402.50
-9	1.332492	9.9983e-01	0.0006	1.11672	1.19	1.502e-02	0.82	15021.00	13451.00
+8	1.173228	9.9850e-01	0.0300	1.11705	1.11	1.718e-02	0.76	17154.00	15356.50
+9	1.332492	9.9983e-01	0.0006	1.11885	1.19	1.504e-02	0.82	15034.00	13437.00
 10	2.158570	1.2000e-05	16.6667	0.00000	0.00	0.000e+00	0.00	0.00	0.00
-11	2.505692	2.0000e-08	20.0000	0.00000	0.00	0.000e+00	0.00	0.00	272.00
+11	2.505692	2.0000e-08	20.0000	0.00000	0.00	0.000e+00	0.00	0.00	270.00
 -----------------------------------------------------------------------------------
 
 Coincidence sum peaks:

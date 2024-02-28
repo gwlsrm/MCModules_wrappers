@@ -102,5 +102,7 @@ SourceType = POINT
 //Point source
 pdistance = 1 cm
 
+// calculation parameters
 calc_spectrum = true
 calc_coincidence = true
+threads_number = 1

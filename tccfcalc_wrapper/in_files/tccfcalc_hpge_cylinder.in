@@ -158,3 +158,6 @@ M_SC_EmptySpace.MName = Air
 M_SC_EmptySpace.Nmaterials = 1
 M_SC_EmptySpace.Name[0] = Air
 M_SC_EmptySpace.MatRelWeight[0] = 1
+
+// calculation parameters
+threads_number = 1

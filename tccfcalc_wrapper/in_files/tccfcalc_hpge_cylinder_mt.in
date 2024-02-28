@@ -96,72 +96,68 @@ M_DC_Vacuum.MatRelWeight[0] = 1
 //---------------------------------
 //Source types: POINT, CYLINDER, MARINELLI
 
-SourceType = MARINELLI
+SourceType = CYLINDER
 
-//Marinelli beaker Source
-SM_BeakerToDetectorFrontDistance = 0 cm
-SM_BeakerDiameter = 15.4 cm
-SM_BeakerHeight = 11.2 cm
-SM_BeakerHoleDiameter = 9.6 cm
-SM_BeakerHoleHeight = 6.6 cm
-SM_BeakerSideThickness = 0.2 cm
-SM_BeakerEndWallThickness = 0.2 cm
-SM_BeakerHoleSideThickness = 0.2 cm
-SM_BeakerHoleEndWallThickness = 0.2 cm
-SM_SourceHeight = 8.6 cm
+//Cylindrical Source
+SC_BeakerToDetectorFrontDistance = 0 cm
+SC_BeakerDiameter = 8.8 cm
+SC_BeakerHeight = 1.5 cm
+SC_BeakerSideWallThickness = 0.1 cm
+SC_BeakerEndWallThickness = 0.1 cm
+SC_SourceHeight = 1.3 cm
 
 
 //---------------------------------
 //MATERIAL PARAMETERS BLOCK:
 //---------------------------------
-//Marinelli beaker materials:
+// Cylindrical beaker materials:
 //----------------------------
 
 
 // Walls
-SM_nWallElements = 3
-SM_RoWall = 1.38
-SM_ZWall[0] = 1
-SM_FractionsWall[0] = 0.04196
-SM_ZWall[1] = 6
-SM_FractionsWall[1] = 0.625016
-SM_ZWall[2] = 8
-SM_FractionsWall[2] = 0.333024
-SM_FractionTypeWall = MASS
-M_SM_Beaker.MName = Mylar
-M_SM_Beaker.Nmaterials = 1
-M_SM_Beaker.Name[0] = Mylar
-M_SM_Beaker.MatRelWeight[0] = 1
+SC_nWallElements = 3
+SC_RoWall = 1.38
+SC_ZWall[0] = 1
+SC_FractionsWall[0] = 0.04196
+SC_ZWall[1] = 6
+SC_FractionsWall[1] = 0.625016
+SC_ZWall[2] = 8
+SC_FractionsWall[2] = 0.333024
+SC_FractionTypeWall = MASS
+M_SC_Beaker.MName = Mylar
+M_SC_Beaker.Nmaterials = 1
+M_SC_Beaker.Name[0] = Mylar
+M_SC_Beaker.MatRelWeight[0] = 1
 
 
 // Source
-SM_nSourceElements = 2
-SM_RoSource = 1
-SM_ZSource[0] = 1
-SM_FractionsSource[0] = 0.111899330013933
-SM_ZSource[1] = 8
-SM_FractionsSource[1] = 0.888100669986067
-SM_FractionTypeSource = MASS
-M_SM_Source.MName = Water
-M_SM_Source.Nmaterials = 1
-M_SM_Source.Name[0] = Water
-M_SM_Source.MatRelWeight[0] = 1
+SC_nSourceElements = 2
+SC_RoSource = 1
+SC_ZSource[0] = 1
+SC_FractionsSource[0] = 0.111899330013933
+SC_ZSource[1] = 8
+SC_FractionsSource[1] = 0.888100669986067
+SC_FractionTypeSource = MASS
+M_SC_Source.MName = Water
+M_SC_Source.Nmaterials = 1
+M_SC_Source.Name[0] = Water
+M_SC_Source.MatRelWeight[0] = 1
 
 
 // Empty Space
-SM_nEmptySpaceElements = 3
-SM_RoEmptySpace = 0.001
-SM_ZEmptySpace[0] = 7
-SM_FractionsEmptySpace[0] = 0.755
-SM_ZEmptySpace[1] = 8
-SM_FractionsEmptySpace[1] = 0.2315
-SM_ZEmptySpace[2] = 18
-SM_FractionsEmptySpace[2] = 0.0129
-SM_FractionTypeEmptySpace = MASS
-M_SM_EmptySpace.MName = Air
-M_SM_EmptySpace.Nmaterials = 1
-M_SM_EmptySpace.Name[0] = Air
-M_SM_EmptySpace.MatRelWeight[0] = 1
+SC_nEmptySpaceElements = 3
+SC_RoEmptySpace = 0.001
+SC_ZEmptySpace[0] = 7
+SC_FractionsEmptySpace[0] = 0.755
+SC_ZEmptySpace[1] = 8
+SC_FractionsEmptySpace[1] = 0.2315
+SC_ZEmptySpace[2] = 18
+SC_FractionsEmptySpace[2] = 0.0129
+SC_FractionTypeEmptySpace = MASS
+M_SC_EmptySpace.MName = Air
+M_SC_EmptySpace.Nmaterials = 1
+M_SC_EmptySpace.Name[0] = Air
+M_SC_EmptySpace.MatRelWeight[0] = 1
 
 // calculation parameters
-threads_number = 1
+threads_number = 4
