@@ -15,6 +15,7 @@ from response import calc_response_with
 
 det_list = ["hpge", "scintil"]
 geom_list = ["point"]
+threading_list = [False, True]
 E_MIN = 50
 E_MAX = 3000
 POINTS = 10
@@ -23,16 +24,19 @@ SEED = 42
 N = 1000
 
 
-def form_infile_name(det, geom):
-    return f"in_files{os.sep}response_input_{det}_{geom}.json"
+def form_infile_name(det, geom, is_multithread=False):
+    mt_suffix_str = "_mt" if is_multithread else ""
+    return f"in_files{os.sep}response_input_{det}_{geom}{mt_suffix_str}.json"
 
 
-def form_etalon_name(det, geom):
-    return f"etalon{os.sep}response_output_{det}_{geom}.csv"
+def form_etalon_name(det, geom, is_multithread=False):
+    mt_suffix_str = "_mt" if is_multithread else ""
+    return f"etalon{os.sep}response_output_{det}_{geom}{mt_suffix_str}.csv"
 
 
-def form_result_name(det, geom):
-    return f"results{os.sep}response_output_{det}_{geom}.csv"
+def form_result_name(det, geom, is_multithread=False):
+    mt_suffix_str = "_mt" if is_multithread else ""
+    return f"results{os.sep}response_output_{det}_{geom}{mt_suffix_str}.csv"
 
 
 if __name__ == "__main__":
@@ -51,9 +55,9 @@ if __name__ == "__main__":
     grid = EnergyGrid(E_MIN, E_MAX, POINTS, IS_LOG)
 
     # calculation cycle
-    for det, geom in tqdm(product(det_list, geom_list)):
-        input_fname = form_infile_name(det, geom)
-        etalon_fname = form_etalon_name(det, geom)
+    for det, geom, is_mt in tqdm(product(det_list, geom_list, threading_list)):
+        input_fname = form_infile_name(det, geom, is_mt)
+        etalon_fname = form_etalon_name(det, geom, is_mt)
         logging.info("calc with: " + input_fname)
         shutil.copy(input_fname, "response_input.json")
         calc_response_with(grid, SEED, N)
@@ -62,4 +66,4 @@ if __name__ == "__main__":
             logging.error(f'calculation results for {input_fname} are different')
         else:
             logging.info(f'calculation results for {input_fname} is OK')
-        shutil.copy('response_output.csv', form_result_name(det, geom))
+        shutil.copy('response_output.csv', form_result_name(det, geom, is_mt))
