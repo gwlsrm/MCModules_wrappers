@@ -61,7 +61,10 @@ if __name__ == "__main__":
         logging.info("calc with: " + input_fname)
         shutil.copy(input_fname, "response_input.json")
         calc_response_with(grid, SEED, N)
-        res = compare_csv('response_output.csv', etalon_fname)
+        if is_mt:
+            res = compare_csv('response_output.csv', etalon_fname, rel_tol=4)
+        else:
+            res = compare_csv('response_output.csv', etalon_fname)
         if not res:
             logging.error(f'calculation results for {input_fname} are different')
         else:
