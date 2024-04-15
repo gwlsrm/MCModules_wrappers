@@ -50,7 +50,8 @@ def main():
         f.write('290CO  P 0.0\n')
         f.write('    1  L 0.0\n')
 
-        energies = (np.geomspace(e_min, e_max, points_num)
+        energies = (
+            np.geomspace(e_min, e_max, points_num)
             if is_log
             else np.linspace(e_min, e_max, points_num))
         intensity = 100.0 / points_num

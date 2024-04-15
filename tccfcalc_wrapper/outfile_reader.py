@@ -118,7 +118,7 @@ def compare_out_files_efficiencies_with_eps(lhs: OutFileReader, rhs: OutFileRead
     return True
 
 
-def compare_out_files(filename1: str, filename2: str, rel_eps = None) -> bool:
+def compare_out_files(filename1: str, filename2: str, rel_eps: tp.Optional[float] = None) -> bool:
     try:
         file_reader1 = OutFileReader(filename1)
         file_reader2 = OutFileReader(filename2)

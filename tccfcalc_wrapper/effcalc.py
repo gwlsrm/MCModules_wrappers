@@ -3,7 +3,7 @@ import os.path
 import sys
 import logging
 
-from tccfcalc_wrapper import TccFcalcDllWrapper, PREPARE_ERROR_CODES
+from tccfcalc_wrapper import TccFcalcDllWrapper, get_prepare_error_message
 from nuclide import Nuclide
 
 
@@ -14,7 +14,7 @@ def calculate_eff(nuclide, N, anal_fname, seed, activity):
     lib = TccFcalcDllWrapper()
     error_num = lib.tccfcalc_prepare(nuclide.a, nuclide.z, nuclide.m, cur_path, cur_lib_path, seed)
     if error_num:
-        error_msg = PREPARE_ERROR_CODES[error_num] if error_num < len(PREPARE_ERROR_CODES) else ''
+        error_msg = get_prepare_error_message(error_num)
         logging.error(f'Prepare error #{error_num}: {error_msg}')
         sys.exit()
     logging.info('Prepared successfully')
@@ -32,7 +32,7 @@ def calculate_eff(nuclide, N, anal_fname, seed, activity):
     # spectrum
     if anal_fname:
         logging.info('Start calculating spectr with analyzer: ' + anal_fname)
-        error_num = lib.tccfcalc_calc_spectrum(anal_fname, activity)
+        error_num = lib.tccfcalc_calc_spectrum_file(anal_fname, activity)
         if error_num:
             logging.error('Spectrum calculation error #' + str(error_num))
             sys.exit()
@@ -46,7 +46,7 @@ def calculate_eff_json(N, anal_fname, seed, activity):
     lib = TccFcalcDllWrapper()
     error_num = lib.tccfcalc_prepare_json(input_filename, seed)
     if error_num:
-        error_msg = PREPARE_ERROR_CODES[error_num] if error_num < len(PREPARE_ERROR_CODES) else ''
+        error_msg = get_prepare_error_message(error_num)
         logging.error(f'Prepare error #{error_num}: {error_msg}')
         sys.exit()
     logging.info('Prepared successfully')
@@ -64,7 +64,7 @@ def calculate_eff_json(N, anal_fname, seed, activity):
     # spectrum
     if anal_fname:
         logging.info('Start calculating spectrum with analyzer: ' + anal_fname)
-        error_num = lib.tccfcalc_calc_spectrum(anal_fname, activity)
+        error_num = lib.tccfcalc_calc_spectrum_file(anal_fname, activity)
         if error_num:
             logging.error('Spectrum calculation error #' + str(error_num))
             sys.exit()
