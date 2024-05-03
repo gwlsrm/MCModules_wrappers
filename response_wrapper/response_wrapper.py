@@ -40,7 +40,7 @@ class CalculationResults(Structure):
 def _get_attribute(lib, attributes: tp.List[str]):
     """
         tries to get exported attribute from attributes list
-        returns first successful 
+        returns first successful
     """
     for attribute in attributes:
         try:
@@ -70,7 +70,7 @@ class ResponseDllWrapper:
         # save response
         self._response_save_rfc_csv = _get_attribute(self._lib, ['Response_Save_RFC_CSV@8', 'Response_Save_RFC_CSV'])
         self._response_save_rfc_csv.argtypes = [c_char_p, c_bool]
-    
+
     @staticmethod
     def _auto_select_lib_name(path_to_dll: str):
         for lib_name in ['response_p_gw.dll', 'libresponse_p_gw.dll', 'libresponse_p_gw.so']:
@@ -108,6 +108,8 @@ def main():
     is_first = True
     for e in [0.5, 1.0]:
         res = lib.response_calculate(1000, e, 0.001)
+        if res != 0:
+            print(f"Calculation error: {res}")
         lib.response_save_rfc_csv(output_filename, not is_first)
         is_first = False
     print('done')

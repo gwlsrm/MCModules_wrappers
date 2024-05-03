@@ -44,7 +44,7 @@ class CalculationResults(Structure):
 def _get_attribute(lib, attributes: tp.List[str]):
     """
         tries to get exported attribute from attributes list
-        returns first successful 
+        returns first successful
     """
     for attribute in attributes:
         try:
@@ -109,6 +109,9 @@ def main():
 
     # calc
     res = lib.physspec_calculate(100000, True)
+    if res != 0:
+        print(f'Calculation error #{res}')
+        return
 
     # save
     output_filename = os.path.join(cur_path, 'physspec_output.json')

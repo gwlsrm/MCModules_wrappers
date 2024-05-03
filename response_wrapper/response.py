@@ -36,6 +36,8 @@ def calc_response_with(grid, seed, histories):
     for energy in grid.grid:
         logging.info(f'Calculate response for energy: {energy} keV')
         res = lib.response_calculate(N, energy/1000,  DE)
+        if res != 0:
+            logging.error(f"Calculation error: {res}")
         lib.response_save_rfc_csv(output_filename, not is_first)
         is_first = False
 

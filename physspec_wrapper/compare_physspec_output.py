@@ -32,12 +32,14 @@ def compare_physspec_output_data_with_errors(data1: tp.Dict[str, tp.Any], data2:
     # func
     if not _compare_values_with_k(calc_res1["func"], calc_res1["dfunc"], calc_res2["func"], calc_res2["dfunc"], _K):
         k_diff = _k_diff(calc_res1["func"], calc_res1["dfunc"], calc_res2["func"], calc_res2["dfunc"])
-        logging.warn(f"calculation results differs in func: {calc_res1['func']} != {calc_res2['func']} with k_diff= {k_diff}")
+        logging.warn(
+            f"calculation results differs in func: {calc_res1['func']} != {calc_res2['func']} with k_diff= {k_diff}")
         return False
     # fcol
     if not _compare_values_with_k(calc_res1["fcol"], calc_res1["dfcol"], calc_res2["fcol"], calc_res2["dfcol"], _K):
         k_diff = _k_diff(calc_res1["fcol"], calc_res1["dfcol"], calc_res2["fcol"], calc_res2["dfcol"])
-        logging.warn(f"calculation results differs in fcol: {calc_res1['fcol']} != {calc_res2['fcol']} with k_diff= {k_diff}")
+        logging.warn(
+            f"calculation results differs in fcol: {calc_res1['fcol']} != {calc_res2['fcol']} with k_diff= {k_diff}")
         return False
     # y0
     for i, (y1, y2) in enumerate(zip(calc_res1["y0"], calc_res1["y0"])):

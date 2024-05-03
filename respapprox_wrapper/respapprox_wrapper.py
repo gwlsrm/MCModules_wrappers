@@ -1,7 +1,7 @@
 import os.path
 import sys
 import typing as tp
-from ctypes import CDLL, RTLD_GLOBAL, POINTER, byref, c_int, c_char_p
+from ctypes import CDLL, RTLD_GLOBAL, c_int, c_char_p
 
 
 PREPARE_ERROR_CODES = [

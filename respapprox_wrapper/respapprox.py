@@ -23,6 +23,7 @@ def calc_response_matrix_singlethread(lib: RespapproxDllWrapper, input_filename:
     lib.close()
     return True
 
+
 def calc_response_matrix_multithread(lib: RespapproxDllWrapper, input_filename: str) -> bool:
     # init
     res = lib.init_json(input_filename)
@@ -51,7 +52,6 @@ def calc_response_matrix(is_multithread: bool = False) -> bool:
         return calc_response_matrix_multithread(lib, input_filename)
     else:
         return calc_response_matrix_singlethread(lib, input_filename)
-
 
 
 def main():

@@ -38,10 +38,12 @@ class AppspecDllWrapper:
             self._lib,
             ['prepare_efficiency_calculation@20', 'prepare_efficiency_calculation']
         )
-        self._prepare_efficiency_calculation.argtypes = [c_int, POINTER(c_double), POINTER(c_double), POINTER(c_double), c_bool]
+        self._prepare_efficiency_calculation.argtypes = [
+            c_int, POINTER(c_double), POINTER(c_double), POINTER(c_double), c_bool]
         # calculate
         self._calculate_efficiency = _get_attribute(self._lib, ['calculate_efficiency@40', 'calculate_efficiency'])
-        self._calculate_efficiency.argtypes = [c_double, c_double, c_double, c_double, POINTER(c_double), POINTER(c_double)]
+        self._calculate_efficiency.argtypes = [
+            c_double, c_double, c_double, c_double, POINTER(c_double), POINTER(c_double)]
         self._calculate_efficiency.restype = c_double
         # reset
         self._reset_efficiency_calculation = _get_attribute(
@@ -49,7 +51,8 @@ class AppspecDllWrapper:
             ['reset_efficiency_calculation@0', 'reset_efficiency_calculation']
         )
         # spectrum
-        self._calc_apparatus_spectrum = _get_attribute(self._lib, ['calc_apparatus_spectrum@4', 'calc_apparatus_spectrum'])
+        self._calc_apparatus_spectrum = _get_attribute(
+            self._lib, ['calc_apparatus_spectrum@4', 'calc_apparatus_spectrum'])
         self._calc_apparatus_spectrum.argtypes = [c_char_p]
 
     @staticmethod
@@ -65,11 +68,12 @@ class AppspecDllWrapper:
         return self._prepare_efficiency_calculation(arrays_size, energy_array, nfep_array, dfep_array, is_log)
 
     def calculate_efficiency(self, energy: float, peak_count_rate: float, dpeak_count_rate: float,
-                             peak_intensity: float, efficiency: float, defficiency: float) -> tp.Tuple[tp.List[float], tp.List[float], int]:
+                             peak_intensity: float, efficiency: float, defficiency: float
+                             ) -> tp.Tuple[tp.List[float], tp.List[float], int]:
         efficiency = []
         defficiency = []
         error_num = self._calculate_efficiency(energy, peak_count_rate, dpeak_count_rate, peak_intensity,
-                                          efficiency, defficiency)
+                                               efficiency, defficiency)
         return efficiency, defficiency, error_num
 
     def reset_efficiency_calculation(self) -> None:

@@ -5,7 +5,7 @@ import struct
 import sys
 
 
-def read_float(f: io.BufferedReader)->float:
+def read_float(f: io.BufferedReader) -> float:
     s = f.read(8)
     d = struct.unpack('d', s)[0]
     return d

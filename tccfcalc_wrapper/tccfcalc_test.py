@@ -98,7 +98,6 @@ def main():
         os.mkdir('results')
     if not os.path.exists('analyzer.ain'):
         shutil.copy('in_files/analyzer_ppd_8k_3MeV.ain', 'analyzer.ain')
-    anal_path = os.path.abspath('analyzer.ain')
 
     # efficiency
     if calc_eff_task:
