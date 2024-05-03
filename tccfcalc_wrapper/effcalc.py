@@ -7,7 +7,7 @@ from tccfcalc_wrapper import TccFcalcDllWrapper, get_prepare_error_message
 from nuclide import Nuclide
 
 
-def calculate_eff(nuclide, N, anal_fname, seed, activity):
+def calculate_eff(nuclide: Nuclide, N: int, is_calc_spectrum: bool, seed: int, activity: float):
     # prepare
     cur_path = os.getcwd()
     cur_lib_path = os.path.join(cur_path, 'Lib')
@@ -30,16 +30,16 @@ def calculate_eff(nuclide, N, anal_fname, seed, activity):
             logging.debug(f'{percent*10}%')
 
     # spectrum
-    if anal_fname:
-        logging.info('Start calculating spectr with analyzer: ' + anal_fname)
-        error_num = lib.tccfcalc_calc_spectrum_file(anal_fname, activity)
+    if is_calc_spectrum:
+        logging.info('Start calculating spectr')
+        error_num = lib.tccfcalc_calculate_spectrum(activity)
         if error_num:
             logging.error('Spectrum calculation error #' + str(error_num))
             sys.exit()
         logging.info('Spectrum calculation done')
 
 
-def calculate_eff_json(N, anal_fname, seed, activity):
+def calculate_eff_json(N: int, is_calc_spectrum: bool, seed: int, activity: float):
     # prepare
     cur_path = os.getcwd()
     input_filename = os.path.join(cur_path, 'tccfcalc_input.json')
@@ -62,9 +62,9 @@ def calculate_eff_json(N, anal_fname, seed, activity):
             logging.debug(f'{percent*10}%')
 
     # spectrum
-    if anal_fname:
-        logging.info('Start calculating spectrum with analyzer: ' + anal_fname)
-        error_num = lib.tccfcalc_calc_spectrum_file(anal_fname, activity)
+    if is_calc_spectrum:
+        logging.info('Start calculating spectrum')
+        error_num = lib.tccfcalc_calculate_spectrum(activity)
         if error_num:
             logging.error('Spectrum calculation error #' + str(error_num))
             sys.exit()
@@ -80,7 +80,7 @@ def main():
     parser.add_argument('-N', '--histories', help='calculation histories, thsnds', type=int, default=1000)
     parser.add_argument('-s', '--seed', help='seed for random generator, default = 0 <- random seed',
                         type=int, default=0)
-    parser.add_argument('-a', '--analyzer', help='analyzer filename (*.ain), will calculate spectrum')
+    parser.add_argument('-s', '--calc_spectrum', action='store_true', help='calculate spectrum')
     parser.add_argument('--activity', help='activity for source in Bq, default = 1000 Bq',
                         type=float, default=1000)
     parser.add_argument('--json', help='search tccfcalc_input.json', action="store_true", default=False)
@@ -110,14 +110,14 @@ def main():
 
     # other
     N = args.histories
-    anal_fname = os.path.abspath(args.analyzer) if args.analyzer is not None else None
     seed = args.seed
     activity = args.activity
+    is_calc_spectrum = args.calc_spectrum
 
     if args.json:
-        calculate_eff_json(N, anal_fname, seed, activity)
+        calculate_eff_json(N, is_calc_spectrum, seed, activity)
     else:
-        calculate_eff(nuclide, N, anal_fname, seed, activity)
+        calculate_eff(nuclide, N, is_calc_spectrum, seed, activity)
 
 
 if __name__ == '__main__':

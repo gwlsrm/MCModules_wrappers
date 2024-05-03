@@ -65,12 +65,17 @@ class TccFcalcDllWrapper:
         # reset
         self._tccfcalc_reset = _get_attribute(self._lib, ['TCCFCALC_Reset@0', 'TCCFCALC_Reset'])
         # calc spectrum
+        self._tccfcalc_calculate_spectrum = \
+            _get_attribute(self._lib, ['TCCFCALC_CalculateSpectrum@8', 'TCCFCALC_CalculateSpectrum'])
+        self._tccfcalc_calculate_spectrum.argtypes = [c_double]
         self._tccfcalc_calc_spectrum_file = \
             _get_attribute(self._lib, ['TCCFCALC_CalcSpectrumFile@12', 'TCCFCALC_CalcSpectrumFile'])
         self._tccfcalc_calc_spectrum_file.argtypes = [c_char_p, c_double]
         # calc spectrum n sec
-        self._tccfcalc_calc_spectrum_n_sec = _get_attribute(self._lib, ['TCCFCALC_Calculate_n_sec'])
+        self._tccfcalc_calc_spectrum_n_sec = _get_attribute(self._lib, ['TCCFCALC_Calculate_n_sec@8', 'TCCFCALC_Calculate_n_sec'])
         self._tccfcalc_calc_spectrum_n_sec.argtypes = [c_int, c_double]
+        # reset spectrum
+        self._tccfcalc_reset_spectrum = _get_attribute(self._lib, ['TCCFCALC_Reset_Spectrum@0', 'TCCFCALC_Reset_Spectrum'])
 
     @staticmethod
     def _auto_select_lib_name(path_to_dll: str):
@@ -94,8 +99,14 @@ class TccFcalcDllWrapper:
     def tccfcalc_calc_spectrum_file(self, analyzer_filename: str, activity: float) -> int:
         return self._tccfcalc_calc_spectrum_file(bytes(analyzer_filename, 'utf-8'), activity)
 
+    def tccfcalc_calculate_spectrum(self, activity: float) -> int:
+        return self._tccfcalc_calculate_spectrum(activity)
+
     def tccfcalc_calc_spectrum_n_sec(self, time_sec: int, activity: float) -> int:
         return self._tccfcalc_calc_spectrum_n_sec(time_sec, activity)
+
+    def tccfcalc_reset_spectrum(self) -> None:
+        return self._tccfcalc_reset_spectrum()
 
 
 def main():

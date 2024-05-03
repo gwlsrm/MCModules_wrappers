@@ -108,7 +108,7 @@ def main():
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
-            calculate_eff(Nuclide.get_default(), N, None, SEED, ACTIVITY)
+            calculate_eff(Nuclide.get_default(), N, False, SEED, ACTIVITY)
             res = compare_out_files('tccfcalc.out', outfname, rel_eps=rel_eps)
             if not res:
                 logging.error(f'tccfcal.out != {outfname}')
@@ -124,7 +124,7 @@ def main():
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
-            calculate_eff(Nuclide.parse_from(nuclide), N, anal_path, SEED, ACTIVITY)
+            calculate_eff(Nuclide.parse_from(nuclide), N, True, SEED, ACTIVITY)
             res = compare_out_files('tccfcalc.out', outfname, rel_eps=rel_eps)
             if not res:
                 logging.error(f'tccfcal.out != {outfname}')
@@ -142,7 +142,7 @@ def main():
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc.in')
             nucl = Nuclide.parse_from(nuclide) if nuclide else Nuclide.get_default()
-            calculate_eff(nucl, N, None, SEED, ACTIVITY)
+            calculate_eff(nucl, N, False, SEED, ACTIVITY)
             res = compare_out_files('tccfcalc.out', outfname, rel_eps=None)
             if not res:
                 logging.error(f'tccfcal.out != {outfname}')
@@ -158,7 +158,7 @@ def main():
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc_input.json')
-            calculate_eff_json(N, None, SEED, ACTIVITY)
+            calculate_eff_json(N, False, SEED, ACTIVITY)
             res = compare_out_files('tccfcalc.out', outfname, rel_eps=rel_eps)
             if not res:
                 logging.error(f'tccfcal.out != {outfname}')
@@ -174,7 +174,7 @@ def main():
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc_input.json')
-            calculate_eff_json(N, None, SEED, ACTIVITY)
+            calculate_eff_json(N, False, SEED, ACTIVITY)
             res = compare_out_files('tccfcalc.out', outfname, rel_eps=rel_eps)
             if not res:
                 logging.error(f'tccfcal.out != {outfname}')
@@ -190,7 +190,7 @@ def main():
             outfname = form_outfile_name(det, geom, nuclide)
             logging.info('calc with: ' + tccfcalc_name)
             shutil.copy(tccfcalc_name, 'tccfcalc_input.json')
-            calculate_eff_json(N, None, SEED, ACTIVITY)
+            calculate_eff_json(N, False, SEED, ACTIVITY)
             res = compare_out_files('tccfcalc.out', outfname, rel_eps=rel_eps)
             if not res:
                 logging.error(f'tccfcal.out != {outfname}')

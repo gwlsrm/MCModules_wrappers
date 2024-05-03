@@ -87,6 +87,14 @@
         },
         "Material": {}
     },
+	"Analyzer": {
+        "Name": "DSpec_8K_3Mev",
+        "FWHM_122": 0.77,
+        "FWHM_662": 1.26,
+        "FWHM_1332": 1.73,
+        "kev_per_ch": 0.3662,
+        "N_ch": 8192
+    },
     "CalculationParameters": {
         "xrays": false,
         "annihilation": false,
