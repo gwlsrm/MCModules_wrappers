@@ -12,6 +12,8 @@ from tqdm import tqdm
 from effcalc import calculate_eff, calculate_eff_json
 from nuclide import Nuclide
 from outfile_reader import compare_out_files
+from spe_compare import compare_spectra
+from utils.speparser import convert_spe2txt
 
 
 SEED = 42
@@ -55,11 +57,19 @@ def form_resfile_name(det, geom, nuclide, is_multithread=False):
 
 
 def form_res_spectrum_name(det, geom, nuclide):
-    return f'results{os.sep}spectrum_{det}_{geom}_{nuclide}.spe'
+    return f'results{os.sep}spectrum_{det}_{geom}_{nuclide}.txt'
+
+
+def form_etalon_spectrum_name(det, geom, nuclide):
+    return f'out_files{os.sep}spectrum_{det}_{geom}_{nuclide}.txt'
 
 
 def form_res_coincspectrum_name(det, geom, nuclide):
-    return f'results{os.sep}spectrum_coinc_{det}_{geom}_{nuclide}.spe'
+    return f'results{os.sep}spectrum_coinc_{det}_{geom}_{nuclide}.txt'
+
+
+def form_etalon_coincspectrum_name(det, geom, nuclide):
+    return f'out_files{os.sep}spectrum_coinc_{det}_{geom}_{nuclide}.txt'
 
 
 def main():
@@ -130,8 +140,20 @@ def main():
             else:
                 logging.info(f'tccfcal.out == {outfname}')
             shutil.copy('tccfcalc.out', form_resfile_name(det, geom, nuclide))
-            shutil.copy('test_spectr.spe', form_res_spectrum_name(det, geom, nuclide))
-            shutil.copy('test_spectr_coi.spe', form_res_coincspectrum_name(det, geom, nuclide))
+            res_spe_name = form_res_spectrum_name(det, geom, nuclide)
+            etalon_spe_name = form_etalon_spectrum_name(det, geom, nuclide)
+            convert_spe2txt('test_spectr.spe', res_spe_name)
+            if compare_spectra(res_spe_name, etalon_spe_name):
+                logging.info(f'{res_spe_name} == {etalon_spe_name}')
+            else:
+                logging.error(f'{res_spe_name} != {etalon_spe_name}')
+            res_spe_name = form_res_coincspectrum_name(det, geom, nuclide)
+            etalon_spe_name = form_etalon_coincspectrum_name(det, geom, nuclide)
+            convert_spe2txt('test_spectr_coi.spe', res_spe_name)
+            if compare_spectra(res_spe_name, etalon_spe_name):
+                logging.info(f'{res_spe_name} == {etalon_spe_name}')
+            else:
+                logging.error(f'{res_spe_name} != {etalon_spe_name}')
 
     # multithread calculation
     if calc_mt_task:

@@ -80,7 +80,7 @@ def main():
     parser.add_argument('-N', '--histories', help='calculation histories, thsnds', type=int, default=1000)
     parser.add_argument('-s', '--seed', help='seed for random generator, default = 0 <- random seed',
                         type=int, default=0)
-    parser.add_argument('-s', '--calc_spectrum', action='store_true', help='calculate spectrum')
+    parser.add_argument('-c', '--calc_spectrum', action='store_true', help='calculate spectrum')
     parser.add_argument('--activity', help='activity for source in Bq, default = 1000 Bq',
                         type=float, default=1000)
     parser.add_argument('--json', help='search tccfcalc_input.json', action="store_true", default=False)
