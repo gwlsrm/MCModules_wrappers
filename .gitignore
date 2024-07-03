@@ -148,6 +148,7 @@ physspec_output.json
 appspec_input.json
 respapprox_input.json
 test.mtx
+calculation_params.json
 
 # directories
 results/

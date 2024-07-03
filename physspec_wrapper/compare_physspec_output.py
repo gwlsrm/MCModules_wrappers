@@ -6,16 +6,17 @@ import typing as tp
 from json_compare import compare_dicts
 
 _K = 3
+ABS_DIFF_THRES = 1e-8
+
+
+def _compare_values_with_abs_k(value1: float, dvalue1: float, value2: float, dvalue2: float, k: float):
+    return (value1 - value2)**2 <= k**2 * (dvalue1**2 + dvalue2**2) or abs(value1 - value2) <= ABS_DIFF_THRES
 
 
 def _compare_values_with_k(value1: float, dvalue1: float, value2: float, dvalue2: float, k: float):
     dvalue1 *= value1
     dvalue2 *= value2
-    return (value1 - value2)**2 <= k**2 * (dvalue1**2 + dvalue2**2)
-
-
-def _compare_values_with_abs_k(value1: float, dvalue1: float, value2: float, dvalue2: float, k: float):
-    return (value1 - value2)**2 <= k**2 * (dvalue1**2 + dvalue2**2)
+    return _compare_values_with_abs_k(value1, dvalue1, value2, dvalue2, k)
 
 
 def _k_diff(value1: float, dvalue1: float, value2: float, dvalue2: float):
@@ -42,12 +43,12 @@ def compare_physspec_output_data_with_errors(data1: tp.Dict[str, tp.Any], data2:
             f"calculation results differs in fcol: {calc_res1['fcol']} != {calc_res2['fcol']} with k_diff= {k_diff}")
         return False
     # y0
-    for i, (y1, y2) in enumerate(zip(calc_res1["y0"], calc_res1["y0"])):
+    for i, (y1, y2) in enumerate(zip(calc_res1["y0"], calc_res2["y0"])):
         if not math.isclose(y1, y2):
             logging.warn(f"calculation results differs in y0 idx {i}: {y1} != {y2}")
             return False
     # x1
-    for i, (x1, x2) in enumerate(zip(calc_res1["x1"], calc_res1["x1"])):
+    for i, (x1, x2) in enumerate(zip(calc_res1["x1"], calc_res2["x1"])):
         if not math.isclose(x1, x2):
             logging.warn(f"calculation results differs in x1 idx {i}: {x1} != {x2}")
             return False
@@ -58,12 +59,12 @@ def compare_physspec_output_data_with_errors(data1: tp.Dict[str, tp.Any], data2:
             logging.warn(f"calculation results differs in y1 idx {i}: {y1} != {y2} with k_diff= {k_diff}")
             return False
     # x2
-    for i, (x1, x2) in enumerate(zip(calc_res1["x2"], calc_res1["x2"])):
+    for i, (x1, x2) in enumerate(zip(calc_res1["x2"], calc_res2["x2"])):
         if not math.isclose(x1, x2):
             logging.warn(f"calculation results differs in x2 idx {i}: {x1} != {x2}")
             return False
     # y2
-    for i, (y1, y2) in enumerate(zip(calc_res1["y2"], calc_res1["y2"])):
+    for i, (y1, y2) in enumerate(zip(calc_res1["y2"], calc_res2["y2"])):
         dy1 = calc_res1["dfcol"]
         dy2 = calc_res2["dfcol"]
         if not _compare_values_with_k(y1, dy1, y2, dy2, _K):

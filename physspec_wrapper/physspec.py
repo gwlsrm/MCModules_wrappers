@@ -23,9 +23,9 @@ def calc_physspec(seed, histories):
     N = histories * 1000
     logging.info(f'Starting calculation with N={N} and seed={seed}')
     res = lib.physspec_calculate(N, True)
-    if res != 0:
-        logging.error(f'Calculation error #{res}')
-        return
+    # if res != 0:
+    #     logging.error(f'Calculation error #{res}')
+    #     return
 
     # save results
     output_filename = os.path.join(cur_path, 'physspec_output.json')

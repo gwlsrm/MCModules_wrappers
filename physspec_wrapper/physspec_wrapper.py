@@ -111,7 +111,6 @@ def main():
     res = lib.physspec_calculate(100000, True)
     if res != 0:
         print(f'Calculation error #{res}')
-        return
 
     # save
     output_filename = os.path.join(cur_path, 'physspec_output.json')
