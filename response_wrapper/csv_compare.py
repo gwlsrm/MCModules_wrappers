@@ -50,7 +50,8 @@ def compare_csv(filename1: str, filename2: str, rel_tol: float = REL_TOL) -> boo
                     diff = _calc_diff(val1, val2)
                     diff_str = f'{diff*100:.2f}%' if diff is not None else '?'
                     logging.error(
-                        f'{filename1} != {filename2} in row {i} and col {j} {col_names[j]}: {val1} != {val2}, diff={diff_str}')
+                        f'{filename1} != {filename2} in row {i} and col {j} {col_names[j]}: ' +
+                        f'{val1} != {val2}, diff={diff_str}')
                     res = False
                     break
     return res

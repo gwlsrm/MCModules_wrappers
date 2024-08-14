@@ -26,7 +26,7 @@ def _get_attribute(lib, attributes: tp.List[str]):
 
 
 class AppspecDllWrapper:
-    def __init__(self, path_to_dll: tp.Optional[str] = None, lib_name: tp.Optional[str] = None) -> None:
+    def __init__(self, path_to_dll: tp.Optional[str] = None, lib_name: tp.Optional[str] = None):
         if path_to_dll is None:
             path_to_dll = os.getcwd()
         if lib_name is None:
@@ -39,17 +39,25 @@ class AppspecDllWrapper:
             ['prepare_efficiency_calculation@20', 'prepare_efficiency_calculation']
         )
         self._prepare_efficiency_calculation.argtypes = [
-            ct.c_int, ct.POINTER(ct.c_double), ct.POINTER(ct.c_double), ct.POINTER(ct.c_double), ct.c_bool]
+            ct.c_int, ct.POINTER(ct.c_double), ct.POINTER(ct.c_double), ct.POINTER(ct.c_double),
+            ct.c_bool]
         # calculate
-        self._calculate_efficiency = _get_attribute(self._lib, ['calculate_efficiency@40', 'calculate_efficiency'])
+        self._calculate_efficiency = _get_attribute(self._lib, ['calculate_efficiency@40',
+                                                                'calculate_efficiency'])
         self._calculate_efficiency.argtypes = [
-            ct.c_double, ct.c_double, ct.c_double, ct.c_double, ct.POINTER(ct.c_double), ct.POINTER(ct.c_double)]
+            ct.c_double, ct.c_double, ct.c_double, ct.c_double, ct.POINTER(ct.c_double),
+            ct.POINTER(ct.c_double)]
         self._calculate_efficiency.restype = ct.c_int
         # reset
         self._reset_efficiency_calculation = _get_attribute(
             self._lib,
             ['reset_efficiency_calculation@0', 'reset_efficiency_calculation']
         )
+        # calculate efficiency using json-files
+        self._calculate_efficiency_json = _get_attribute(self._lib, ['calculate_efficiency_json'])
+        self._calculate_efficiency_json.argtypes = [
+            ct.c_char_p, ct.c_char_p, ct.c_bool]
+        self._calculate_efficiency_json.restype = ct.c_int
         # spectrum
         self._calc_apparatus_spectrum = _get_attribute(
             self._lib, ['calc_apparatus_spectrum@4', 'calc_apparatus_spectrum'])
@@ -65,9 +73,9 @@ class AppspecDllWrapper:
     def prepare_efficiency_calculation(self, energy_array: tp.List[float],
                                        nfep_array: tp.List[float], dfep_array: tp.List[float],
                                        is_log: bool) -> None:
-        e = (ct.c_double* len(energy_array))(*energy_array)
-        nfep = (ct.c_double* len(nfep_array))(*nfep_array)
-        dfep = (ct.c_double* len(dfep_array))(*dfep_array)
+        e = (ct.c_double * len(energy_array))(*energy_array)
+        nfep = (ct.c_double * len(nfep_array))(*nfep_array)
+        dfep = (ct.c_double * len(dfep_array))(*dfep_array)
 
         return self._prepare_efficiency_calculation(
             len(energy_array), e, nfep, dfep, is_log)
@@ -86,6 +94,13 @@ class AppspecDllWrapper:
 
     def calc_apparatus_spectrum(self, input_filename: str) -> int:
         return self._calc_apparatus_spectrum(bytes(input_filename, 'utf-8'))
+
+    def calculate_efficiency_json(self, input_filename: str, output_filename: str,
+                                  is_log: bool) -> int:
+        return self._calculate_efficiency_json(
+            bytes(input_filename, 'utf-8'),
+            bytes(output_filename, 'utf-8'),
+            is_log)
 
 
 def main():

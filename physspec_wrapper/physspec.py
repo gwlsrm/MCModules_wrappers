@@ -22,7 +22,7 @@ def calc_physspec(seed, histories):
     # calculate
     N = histories * 1000
     logging.info(f'Starting calculation with N={N} and seed={seed}')
-    res = lib.physspec_calculate(N, True)
+    _ = lib.physspec_calculate(N, True)
     # if res != 0:
     #     logging.error(f'Calculation error #{res}')
     #     return
@@ -31,6 +31,7 @@ def calc_physspec(seed, histories):
     output_filename = os.path.join(cur_path, 'physspec_output.json')
     lib.physspec_save_json(output_filename)
 
+    del lib
     logging.info('done')
 
 
@@ -45,8 +46,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='physspec -- util for physical spectr calculation with Monte-Carlo method')
 
-    parser.add_argument('-N', '--histories', help='calculation histories, thsnds', type=int, default=1)
-    parser.add_argument('-s', '--seed', help='seed for random generator, default = 0 <- random seed',
+    parser.add_argument('-N', '--histories', help='calculation histories, thsnds', type=int,
+                        default=1)
+    parser.add_argument('-s', '--seed', help='seed for random generator, default=0 <- random seed',
                         type=int, default=0)
     parser.add_argument('-v', '--verbose', help='verbose mode', action="store_true", default=False)
     parser.add_argument('--pretty', help='pretty json output file', action="store_true")

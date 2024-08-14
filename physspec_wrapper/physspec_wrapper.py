@@ -56,23 +56,26 @@ def _get_attribute(lib, attributes: tp.List[str]):
 
 
 class PhysspecDllWrapper:
-    def __init__(self, path_to_dll: tp.Optional[str] = None, lib_name: tp.Optional[str] = None) -> None:
+    def __init__(self, path_to_dll: tp.Optional[str] = None, lib_name: tp.Optional[str] = None):
         if path_to_dll is None:
             path_to_dll = os.getcwd()
         if lib_name is None:
             lib_name = self._auto_select_lib_name(path_to_dll)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
         # prepare
-        self._physspec_prepare = _get_attribute(self._lib, ['PhysSpecPrepareJson@8', 'PhysSpecPrepareJson'])
+        self._physspec_prepare = _get_attribute(self._lib,
+                                                ['PhysSpecPrepareJson@8', 'PhysSpecPrepareJson'])
         self._physspec_prepare.argtypes = [c_char_p, c_int]
         # calculate
-        self._physspec_calculate = _get_attribute(self._lib, ['PhysSpec_Calculate@8', 'PhysSpec_Calculate'])
+        self._physspec_calculate = _get_attribute(self._lib,
+                                                  ['PhysSpec_Calculate@8', 'PhysSpec_Calculate'])
         self._physspec_calculate.argtypes = [c_int, c_bool]
         self._physspec_calculate.restype = POINTER(CalculationResults)
         # reset
         self._physspec_reset = _get_attribute(self._lib, ['PhysSpec_Reset@0', 'PhysSpec_Reset'])
         # save to json
-        self._physspec_save_json = _get_attribute(self._lib, ['PhysSpec_Save_Json@4', 'PhysSpec_Save_Json'])
+        self._physspec_save_json = _get_attribute(self._lib,
+                                                  ['PhysSpec_Save_Json@4', 'PhysSpec_Save_Json'])
         self._physspec_save_json.argtypes = [c_char_p]
 
     @staticmethod

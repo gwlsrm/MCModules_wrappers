@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 import numpy as np
 
 
-def _str_to_float_def(string, defValue = 0.0):
+def _str_to_float_def(string, defValue: float = 0.0):
     try:
         return float(string)
     except Exception:
@@ -26,9 +26,9 @@ class SpectrumInformation:
     headerdict: tp.Dict[str, tp.Any] = field(default_factory=dict)
 
     def print_params(self):
-        for key,value in self.headerdict.items():
+        for key, value in self.headerdict.items():
             if value:
-                print(key, value, sep = '=')
+                print(key, value, sep='=')
             else:
                 print(key)
 
@@ -98,7 +98,7 @@ class SpectrumReader:
                 line = line.strip()
                 words = line.split()
                 assert len(words) == 2
-                ch, counts = int(words[0]), int(words[1])
+                _, counts = int(words[0]), int(words[1])
                 spectrum_list.append(counts)
             spectr_data = np.array(spectrum_list, dtype=int)
         return Spectrum(spectr_data, spe_info)
@@ -114,12 +114,12 @@ class SpectrumReader:
             c = b.decode(encoding="cp1251")
 
             if c == '\r':
-                f.read(1) # reading \n
+                f.read(1)  # reading \n
                 if is_has_value:
                     return param_name, param_value
                 else:
                     return param_name, None
-            elif c == '=' and param_name == "SPECTR": # start of spectr section
+            elif c == '=' and param_name == "SPECTR":  # start of spectr section
                 return param_name, None
             elif c == '=':
                 is_has_value = True
@@ -128,7 +128,6 @@ class SpectrumReader:
                     param_value += c
                 else:
                     param_name += c
-
 
 
 def save_spectrum_as_txt(spectrum: Spectrum, filename: str) -> None:
@@ -141,7 +140,7 @@ def save_spectrum_as_txt(spectrum: Spectrum, filename: str) -> None:
             f.write('DATE=' + (spectrum.info.headerdict['MEASBEGIN'].split(" "))[0] + '\n')
             f.write('TIME=' + (spectrum.info.headerdict['MEASBEGIN'].split(" "))[1] + '\n')
 
-        #write spectr head
+        # write spectr head
         f.write("SPECTRTXT=" + str(len(spectrum.data)) + '\n')
 
         # writing spectr

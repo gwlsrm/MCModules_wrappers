@@ -47,26 +47,30 @@ def _get_attribute(lib, attributes: tp.List[str]) -> tp.Any:
 
 
 class TccFcalcDllWrapper:
-    def __init__(self, path_to_dll: tp.Optional[str] = None, lib_name: tp.Optional[str] = None) -> None:
+    def __init__(self, path_to_dll: tp.Optional[str] = None, lib_name: tp.Optional[str] = None):
         if path_to_dll is None:
             path_to_dll = os.getcwd()
         if lib_name is None:
             lib_name = self._auto_select_lib_name(path_to_dll)
         self._lib = CDLL(os.path.join(path_to_dll, lib_name), RTLD_GLOBAL)
         # prepare
-        self._tccfcalc_prepare = _get_attribute(self._lib, ['TCCFCALC_Prepare@24', 'TCCFCALC_Prepare'])
+        self._tccfcalc_prepare = _get_attribute(self._lib,
+                                                ['TCCFCALC_Prepare@24', 'TCCFCALC_Prepare'])
         self._tccfcalc_prepare.argtypes = [c_int, c_int, c_int, c_char_p, c_char_p, c_int]
         # prepare json
-        self._tccfcalc_prepare_json = _get_attribute(self._lib, ['TCCFCALC_Prepare_Json@8', 'TCCFCALC_Prepare_Json'])
+        self._tccfcalc_prepare_json = _get_attribute(self._lib, ['TCCFCALC_Prepare_Json@8',
+                                                                 'TCCFCALC_Prepare_Json'])
         self._tccfcalc_prepare_json.argtypes = [c_char_p, c_int]
         # calculate
-        self._tccfcalc_calculate = _get_attribute(self._lib, ['TCCFCALC_Calculate@4', 'TCCFCALC_Calculate'])
+        self._tccfcalc_calculate = _get_attribute(self._lib,
+                                                  ['TCCFCALC_Calculate@4', 'TCCFCALC_Calculate'])
         self._tccfcalc_calculate.argtypes = [c_int]
         # reset
         self._tccfcalc_reset = _get_attribute(self._lib, ['TCCFCALC_Reset@0', 'TCCFCALC_Reset'])
         # calc spectrum
         self._tccfcalc_calculate_spectrum = \
-            _get_attribute(self._lib, ['TCCFCALC_CalculateSpectrum@8', 'TCCFCALC_CalculateSpectrum'])
+            _get_attribute(self._lib,
+                           ['TCCFCALC_CalculateSpectrum@8', 'TCCFCALC_CalculateSpectrum'])
         self._tccfcalc_calculate_spectrum.argtypes = [c_double]
         self._tccfcalc_calc_spectrum_file = \
             _get_attribute(self._lib, ['TCCFCALC_CalcSpectrumFile@12', 'TCCFCALC_CalcSpectrumFile'])
@@ -86,8 +90,10 @@ class TccFcalcDllWrapper:
                 return lib_name
         raise AttributeError(f'cannot find tccfcalc library in {path_to_dll}')
 
-    def tccfcalc_prepare(self, a: int, z: int, m, cur_path: str, library_path: str, seed: int = 0) -> int:
-        return self._tccfcalc_prepare(a, z, m, bytes(cur_path, 'utf-8'), bytes(library_path, 'utf-8'), seed)
+    def tccfcalc_prepare(self, a: int, z: int, m, cur_path: str, library_path: str,
+                         seed: int = 0) -> int:
+        return self._tccfcalc_prepare(a, z, m, bytes(cur_path, 'utf-8'),
+                                      bytes(library_path, 'utf-8'), seed)
 
     def tccfcalc_prepare_json(self, input_filename: str, seed: int) -> int:
         return self._tccfcalc_prepare_json(bytes(input_filename, 'utf-8'), seed)
