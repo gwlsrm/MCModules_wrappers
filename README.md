@@ -1,10 +1,19 @@
 # MCModules wrappers
+
 Python wrappers to [lsrm](http://lsrm.ru/en/) Monte-Carlo calculation libraries:
 
 - tccfcalc.dll
 - response.dll
 - physspec.dll
 
+They are intended for testing MC-calculation libraries.
+
+### Install
+
+- copy code from github.
+- install requirements: `pip install -r requirements.txt`
+- copy calculation dlls (*.so) to the corresponding directories, e.g. copy `tccfcalc.dll` (or `libtccfcalc.so`) to tccfcalc_wrapper.
+- copy `Lib` directory to the corresponding directories, e.g. copy `Lib` from EffCalcMC to tccfcalc_wrapper.
 
 
 ### tccfcalc wrapper
@@ -13,7 +22,7 @@ wrapper for tccfcalc.dll (calculation library for EffCalcMC)
 
 Example: effcalc.py run:
 
-```sh
+```bash
 python effcalc.py <arguments>
 positional arguments:
   positional            element Z, A, M
@@ -30,6 +39,10 @@ optional arguments:
   -v, --verbose         verbose mode
 ```
 
+Test tccfcalc:
+```bash
+python python tccfcalc_test.py
+```
 
 
 ### response wrapper
@@ -52,6 +65,11 @@ optional arguments:
   -v, --verbose         verbose mode
 ```
 
+Test tccfcals:
+
+```bash
+python response_test.py
+```
 
 
 ### physspec wrapper
@@ -71,3 +89,8 @@ optional arguments:
   --pretty              pretty json output file
 ```
 
+Test physspec:
+
+```bash
+python physspec_test.py
+```
