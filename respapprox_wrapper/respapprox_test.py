@@ -36,7 +36,7 @@ def form_result_name(has_peaks: bool, is_mutithread: bool) -> str:
 def main():
     # logger
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.WARN,
         format='%(asctime)s : %(levelname)s : %(message)s',
         stream=sys.stderr,
     )
@@ -54,7 +54,7 @@ def main():
         if not res:
             logging.error(f"calculation error for {input_fname}")
             continue
-        res = compare_matrices("test.mtx", etalon_fname, channels_num=1000)
+        res = compare_matrices("test.mtx", etalon_fname, channels_num=1000, rel_epsilon=1e-7)
         if not res:
             logging.error(f'calculation results for {input_fname} are different')
         else:

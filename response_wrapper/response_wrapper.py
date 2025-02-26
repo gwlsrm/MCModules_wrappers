@@ -107,9 +107,7 @@ def main():
     output_filename = os.path.join(cur_path, 'response_output.csv')
     is_first = True
     for e in [0.5, 1.0]:
-        res = lib.response_calculate(1000, e, 0.001)
-        if res != 0:
-            print(f"Calculation error: {res}")
+        lib.response_calculate(1000, e, 0.001)
         lib.response_save_rfc_csv(output_filename, not is_first)
         is_first = False
     print('done')
