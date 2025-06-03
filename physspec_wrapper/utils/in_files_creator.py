@@ -3,7 +3,8 @@ from itertools import product
 
 det_list = ["hpge", "scintil"]
 collimator_list = ["nocol", "col1", "col2"]
-geom_list = ["point", "barrel", "nzk", "nzk_chamfered"]
+geom_list = ["point", "barrel", "nzk", "nzk_chamfered", "point_zshift_old", "point_xshift_old",
+             "point_zshift_new", "point_xshift_new"]
 CALC_PARAMS = "calc_params"
 
 
@@ -12,7 +13,7 @@ def _read_from_json(obj):
         return json.load(f)
 
 
-if __name__ == "__main__":
+def main():
     for det, col, geom in product(det_list, collimator_list, geom_list):
         in_name = f"physspec_input_{det}_{col}_{geom}.json"
         det_obj = _read_from_json(det)
@@ -29,3 +30,7 @@ if __name__ == "__main__":
 
         with open(in_name, 'w') as f:
             json.dump(res, f, indent=4)
+
+
+if __name__ == "__main__":
+    main()

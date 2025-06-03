@@ -75,10 +75,14 @@ def compare_physspec_output_data_with_errors(data1: tp.Dict[str, tp.Any], data2:
 
 
 def compare_physspec_output_with_errors(filename1: str, filename2: str, with_error: bool = False) -> bool:
-    with open(filename1) as f1, open(filename2) as f2:
-        data1 = json.load(f1)
-        data2 = json.load(f2)
-        if with_error:
-            return compare_physspec_output_data_with_errors(data1, data2)
-        else:
-            return compare_dicts(data1, data2)
+    try:
+        with open(filename1) as f1, open(filename2) as f2:
+            data1 = json.load(f1)
+            data2 = json.load(f2)
+            if with_error:
+                return compare_physspec_output_data_with_errors(data1, data2)
+            else:
+                return compare_dicts(data1, data2)
+    except FileNotFoundError as e:
+        logging.error("File for compare is not found: %s", e)
+        return False

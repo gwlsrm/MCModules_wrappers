@@ -14,7 +14,10 @@ from compare_physspec_output import compare_physspec_output_with_errors
 
 det_list = ["hpge", "scintil"]
 collimator_list = ["nocol", "col1", "col2"]
-geom_list = ["point", "barrel", "nzk", "nzk_chamfered"]
+geom_list = [
+    "point", "barrel", "nzk", "nzk_chamfered",
+    "point_zshift_old", "point_xshift_old", "point_zshift_new", "point_xshift_new",
+]
 multithread_list = ["hpge_col1_barrel"]
 SEED = 42
 N = 100
@@ -51,7 +54,7 @@ if __name__ == "__main__":
         logging.info("calc with: " + input_fname)
         shutil.copy(input_fname, "physspec_input.json")
         calc_physspec(SEED, N)
-        res = compare_physspec_output_with_errors('physspec_output.json', etalon_fname, with_error=True)
+        res = compare_physspec_output_with_errors('physspec_output.json', etalon_fname, with_error=False)
         if not res:
             logging.error(f'calculation for {input_fname} failed')
         else:
