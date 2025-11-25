@@ -6,40 +6,43 @@ import logging
 import math
 import sys
 import os.path
+import typing as tp
 
 
 def _calc_diff(v1, v2):
     return (v2 - v1) / (v1 + v2)
 
 
-def compare_dicts(data1, data2, prefix=''):
+def compare_dicts(data1: tp.Dict, data2: tp.Dict, prefix: str = '', skip_absent_keys: bool = False
+                  ) -> bool:
     res = True
     for k, v1 in data1.items():
         full_key = '.'.join((prefix, k)) if prefix else k
         if k not in data2:
-            logging.warn(f'{full_key} not in data2')
-            res = False
+            logging.warning(f'{full_key} is not in 2nd dictionary')
+            if not skip_absent_keys:
+                res = False
             continue
         v2 = data2[k]
         if isinstance(v1, dict):
-            res &= compare_dicts(v1, v2, full_key)
+            res &= compare_dicts(v1, v2, full_key, skip_absent_keys)
         elif isinstance(v1, list):
             for vv1, vv2 in zip(v1, v2):
                 if not math.isclose(vv1, vv2):
-                    logging.warn(f'{full_key}: {vv1} != {vv2}')
+                    logging.warning(f'{full_key}: {vv1} != {vv2}')
                     res = False
         else:
             if not math.isclose(v1, v2):
-                logging.warn(f'{full_key} is not equal: {v1} != {v2}, diff={_calc_diff(v1, v2)}')
+                logging.warning(f'{full_key} is not equal: {v1} != {v2}, diff={_calc_diff(v1, v2)}')
                 res = False
     return res
 
 
-def compare_json(filename1: str, filename2: str):
+def compare_json(filename1: str, filename2: str, skip_absent_keys: bool = False) -> bool:
     with open(filename1) as f1, open(filename2) as f2:
         data1 = json.load(f1)
         data2 = json.load(f2)
-        res = compare_dicts(data1, data2)
+        res = compare_dicts(data1, data2, skip_absent_keys=skip_absent_keys)
         if not res:
             logging.error(f'{filename1} != {filename2}')
         return res

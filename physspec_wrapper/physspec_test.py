@@ -35,7 +35,7 @@ def form_result_name(det, col, geom):
     return f"results{os.sep}physspec_output_{det}_{col}_{geom}.json"
 
 
-if __name__ == "__main__":
+def main():
     # logger
     logging.basicConfig(
         level=logging.WARN,
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         calc_physspec(SEED, N)
         res = compare_physspec_output_with_errors('physspec_output.json', etalon_fname, with_error=False)
         if not res:
-            logging.error(f'calculation for {input_fname} failed')
+            logging.error(f'calculation results for {input_fname} are different from etalon')
         else:
             logging.info(f'calculation results for {input_fname} is OK')
         shutil.copy('physspec_output.json', form_result_name(det, col, geom))
@@ -70,7 +70,11 @@ if __name__ == "__main__":
         calc_physspec(SEED, N)
         res = compare_physspec_output_with_errors('physspec_output.json', etalon_fname, with_error=True)
         if not res:
-            logging.error(f'calculation for {input_fname} failed')
+            logging.error(f'calculation results for {input_fname} are different from etalon')
         else:
             logging.info(f'calculation results for {input_fname} is OK')
         shutil.copy('physspec_output.json', f"results{os.sep}physspec_output_{item}.json")
+
+
+if __name__ == "__main__":
+    main()
