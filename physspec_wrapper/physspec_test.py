@@ -73,7 +73,7 @@ def main():
             logging.error(f'calculation results for {input_fname} are different from etalon')
         else:
             logging.info(f'calculation results for {input_fname} is OK')
-        shutil.copy('physspec_output.json', f"results{os.sep}physspec_output_{item}.json")
+        shutil.copy('physspec_output.json', f"results{os.sep}physspec_output_{item}_mt.json")
 
 
 if __name__ == "__main__":
