@@ -1,6 +1,7 @@
 """
     test response.dll calculation
 """
+import argparse
 import logging
 import os
 import shutil
@@ -8,7 +9,7 @@ import sys
 from itertools import product
 from tqdm import tqdm
 
-from csv_compare import compare_csv
+from csv_compare import compare_csv, compare_csv_with_uncertainty
 from energy_grid import EnergyGrid
 from response import calc_response_with
 
@@ -39,11 +40,16 @@ def form_result_name(det, geom, is_multithread=False):
     return f"results{os.sep}response_output_{det}_{geom}{mt_suffix_str}.csv"
 
 
-if __name__ == "__main__":
+def main():
+    # command arguments
+    parser = argparse.ArgumentParser(description="test response calculation results")
+    parser.add_argument("--verbose", "-v", action="store_true", help="add more logs")
+    args = parser.parse_args()
+
     # logger
     logging.basicConfig(
-        level=logging.WARNING,
-        format='%(asctime)s : %(levelname)s : %(message)s',
+        level=logging.INFO if args.verbose else logging.WARNING,
+        format='%(levelname)s : %(message)s',
         stream=sys.stderr,
     )
 
@@ -62,7 +68,7 @@ if __name__ == "__main__":
         shutil.copy(input_fname, "response_input.json")
         calc_response_with(grid, SEED, N)
         if is_mt:
-            res = compare_csv('response_output.csv', etalon_fname, rel_tol=4)
+            res = compare_csv_with_uncertainty('response_output.csv', etalon_fname, rel_tol=0.05)
         else:
             res = compare_csv('response_output.csv', etalon_fname)
         if not res:
@@ -70,3 +76,7 @@ if __name__ == "__main__":
         else:
             logging.info(f'calculation results for {input_fname} is OK')
         shutil.copy('response_output.csv', form_result_name(det, geom, is_mt))
+
+
+if __name__ == "__main__":
+    main()
