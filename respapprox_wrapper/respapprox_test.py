@@ -1,6 +1,7 @@
 """
     test respapprox.dll -- response matrix calculation
 """
+import argparse
 import logging
 import os
 import shutil
@@ -34,9 +35,14 @@ def form_result_name(has_peaks: bool, is_mutithread: bool) -> str:
 
 
 def main():
+    # command arguments
+    parser = argparse.ArgumentParser(description="test respapprox calculation results")
+    parser.add_argument("--verbose", "-v", action="store_true", help="add more logs")
+    args = parser.parse_args()
+
     # logger
     logging.basicConfig(
-        level=logging.WARN,
+        level=logging.INFO if args.verbose else logging.WARNING,
         format='%(asctime)s : %(levelname)s : %(message)s',
         stream=sys.stderr,
     )
