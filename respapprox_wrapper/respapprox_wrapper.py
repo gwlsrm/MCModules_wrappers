@@ -1,7 +1,7 @@
 import os.path
 import sys
 import typing as tp
-from ctypes import CDLL, RTLD_GLOBAL, c_int, c_char_p
+from ctypes import CDLL, RTLD_GLOBAL, c_int, c_char_p, c_bool
 
 
 PREPARE_ERROR_CODES = [
@@ -45,6 +45,10 @@ class RespapproxDllWrapper:
         self._calculate_all = _get_attribute(self._lib, ['calculate_all', 'calculate_all@0'])
         # get channel
         self._get_channel = _get_attribute(self._lib, ['get_channel', 'get_channel@0'])
+        self._get_channel.restype = c_int
+        # finished_saving
+        self._finished_saving = _get_attribute(self._lib, ['finished_saving', 'finished_saving@0'])
+        self._finished_saving.restype = c_bool
         # stop
         self._stop = _get_attribute(self._lib, ['stop', 'stop@0'])
         # close
@@ -71,6 +75,9 @@ class RespapproxDllWrapper:
 
     def get_channel(self) -> int:
         return self._get_channel()
+
+    def finished_saving(self) -> bool:
+        return self._finished_saving()
 
     def stop(self):
         self._stop()
