@@ -15,7 +15,7 @@ def calc_response_matrix_singlethread(lib: RespapproxDllWrapper, input_filename:
         lib.close()
         return False
     channels_number = -res
-    logging.info("Initialized, channels number={}".format(channels_number))
+    logging.info("Initialized single thread, channels number={}".format(channels_number))
     # calc
     for ch in range(channels_number):
         lib.calculate(ch)
@@ -32,7 +32,7 @@ def calc_response_matrix_multithread(lib: RespapproxDllWrapper, input_filename: 
         lib.close()
         return False
     channels_number = -res
-    logging.info("Initialized, channels number={}".format(channels_number))
+    logging.info("Initialized multithread, channels number={}".format(channels_number))
     # calc
     lib.calculate_all()
     cur_channel = 0
@@ -68,7 +68,7 @@ def main():
         stream=sys.stderr,
     )
 
-    calc_response_matrix(is_multithread=False)
+    calc_response_matrix(args.multithread)
 
 
 if __name__ == "__main__":
